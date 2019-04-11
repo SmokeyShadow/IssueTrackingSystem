@@ -12,10 +12,6 @@
     box-shadow: 1px 1px 5px 3px #bbbbbbbd;
 }
 
-.content div {
-    display: inline-block;
-}
-
 /* form leftside */
 
 .leftside {
@@ -90,10 +86,38 @@ input:focus {
     visibility: hidden;
 }
 
+#register-content .inline-div, #register-content .leftside div {
+    display: inline-block;
+}
+.select-div *{
+    text-align: right !important;
+}
+.select-div .bootstrap-select.show-tick .dropdown-menu li a span.text{
+    margin-right: 0 !important;
+}
+.select-div .bootstrap-select.show-tick .dropdown-menu .selected span.check-mark
+{
+    position: absolute;
+    display: inline-block;
+    right: inherit  !important;
+    left: 15px !important;
+    top: 5px;
+}
+.selectpicker
+{
+    text-align: right !important;
+    float: right !important;
+}
 /* switch pages */
 
 #switch-to-register, #switch-to-login {
     margin-top: 15%;
+}
+
+/*login*/
+
+#login-content div {
+    display: inline-block;
 }
 
 /* login buttons */
@@ -161,6 +185,7 @@ input:focus {
 .hidden-error i {
     float: left;
     font-size: 16px;
+    color: inherit;
 }
 
 .hidden-error span {

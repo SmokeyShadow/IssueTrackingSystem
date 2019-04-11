@@ -54,7 +54,7 @@ table {
 
 @font-face {
     font-family: Yekan;
-    src: url("../fonts/Yekan.woff");
+    src: url("../Assets/fonts/Yekan.woff");
 }
 
 p, h1, h2, h3, h4, h5, span, a, div, label, input, ::placeholder {

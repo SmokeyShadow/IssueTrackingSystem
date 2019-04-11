@@ -1,13 +1,34 @@
-
+ 
+   
 // jquery part
 $(document).ready(function () {
+ 
+    //register form submit
+    $('#register-submit').click(function (){
+        var form = $("#register-form").serializeArray();
+        let user = {  
+            name: form[0].value,
+            email: form[1].value, 
+            password: form[2].value,
+            role: form[4].value,
+        };
+
+        let data = JSON.stringify(user);
+        //must install npm to dl and save it on PC 
+        console.log(data);
+
+    });
 
 
+    //drop down selector
+    $(function () {
+        $('select').selectpicker();
+    });
     //item gallery with filtering 
 
     //  default filter(all)
     filterSelection("all");
-
+ 
     //auto focus on default filter
     if(document.getElementById("auto-focus") != null)
         document.getElementById("auto-focus").focus();
@@ -120,7 +141,6 @@ $(document).ready(function () {
 
 // modal page
 var modal = document.getElementById('id01');
-
 window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
