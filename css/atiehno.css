@@ -11,7 +11,10 @@
     height: 500px;
     box-shadow: 1px 1px 5px 3px #bbbbbbbd;
 }
-
+.form-section{
+    height: 800px;
+    position: relative;
+}
 /* form leftside */
 
 .leftside {
