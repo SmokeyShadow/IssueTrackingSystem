@@ -163,7 +163,8 @@ input:focus {
     width: 100px;
     height: 100px;
     background: rgba(27, 94, 32, 0.5);
-    border-radius: 50%
+    border-radius: 50%;
+    
 }
 
 /* circle btn */
@@ -174,6 +175,22 @@ input:focus {
     background: rgb(62, 82, 105);
     border: none !important;
     color: white;
+}
+.chat-div{
+    width: 60px !important;
+    height: 60px !important;
+
+
+}
+.chat-btn
+{
+    width: inherit;
+    height: inherit;
+    position : fixed; 
+    background-color:rgb(37, 37, 37); 
+    z-index: 1;
+    bottom : 30px; 
+    right : 5px; 
 }
 
 /* error section */
