@@ -11,10 +11,12 @@
     height: 500px;
     box-shadow: 1px 1px 5px 3px #bbbbbbbd;
 }
-.form-section{
+
+.form-section {
     height: 800px;
     position: relative;
 }
+
 /* form leftside */
 
 .leftside {
@@ -92,25 +94,28 @@ input:focus {
 #register-content .inline-div, #register-content .leftside div {
     display: inline-block;
 }
-.select-div *{
+
+.select-div * {
     text-align: right !important;
 }
-.select-div .bootstrap-select.show-tick .dropdown-menu li a span.text{
+
+.select-div .bootstrap-select.show-tick .dropdown-menu li a span.text {
     margin-right: 0 !important;
 }
-.select-div .bootstrap-select.show-tick .dropdown-menu .selected span.check-mark
-{
+
+.select-div .bootstrap-select.show-tick .dropdown-menu .selected span.check-mark {
     position: absolute;
     display: inline-block;
-    right: inherit  !important;
+    right: inherit !important;
     left: 15px !important;
     top: 5px;
 }
-.selectpicker
-{
+
+.selectpicker {
     text-align: right !important;
     float: right !important;
 }
+
 /* switch pages */
 
 #switch-to-register, #switch-to-login {
@@ -164,7 +169,6 @@ input:focus {
     height: 100px;
     background: rgba(27, 94, 32, 0.5);
     border-radius: 50%;
-    
 }
 
 /* circle btn */
@@ -176,21 +180,20 @@ input:focus {
     border: none !important;
     color: white;
 }
-.chat-div{
+
+.chat-div {
     width: 60px !important;
     height: 60px !important;
-
-
 }
-.chat-btn
-{
+
+.chat-btn {
     width: inherit;
     height: inherit;
-    position : fixed; 
-    background-color:rgb(37, 37, 37); 
+    position: fixed !important;
+    background-color: rgb(37, 37, 37);
     z-index: 1;
-    bottom : 30px; 
-    right : 5px; 
+    bottom: 30px;
+    right: 5px;
 }
 
 /* error section */
