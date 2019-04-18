@@ -64,10 +64,11 @@ p, h1, h2, h3, h4, h5, span, a, div, label, input, ::placeholder {
 /* navbar (green) */
 
 header {
-    background-color: rgb(80, 172, 89);
+    background: #527ef8;
+    background: -webkit-linear-gradient(right, #078f66e7, #24c0b8e7, #5f98aa);
     position: fixed;
     width: 100%;
-    z-index: 1;
+    z-index: 5;
 }
 
 header nav {

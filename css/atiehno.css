@@ -13,8 +13,9 @@
 }
 
 .form-section {
-    height: 800px;
+    height: 500px;
     position: relative;
+    margin-top:10%;
 }
 
 /* form leftside */
@@ -181,20 +182,6 @@ input:focus {
     color: white;
 }
 
-.chat-div {
-    width: 60px !important;
-    height: 60px !important;
-}
-
-.chat-btn {
-    width: inherit;
-    height: inherit;
-    position: fixed !important;
-    background-color: rgb(37, 37, 37);
-    z-index: 1;
-    bottom: 30px;
-    right: 5px;
-}
 
 /* error section */
 
@@ -217,6 +204,7 @@ input:focus {
     font-size: 14px;
 }
 
+  
 /* responsive part */
 
 @media only screen and (max-width:753px) {
@@ -244,3 +232,9 @@ input:focus {
         width: 80%;
     }
 }
+
+
+
+
+
+
