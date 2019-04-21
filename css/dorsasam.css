@@ -1,14 +1,10 @@
-.box {
+.profile-section {
+    z-index: 1 !important;
     background-color: white;
-    box-shadow: 3px 3px 3px 3px lightgray;
+    box-shadow: 1px 2px 8px 1px lightgrey;
     width: 750px;
     height: 400px;
-    padding: 200px;
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -55%);
-    z-index: -1;
+
 }
 .image{
     position: absolute;
@@ -18,17 +14,18 @@
     width: 1000px;
     height: 400px;
 }
-.box_menu{
+.form-content
+{
+    width: 900px;
+    margin: auto;
+}
+.profile-menu{
+    z-index: 1 !important;
     background-color: white;
-    box-shadow: 3px 3px 3px 3px lightgray;
+    box-shadow: 1px 2px 8px 1px lightgrey;
     width:  50px;
     height: 400px;
-    padding: 100px;
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-200%, -55%);
-    z-index: -1;
+
 }
 .edit_buttons{
     display: inline;
@@ -41,7 +38,7 @@
     outline: none;
     align-content: center;
     text-align: center;
-    transform: translate(50%, -200%);
+   
 }
 .edit_buttons:hover{
     border-left-width: 3px;
@@ -52,15 +49,12 @@
     border-left-width: 3px;
     border-left-color: black;
 }
-.profile_picture{
-    transform: translate(0%,-170%);
-}
+
 .image-text{
     font-size: 10px;
 }
 .fileContainer{
     margin-left: 10px;
-    transform: translate(0,75%);
     color: rgb(80, 172, 89);
 }
 .fileContainer [type=file] {
@@ -73,12 +67,15 @@
     text-align: right;
 }
 .profile_modifications{
+    z-index: 1;
+}
+.profile_modifications , .profile_change{
     display: flex;
     flex-direction: column;
-    transform: translate(50%,-120%);
+    margin-top:25px;
 }
 .user_name{
-    transform: translate(35%,210%);
+
     direction: ltr;
     font-size: 20px;
 }
@@ -88,7 +85,7 @@
     border-width: 0px;
     background-color: #527ef8;
     color: white;
-    transform: translate(0%,-500%);
+    float: right;
 }
 .change_button{
     width: 200px;
@@ -96,26 +93,25 @@
     border-width: 0px;
     background-color: #527ef8;
     color: white;
-    transform: translate(0%,-550%);
+    z-index: -1;
 }
-.change_box{
-    transform: translate(0%,-96%);
-}
+
 .profile_change{
     display: flex;
     flex-direction: column;
-    transform: translate(50%,-120%);
 }
 
 .appear {
     opacity: 1;
     transition: 0.7s opacity;
+    position: absolute;
+    top: 0;
+    z-index: 1;
 }
 
 .fade {
     opacity: 0;
     transition: left;
-    transform: translate(1000px,-175%);
 }
 .nav-bottom {
     position: relative;
@@ -132,4 +128,9 @@
 }
 .email{
     direction: ltr;
+}
+footer{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
 }

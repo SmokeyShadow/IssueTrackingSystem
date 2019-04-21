@@ -10,6 +10,10 @@
     <link href="css/global.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="../css/style.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../css/dorsasam.css" rel="stylesheet">
+    <!-- Custom CSS -->
+
     <!-- Dashboard 1 Page CSS -->
     <link href="../css/backgroundStyle.css" rel="stylesheet">
 </head>
@@ -107,6 +111,8 @@
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
+
+
                 <!-- ============================================================== -->
                 <!-- Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
@@ -125,6 +131,8 @@
                 </div>
 
 
+
+
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <!-- Row -->
@@ -133,10 +141,12 @@
                     <div class="col-lg-4 col-xlg-3 col-md-5">
                         <div class="card">
                             <div class="card-body">
-                                <center class="m-t-30"> <img src="Assets/images/users/5.jpg" class="img-circle"
+                                <center class="m-t-30"> <img src="Assets/images/profile.jpg" class="img-circle"
                                         width="150" />
-                                    <h4 class="card-title m-t-10">Hanna Gover</h4>
-                                    <h6 class="card-subtitle">Accoubts Manager Amix corp</h6>
+                                    <h4 class="card-title m-t-10 user_name">ds_sam_</h4>
+                                    <label class="fileContainer">عکس دیگری انتخاب کنید<input
+                                        type="file"></label>
+                        
                                     <div class="row text-center justify-content-md-center">
                                         <div class="col-4"><a href="javascript:void(0)" class="link"><i
                                                     class="icon-people"></i> </a></div>
@@ -149,64 +159,67 @@
                     </div>
                     <!-- Column -->
                     <!-- Column -->
+
+
                     <div class="col-lg-8 col-xlg-9 col-md-7">
                         <div class="card">
                             <!-- Tab panes -->
-                            <div class="card-body">
-                                <form class="form-horizontal form-material">
-                                    <div class="form-group">
-                                        <label class="col-md-12">Full Name</label>
-                                        <div class="col-md-12">
-                                            <input type="text" placeholder="Johnathan Doe"
-                                                class="form-control form-control-line">
+                            <div class="card-body row form-content">
+                                <div class="profile-section col-md-9">
+                                    <div class="modify_box appear  row" style="width: 100%; height: 100%;">
+                                        <div class="profile_modifications col-md-8 form-horizontal form-material">
+                                            
+                                            <input class="form-control form-control-line" type="text" style="margin-top: 20px;" placeholder="نام" value="درسا">
+                                            <input  class="form-control form-control-line" type="text" style="margin-top: 20px;" placeholder="نام خانوادگی"
+                                                value="سمیعی">
+                                            <input  class="form-control form-control-line" type="text" style="margin-top: 20px;direction: ltr"
+                                                placeholder="نام کاربری" value="ds_sam_">
+                                            <input  class="form-control form-control-line email" type="text" style="margin-top: 20px;"
+                                                placeholder="پست الکترونیکی" value="dorsasamiee75@gmail.com">
+                                            <text class="warning">آدرس پست الکترونیکی معتبر نیست<i
+                                                    class="fa fa-warning"></i></text>
+
+
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="example-email" class="col-md-12">Email</label>
-                                        <div class="col-md-12">
-                                            <input type="email" placeholder="johnathan@admin.com"
-                                                class="form-control form-control-line" name="example-email"
-                                                id="example-email">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Password</label>
-                                        <div class="col-md-12">
-                                            <input type="password" value="password"
-                                                class="form-control form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Phone No</label>
-                                        <div class="col-md-12">
-                                            <input type="text" placeholder="123 456 7890"
-                                                class="form-control form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Message</label>
-                                        <div class="col-md-12">
-                                            <textarea rows="5" class="form-control form-control-line"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-12">Select Country</label>
+                                     
                                         <div class="col-sm-12">
-                                            <select class="form-control form-control-line">
-                                                <option>London</option>
-                                                <option>India</option>
-                                                <option>Usa</option>
-                                                <option>Canada</option>
-                                                <option>Thailand</option>
-                                            </select>
+                                        <button class="submit_button rounded" onclick="checkEnteries()">ثبت
+                                            تغییرات</button>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <button class="btn btn-success">Update Profile</button>
+                                    <div class="change_box fade">
+                                        <div class="profile_picture">
+                                         
                                         </div>
+                                        <div class="profile_change form-horizontal form-material">
+                                            
+                                            <input type="text" style="margin-top: 20px;" class="previous form-control form-control-line"
+                                                placeholder="رمز عبور قبلی">
+                                            <text class="warning warning1 ">رمز عبور قبلی خود را وارد کنید<i
+                                                    class="fa fa-warning"></i></text>
+                                            <text class="warning warning2">رمز عبور قبلی نادرست است<i
+                                                    class="fa fa-warning"></i></text>
+                                            <input type="text" style="margin-top: 20px;" class="new form-control form-control-line"
+                                                placeholder="رمز عبور جدید">
+                                            <text class="warning warning3">رمز عبور جدید معتبر وارد کنید<i
+                                                    class="fa fa-warning"></i></text>
+                                            <text class="warning warning4">رمز عبور جدید با رمز عبور قبلی یکسان است<i
+                                                    class="fa fa-warning"></i></text>
+                                            <input type="text" style="margin-top: 20px;" class="repeat form-control form-control-line"
+                                                placeholder="تکرار رمز عبور جدید">
+                                            <text class="warning warning5 ">تکرار رمز عبور نادرست است<i
+                                                    class="fa fa-warning"></i></text>
+                                        </div>
+                                        <button class="change_button rounded" onclick="checkPassword()">تغییر رمز
+                                            عبور</button>
                                     </div>
-                                </form>
+                                </div>
+                                <div class="profile-menu col-md-3">
+                                    <button id="modify" class="edit_buttons active"
+                                        onclick="setActive(id)">تغییرات&nbsp;پروفایل</button>
+                                    <button id="change" class="edit_buttons"
+                                        onclick="setActive(id)">تغییر&nbsp;رمز&nbsp;عبور</button>
+                                </div>
                             </div>
                         </div>
                     </div>
