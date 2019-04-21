@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+    <title>داشبورد</title>
+
+    <!-- Custom CSS -->
+    <link href="css/global.css" rel="stylesheet">
+
+    <link href="css/dashboard.css" rel="stylesheet">
+    <!-- Dashboard 1 Page CSS -->
+    <link href="../css/backgroundStyle.css" rel="stylesheet">
+</head>
+
+
+<body dir="rtl">
+
+    <script type="text/javascript">
+        $('.selectpicker').selectpicker({
+        });
+    </script>
+
+    <!-- this div is common in all pages -->
+    <!-- green top fixed position header-->
+    <div class="green-nav" ng-controller="dashboardCtrl">
+        <header>
+
+            <!-- green navbar shown at load -->
+            <div id="list-nav" class="row">
+
+
+                <!-- info section, image and title of page -->
+                <div class="info col-md-6">
+                    <span><i class="fas fa-graduation-cap"></i></span>
+                    <span>سامانه ثبت تیکت دانشکاه شهید بهشتی</span>
+                </div>
+
+
+         <!-- login & register button -->
+         <div class="nav-btns col-md-6">
+                خوش آمدی {{name}}!
+                <button class="btn btn-primary"><i class="fas fa-user"></i></button>
+            </div>
+        </div>
+
+
+
+
+        </header>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper" class="skin-default-dark fixed-layout" ng-controller="dashboardCtrl">
+
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar">
+            <div class="d-flex no-block nav-text-box align-items-center">
+                <span><img src="Assets/images/shahid_beheshti_university.jpg    " alt="elegant admin template"></span>
+                <a class="waves-effect waves-dark ml-auto hidden-sm-down" href="javascript:void(0)"><i
+                        class="ti-menu"></i></a>
+                <a class="nav-toggler waves-effect waves-dark ml-auto hidden-sm-up" href="javascript:void(0)"><i
+                        class="ti-menu ti-close"></i></a>
+            </div>
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar text-right">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                            <li> <a class="waves-effect waves-dark"
+                                href="http://localhost:8080/IE-proj//index.html#!/dashboard" aria-expanded="false"><i
+                                    class="fa fa-home"></i><span class="hide-menu">داشبورد</span></a></li>
+                        <li> <a class="waves-effect waves-dark"
+                                href="http://localhost:8080/IE-proj//index.html#!/profile" aria-expanded="false"><i
+                                    class="fa fa-user"></i><span class="hide-menu">پروفایل</span></a></li>
+                        <li> <a class="waves-effect waves-dark"
+                                href="http://localhost:8080/IE-proj//index.html#!/dashboard" aria-expanded="false"><i
+                                    class="fa fa-table"></i><span class="hide-menu"></span>ثبت مورد</a></li>
+                        <li> <a class="waves-effect waves-dark"
+                                href="http://localhost:8080/IE-proj//index.html#!/status" aria-expanded="false"><i
+                                    class="fas fa-star-half-alt"></i><span class="hide-menu"></span> وضعیت موارد ثبت
+                                شده</a></li>
+                        <li ng-class="adminAccess"><a class="waves-effect waves-dark"
+                                href="http://localhost:8080/IE-proj//index.html#!/status" aria-expanded="false"><i
+                                    class="fas fa-tasks"></i><span class="hide-menu"></span> مدیریت کاربران
+                            </a></li>
+                        <li ng-class="adminAccess"><a class="waves-effect waves-dark"
+                                href="http://localhost:8080/IE-proj//index.html#!/report" aria-expanded="false"><i
+                                    class="far fa-newspaper"></i><span class="hide-menu"></span>گزارش گیری از سیستم</a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+
+
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-5 align-self-center text-right">
+                        <h4 class="text-themecolor">گزارش های مدیر</h4>
+                    </div>
+                    <div class="col-md-7 align-self-center text-right">
+                        <div class="d-flex justify-content-end align-items-center">
+                            <ol style="display:inline-block">
+
+
+                                <li style="display:inline-block"><a href="javascript:void(0)">گزارش ها</a></li>
+                                <li style="display:inline-block"> <i class="fas fa-angle-right"></i> داشبورد </li>
+
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row statistic-section col-md-12 ">
+                    <div class="col-sm-6">
+                        <div class="card">
+
+                            <div class="card-body">
+                                <h4 class="card-title m-b-0">مورد های ثبت شده</h4>
+                                <h2 class="font-light">۳۵۵۰۰ <span class="font-16 text-success font-medium">+۲۳%</span>
+                                </h2>
+                                <div class="select-div col-sm-10">
+                                    <select id="statusSelect"
+                                        onchange="filterByAll('statusSelect' , 'assigneSelect' , 'assignerSelect' , 4, 2, 3)"
+                                        title="وضعیت را انتخاب کنید" name="role" multiple class="selectpicker"
+                                        data-live-search="true">
+                                        <option selected>شکایت</option>
+                                        <option selected>پیشنهاد</option>
+                                        <option selected>انتقاد</option>
+                                        <option selected>درخواست</option>
+                                    </select>
+                                </div>
+                                <div class="m-t-30">
+                                    <div class="row text-center progress-section">
+                                        <span class="col-sm-12 text-right">بسته</span>
+                                        <div class="progress col-sm-10">
+                                            <div class="progress-bar progress-bar-striped active bg-info"
+                                                role="progressbar" aria-valuenow="56" aria-valuemin="0"
+                                                aria-valuemax="100" style="width:56%">
+                                                ۵۶%
+                                            </div>
+                                        </div>
+                                        <span class="col-sm-12 text-right">باز</span>
+                                        <div class="progress col-sm-10">
+                                            <div class="progress-bar progress-bar-striped active bg-info"
+                                                role="progressbar" aria-valuenow="21" aria-valuemin="0"
+                                                aria-valuemax="100" style="width:21%">
+                                                ۲۱%
+                                            </div>
+                                        </div>
+                                        <span class="col-sm-12 text-right">در حال بررسی</span>
+                                        <div class="progress col-sm-10">
+                                            <div class="progress-bar progress-bar-striped active bg-info"
+                                                role="progressbar" aria-valuenow="10" aria-valuemin="0"
+                                                aria-valuemax="100" style="width:10%">
+                                                ۱۰%
+                                            </div>
+                                        </div>
+                                        <span class="col-sm-12 text-right">تعویق</span>
+                                        <div class="progress col-sm-10">
+                                            <div class="progress-bar progress-bar-striped active bg-info"
+                                                role="progressbar" aria-valuenow="13" aria-valuemin="0"
+                                                aria-valuemax="100" style="width:13%">
+                                                ۱۳%
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                                <div class="m-t-30">
+                                    <div class="col-12 card-title m-b-0 text-right">مورد های بسته شده براساس اهمیت</div>
+                                    <div class="row text-center" style="margin-top:5px">
+                                        <div class="col-4">
+                                            <h4 class="m-b-0">۵۶%</h4>
+                                            <span class="badge badge-pill badge-success">اورژانسی</span>
+                                        </div>
+                                        <div class="col-4 border-right">
+                                            <h4 class="m-b-0">۲۱%</h4>
+                                            <span class="badge badge-pill badge-secondary">متوسط</span>
+                                        </div>
+                                        <div class="col-4 border-right">
+                                            <h4 class="m-b-0">۱۰%</h4>
+                                            <span class="badge badge-pill badge-warning">معمولی</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card  date-section">
+                            <div class="card-body">
+                                <h4 class=" text-right card-title m-b-0">مورد ها براساس بازه زمانی </h4>
+
+
+                                <div class=" row">
+                                    <p class="col-6 text-center">تاریخ شروع بازه</p>
+                                    <p class="col-6 text-center">تاریخ پایان بازه</p>
+                                    <input class="col-6 text-right" type="date" name="bday">
+
+                                    <input class="col-6 text-right" type="date" name="bday">
+                                </div>
+                                <div class="m-t-30">
+                                    <div class="row text-center progress-section">
+                                        <span class="col-sm-12 text-right">بسته</span>
+                                        <div class="progress col-sm-10">
+                                            <div class="progress-bar progress-bar-striped active bg-primary"
+                                                role="progressbar" aria-valuenow="56" aria-valuemin="0"
+                                                aria-valuemax="100" style="width:56%">
+                                                ۵۶%
+                                            </div>
+                                        </div>
+                                        <span class="col-sm-12 text-right">باز</span>
+                                        <div class="progress col-sm-10">
+                                            <div class="progress-bar progress-bar-striped active bg-primary"
+                                                role="progressbar" aria-valuenow="21" aria-valuemin="0"
+                                                aria-valuemax="100" style="width:21%">
+                                                ۲۱%
+                                            </div>
+                                        </div>
+                                        <span class="col-sm-12 text-right">در حال بررسی</span>
+                                        <div class="progress col-sm-10">
+                                            <div class="progress-bar progress-bar-striped active bg-primary"
+                                                role="progressbar" aria-valuenow="10" aria-valuemin="0"
+                                                aria-valuemax="100" style="width:10%">
+                                                ۱۰%
+                                            </div>
+                                        </div>
+                                        <span class="col-sm-12 text-right">تعویق</span>
+                                        <div class="progress col-sm-10">
+                                            <div class="progress-bar progress-bar-striped active bg-primary"
+                                                role="progressbar" aria-valuenow="13" aria-valuemin="0"
+                                                aria-valuemax="100" style="width:13%">
+                                                ۱۳%
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                                <div class="m-t-30">
+                                    <div class="col-12 card-title m-b-0 text-right">مورد های بسته شده براساس اهمیت</div>
+                                    <div class="row text-center" style="margin-top:5px">
+                                        <div class="col-4">
+                                            <h4 class="m-b-0">۵۶%</h4>
+                                            <span class="badge badge-pill badge-success">اورژانسی</span>
+                                        </div>
+                                        <div class="col-4 border-right">
+                                            <h4 class="m-b-0">۲۱%</h4>
+                                            <span class="badge badge-pill badge-secondary">متوسط</span>
+                                        </div>
+                                        <div class="col-4 border-right">
+                                            <h4 class="m-b-0">۱۰%</h4>
+                                            <span class="badge badge-pill badge-warning">معمولی</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row col-sm-12 text-right ">
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">کاربران جدید</h5>
+                                <h6 class="card-subtitle">آخرین کاربرانی که ثبت نام کرده اند</h6>
+                                <div class="steamline m-t-40">
+
+
+                                    <div class="sl-item">
+                                        <div class="sl-left"> <img class="img-circle" alt="user"
+                                                src="../Assets/images/users/3.jpg"> </div>
+                                        <div class="sl-right">
+                                            <div><a>عطیه نوروززاده</a> <span class="sl-date">۵ دقیقه پیش</span>
+                                            </div>
+                                            <div class="desc">دانشجو
+                                                <br><a href="javascript:void(0)"
+                                                    class="btn m-t-10 m-r-5 btn-rounded btn-outline-success">مشاهده
+                                                    پروفایل</a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sl-item">
+                                        <div class="sl-left"> <img class="img-circle" alt="user"
+                                                src="../Assets/images/users/4.jpg"> </div>
+                                        <div class="sl-right">
+                                            <div><a> دکتر نشاطی</a> <span class="sl-date">۱۰ دقیقه پیش</span>
+                                            </div>
+                                            <div class="desc">استاد
+                                                <br><a href="javascript:void(0)"
+                                                    class="btn m-t-10 m-r-5 btn-rounded btn-outline-success">مشاهده
+                                                    پروفایل</a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sl-item">
+                                        <div class="sl-left"> <img class="img-circle" alt="user"
+                                                src="../Assets/images/users/5.jpg"> </div>
+                                        <div class="sl-right">
+                                            <div><a>خانم اصفهانی</a> <span class="sl-date">۳۰ دقیقه پیش</span>
+                                            </div>
+                                            <div class="desc">کارمند
+                                                <br><a href="javascript:void(0)"
+                                                    class="btn m-t-10 m-r-5 btn-rounded btn-outline-success">مشاهده
+                                                    پروفایل</a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card ">
+
+                            <div class="card-body">
+                                <h4 class="card-title m-b-0">مورد های بسته شده</h4>
+                                <h2 class="font-light">۲۳۴
+                                </h2>
+
+                                <div class="m-t-30">
+                                    <div class="row text-center progress-section">
+                                        <span class="col-sm-12 text-right">
+                                            <a href="#!">
+                                                <i class="fa fa-star f-12 text-warning"></i></a>
+                                            <a href="#!"><i class="fa fa-star f-12 text-warning"></i></a>
+                                            <a href="#!"><i class="fa fa-star f-12 text-warning"></i></a>
+                                            <a href="#!"><i class="fa fa-star f-12 text-warning"></i></a>
+                                            <a href="#!"><i class="fa fa-star f-12 text-warning"></i></a>
+                                        </span>
+                                        <div class="progress col-sm-10">
+                                            <div class="progress-bar progress-bar-striped active bg-danger"
+                                                role="progressbar" aria-valuenow="56" aria-valuemin="0"
+                                                aria-valuemax="100" style="width:56%">
+                                                ۵۶%
+                                            </div>
+                                        </div>
+                                        <span class="col-sm-12 text-right">
+                                            <a href="#!"><i class="fa fa-star f-12 text-dark"></i></a>
+                                            <a><i class="fa fa-star f-12 text-warning"></i></a>
+                                            <a href="#!"><i class="fa fa-star f-12 text-warning"></i></a>
+                                            <a href="#!"><i class="fa fa-star f-12 text-warning"></i></a>
+                                            <a href="#!"><i class="fa fa-star f-12 text-warning"></i></a>
+
+                                        </span>
+                                        <div class="progress col-sm-10">
+                                            <div class="progress-bar progress-bar-striped active bg-danger"
+                                                role="progressbar" aria-valuenow="21" aria-valuemin="0"
+                                                aria-valuemax="100" style="width:21%">
+                                                ۲۱%
+                                            </div>
+                                        </div>
+                                        <span class="col-sm-12 text-right">
+                                            <a href="#!"><i class="fa fa-star f-12 text-dark"></i></a>
+                                            <a><i class="fa fa-star f-12 text-dark"></i></a>
+                                            <a href="#!"><i class="fa fa-star f-12 text-warning"></i></a>
+                                            <a href="#!"><i class="fa fa-star f-12 text-warning"></i></a>
+                                            <a href="#!"><i class="fa fa-star f-12 text-warning"></i></a>
+                                        </span>
+                                        <div class="progress col-sm-10">
+                                            <div class="progress-bar progress-bar-striped active bg-danger"
+                                                role="progressbar" aria-valuenow="10" aria-valuemin="0"
+                                                aria-valuemax="100" style="width:10%">
+                                                ۱۰%
+                                            </div>
+                                        </div>
+                                        <span class="col-sm-12 text-right">
+                                            <a href="#!"><i class="fa fa-star f-12 text-dark"></i></a>
+                                            <a><i class="fa fa-star f-12 text-dark"></i></a>
+                                            <a href="#!"><i class="fa fa-star f-12 text-dark"></i></a>
+                                            <a href="#!"><i class="fa fa-star f-12 text-warning"></i></a>
+                                            <a href="#!"><i class="fa fa-star f-12 text-warning"></i></a>
+                                        </span>
+                                        <div class="progress col-sm-10">
+                                            <div class="progress-bar progress-bar-striped active bg-danger"
+                                                role="progressbar" aria-valuenow="13" aria-valuemin="0"
+                                                aria-valuemax="100" style="width:13%">
+                                                ۱۳%
+                                            </div>
+                                        </div>
+                                        <span class="col-sm-12 text-right">
+                                            <a href="#!"><i class="fa fa-star f-12 text-dark"></i></a>
+                                            <a><i class="fa fa-star f-12 text-dark"></i></a>
+                                            <a href="#!"><i class="fa fa-star f-12 text-dark"></i></a>
+                                            <a href="#!"><i class="fa fa-star f-12 text-dark"></i></a>
+                                            <a href="#!"><i class="fa fa-star f-12 text-warning"></i></a>
+                                        </span>
+                                        <div class="progress col-sm-10">
+                                            <div class="progress-bar progress-bar-striped active bg-danger"
+                                                role="progressbar" aria-valuenow="3" aria-valuemin="0"
+                                                aria-valuemax="100" style="width:3%">
+                                                ۳%
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="m-t-30">
+                                    <div class="col-12 card-title m-b-0 text-right">مسوول مورد ها با رضایت پایین</div>
+                                    <div class="row text-center" style="margin-top:5px">
+                                        <a href="javascript:void(0)"
+                                            class="btn m-t-10 m-r-5 btn-rounded btn-outline-info">
+                                            عطیه نوروززاده</a>
+                                        <a href="javascript:void(0)"
+                                            class="btn m-t-10 m-r-5 btn-rounded btn-outline-info">
+                                            دکتر شمس فرد</a>
+                                        <a href="javascript:void(0)"
+                                            class="btn m-t-10 m-r-5 btn-rounded btn-outline-info">
+                                            دکتر علوی</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 card  report-filters">
+                    <div class="row">
+                        <div class="select-div col-sm-4">
+                            <select id="statSelect"
+                                onchange="filterByAll('statSelect' , 'assigneSelect' , 'assignerSelect' , 4, 2, 3)"
+                                title="وضعیت را انتخاب کنید" name="role" multiple class="selectpicker"
+                                data-live-search="true">
+                                <option selected>باز</option>
+                                <option selected>بسته</option>
+                                <option selected>در حال بررسی</option>
+                                <option selected>تعویق</option>
+                            </select>
+                        </div>
+                        <div class="select-div col-sm-4">
+                            <select id="assigneSelect"
+                                onchange="filterByAll('statusSelect' , 'assigneSelect' , 'assignerSelect' , 4, 2, 3)"
+                                title="کاربر مسوول را انتخاب کنید" name="role" multiple class="selectpicker"
+                                data-live-search="true">
+                                <option selected>عطیه نوروززاده</option>
+                                <option selected>حانیه</option>
+                                <option selected>کارمند</option>
+                                <option selected>استاد و مدیر</option>
+                            </select>
+                        </div>
+                        <div class="select-div col-sm-4">
+                            <select id="assignerSelect"
+                                onchange="filterByAll('statusSelect' , 'assigneSelect' , 'assignerSelect' , 4, 2, 3)"
+                                title="کاربر ارسال کننده را انتخاب کنید" name="role" multiple class="selectpicker"
+                                data-live-search="true">
+                                <option selected>درسا سمیعی</option>
+                                <option selected>استاد</option>
+                                <option selected>مدیر</option>
+                                <option selected>کارمند</option>
+                                <option selected>استاد و مدیر</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="select-div col-sm-4">
+                            <select id="importanceSelect"
+                                onchange="filterByAll('statusSelect' , 'assigneSelect' , 'assignerSelect' , 4, 2, 3)"
+                                title="درجه اهمیت را انتخاب کنید" name="role" multiple class="selectpicker"
+                                data-live-search="true">
+                                <option selected>اورژانسی</option>
+                                <option selected>معمولی</option>
+                                <option selected>متوسط</option>
+                            </select>
+                        </div>
+
+                        <div class="select-div col-sm-4">
+                            <select id="starSelect"
+                                onchange="filterByAll('statusSelect' , 'assigneSelect' , 'assignerSelect' , 4, 2, 3)"
+                                title="رضایت را انتخاب کنید" name="role" multiple class="selectpicker"
+                                data-live-search="true">
+                                <option selected>ثبت نشده</option>
+                                <option selected>۱ ستاره</option>
+                                <option selected>۲ ستاره</option>
+                                <option selected>۳ ستاره</option>
+                                <option selected>۴ ستاره</option>
+                                <option selected>۵ ستاره</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class=" row col-6">
+                            <p class="col-3 text-right">تاریخ شروع بازه</p>
+                            <input class="col-3 text-right" type="date" name="bday">
+                            <p class="col-3 text-right">تاریخ پایان بازه</p>
+
+
+                            <input class="col-3 text-right" type="date" name="bday">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- column -->
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <div class="table-responsive">
+                                    <table id="statusTable" class="table table-hover   ">
+
+                                        <thead class="thead-light">
+
+                                            <tr>
+                                                <td>شماره</td>
+                                                <td>موضوع</td>
+                                                <td>ارجاع به</td>
+                                                <td>ارجاع دهنده</td>
+                                                <td>وضعیت</td>
+                                                <td>رضایت</td>
+                                                <td>درجه اهمیت</td>
+                                                <td>تاریخ</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>۱</td>
+                                                <td>سیستم سرمایش</td>
+                                                <td>عطیه نوروززاده</td>
+                                                <td>درسا سمیعی</td>
+                                                <td><span class="badge badge-pill badge-secondary">باز</span> </td>
+                                                <td></td>
+                                                <td><span class="badge badge-pill badge-info">معمولی</span> </td>
+                                                <td> 1397/03/27 17:09 </td>
+                                            </tr>
+                                            <tr>
+                                                <td>۲</td>
+                                                <td>سیستم سرمایش</td>
+                                                <td>حانیه</td>
+                                                <td>درسا سمیعی</td>
+                                                <td><span class="badge badge-pill badge-success">بسته</span></td>
+                                                <td> <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
+                                                    <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
+                                                    <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
+                                                    <a href="#!"><i class="fa fa-star f-12 text-default"></i></a>
+                                                    <a href="#!"><i class="fa fa-star f-12 text-default"></i></a></td>
+                                                <td><span class="badge badge-pill badge-danger">اورژانسی</span></td>
+                                                <td> 1397/03/27 17:09 </td>
+                                            </tr>
+                                            <tr>
+                                                <td>۳</td>
+                                                <td>سیستم سرمایش</td>
+                                                <td>عطیه نوروززاده</td>
+                                                <td>درسا سمیعی</td>
+                                                <td><span class="badge badge-pill badge-warning">در حال بررسی</span>
+                                                <td></td>
+                                                <td><span class="badge badge-pill badge-danger">اورژانسی</span> </td>
+                                                </td>
+                                                <td> 1397/03/27 17:09 </td>
+                                            </tr>
+                                            <tr>
+                                                <td>۴</td>
+                                                <td>سیستم سرمایش</td>
+                                                <td>عطیه نوروززاده</td>
+                                                <td>استاد</td>
+                                                <td><span class="badge badge-pill badge-info">تعویق</span> </td>
+                                                <td></td>
+                                                <td><span class="badge badge-pill badge-warning">متوسط</span> </td>
+                                                <td> 1397/03/27 17:09 </td>
+                                            </tr>
+                                            <tr>
+                                                <td>۵</td>
+                                                <td>سیستم سرمایش</td>
+                                                <td>حانیه</td>
+                                                <td>درسا سمیعی</td>
+                                                <td><span class="badge badge-pill badge-success">بسته</span> </td>
+                                                <td> <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
+                                                    <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
+                                                    <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
+                                                    <a href="#!"><i class="fa fa-star f-12 text-default"></i></a>
+                                                    <a href="#!"><i class="fa fa-star f-12 text-default"></i></a></td>
+                                                <td><span class="badge badge-pill badge-danger">اورژانسی</span> </td>
+                                                <td> 1397/03/27 17:09 </td>
+                                            </tr>
+                                            <tr>
+                                                <td>۶</td>
+                                                <td>سیستم سرمایش</td>
+                                                <td>عطیه نوروززاده</td>
+                                                <td>استاد</td>
+                                                <td><span class="badge badge-pill badge-secondary">باز</span> </td>
+                                                <td></td>
+                                                <td><span class="badge badge-pill badge-danger">اورژانسی</span> </td>
+                                                <td> 1397/03/27 17:09 </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12" aria-label="Page navigation example" style="margin-bottom: 50px !important; ">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">قبلی</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="">۱</a></li>
+                        <li class="page-item"><a class="page-link" href="">۲</a></li>
+                        <li class="page-item"><a class="page-link" href="">۳</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="">بعدی</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+
+    </div>
+
+
+
+    <!-- this div is common in all pages -->
+    <!-- footer consists social links and copy right -->
+    <footer>
+        <div class="footer">
+            <div class="container row ">
+                <div class="social-links col-md-3 col-sm-6 col-8">
+                    <a href="/"><i class="fab fa-twitter"></i></a>
+                    <a href="/"><i class="fab fa-facebook"></i></a>
+                    <a href="/"><i class="fab fa-linkedin"></i></a>
+                    <a href="/"><i class="fab fa-instagram"></i></a>
+
+                </div>
+                <div id="privacy" class="col-md-6 col-sm-12">
+                    تمامی حقوق وبسایت نزد دانشگاه شهید بهشتی محفوظ است.
+                </div>
+                <div class="trust col-md-3 col-sm-6 col-4">
+                    <img src="Assets/images/logo.png" alt="etemad">
+                </div>
+            </div>
+        </div>
+
+
+    </footer>
+</body>
+
+</html>

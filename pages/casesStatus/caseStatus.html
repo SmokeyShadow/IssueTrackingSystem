@@ -17,15 +17,15 @@
 
 
 <body dir="rtl">
-    
+
     <script type="text/javascript">
         $('.selectpicker').selectpicker({
-          });
+        });
     </script>
 
     <!-- this div is common in all pages -->
     <!-- green top fixed position header-->
-    <div class="green-nav">
+    <div class="green-nav" ng-controller="dashboardCtrl">
         <header>
 
             <!-- green navbar shown at load -->
@@ -42,13 +42,10 @@
 
                 <!-- login & register button -->
                 <div class="nav-btns col-md-6">
-                    <button onclick="location.href =location.href+ 'login';" class="btn btn-primary"><i
-                            class="fas fa-sign-in-alt"></i></button>
-
+                    خوش آمدی {{name}}!
+                    <button class="btn btn-primary"><i class="fas fa-user"></i></button>
                 </div>
             </div>
-
-
 
 
 
@@ -58,7 +55,7 @@
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <div id="main-wrapper" class="skin-default-dark fixed-layout">
+    <div id="main-wrapper" class="skin-default-dark fixed-layout" ng-controller="dashboardCtrl">
 
         <!-- ============================================================== -->
         <!-- ============================================================== -->
@@ -90,8 +87,12 @@
                                 href="http://localhost:8080/IE-proj//index.html#!/status" aria-expanded="false"><i
                                     class="fas fa-star-half-alt"></i><span class="hide-menu"></span> وضعیت موارد ثبت
                                 شده</a></li>
-                        <li> <a class="waves-effect waves-dark"
-                                href="http://localhost:8080/IE-proj//index.html#!/dashboard" aria-expanded="false"><i
+                        <li ng-class="adminAccess"><a class="waves-effect waves-dark"
+                                href="http://localhost:8080/IE-proj//index.html#!/status" aria-expanded="false"><i
+                                    class="fas fa-tasks"></i><span class="hide-menu"></span> مدیریت کاربران
+                            </a></li>
+                        <li ng-class="adminAccess"><a class="waves-effect waves-dark"
+                                href="http://localhost:8080/IE-proj//index.html#!/report" aria-expanded="false"><i
                                     class="far fa-newspaper"></i><span class="hide-menu"></span>گزارش گیری از سیستم</a>
                         </li>
 
@@ -121,9 +122,12 @@
                     </div>
                     <div class="col-md-7 align-self-center text-right">
                         <div class="d-flex justify-content-end align-items-center">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="javascript:void(0)">مورد های ثبت شده</a></li>
-                                <li class="breadcrumb-item active">داشبورد</li>
+                            <ol style="display:inline-block">
+
+
+                                <li style="display:inline-block"><a href="javascript:void(0)">گزارش ها</a></li>
+                                <li style="display:inline-block"> <i class="fas fa-angle-right"></i> داشبورد </li>
+
                             </ol>
                         </div>
                     </div>

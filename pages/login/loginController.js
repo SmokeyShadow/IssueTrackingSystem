@@ -29,17 +29,21 @@
         $rootScope.bodylayout = 'main_page_que';
 
     }
-    app.controller('loginCtrl', function ($scope, $window) {
+    app.controller('loginCtrl', function ($scope, $window , myService) {
 
         $scope.logIn = function () {
 
+            
             for (var i in data) {
+                
                 var username = data[i].name;
                 var pass = data[i].password;
                 var role = data[i].role;
                 var email = data[i].email;
                 if ($scope.email == email && $scope.password == pass) {
                     $scope.loginMsg = "خوش آمدی " + username;
+                    var person = {user:username, password:pass, role:role, email:email};
+                    myService.set(person);
                     $window.location.href = "/IE-proj//index.html#!" + "/dashboard";
                     return;
                 }

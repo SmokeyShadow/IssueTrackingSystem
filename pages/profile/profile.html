@@ -14,6 +14,7 @@
     <link href="../css/dorsasam.css" rel="stylesheet">
     <!-- Custom CSS -->
 
+    <link href="css/dashboard.css" rel="stylesheet">
     <!-- Dashboard 1 Page CSS -->
     <link href="../css/backgroundStyle.css" rel="stylesheet">
 </head>
@@ -24,7 +25,7 @@
 
     <!-- this div is common in all pages -->
     <!-- green top fixed position header-->
-    <div class="green-nav">
+    <div class="green-nav" ng-controller="dashboardCtrl">
         <header>
 
             <!-- green navbar shown at load -->
@@ -39,16 +40,12 @@
 
 
 
-                <!-- login & register button -->
-                <div class="nav-btns col-md-6">
-                    <button onclick="location.href =location.href+ 'login';" class="btn btn-primary"><i
-                            class="fas fa-sign-in-alt"></i></button>
-
-                </div>
-            </div>
-
-
-
+                     <!-- login & register button -->
+                     <div class="nav-btns col-md-6">
+                            خوش آمدی {{name}}!
+                            <button class="btn btn-primary"><i class="fas fa-user"></i></button>
+                        </div>
+                    </div>
 
 
         </header>
@@ -57,7 +54,7 @@
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
-    <div id="main-wrapper" class="skin-default-dark fixed-layout">
+    <div id="main-wrapper" class="skin-default-dark fixed-layout" ng-controller="dashboardCtrl">
 
         <!-- ============================================================== -->
         <!-- ============================================================== -->
@@ -76,7 +73,7 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li> <a class="waves-effect waves-dark"
+                            <li> <a class="waves-effect waves-dark"
                                 href="http://localhost:8080/IE-proj//index.html#!/dashboard" aria-expanded="false"><i
                                     class="fa fa-home"></i><span class="hide-menu">داشبورد</span></a></li>
                         <li> <a class="waves-effect waves-dark"
@@ -89,11 +86,14 @@
                                 href="http://localhost:8080/IE-proj//index.html#!/status" aria-expanded="false"><i
                                     class="fas fa-star-half-alt"></i><span class="hide-menu"></span> وضعیت موارد ثبت
                                 شده</a></li>
-                        <li> <a class="waves-effect waves-dark"
-                                href="http://localhost:8080/IE-proj//index.html#!/dashboard" aria-expanded="false"><i
+                        <li ng-class="adminAccess"><a class="waves-effect waves-dark"
+                                href="http://localhost:8080/IE-proj//index.html#!/status" aria-expanded="false"><i
+                                    class="fas fa-tasks"></i><span class="hide-menu"></span> مدیریت کاربران
+                            </a></li>
+                        <li ng-class="adminAccess"><a class="waves-effect waves-dark"
+                                href="http://localhost:8080/IE-proj//index.html#!/report" aria-expanded="false"><i
                                     class="far fa-newspaper"></i><span class="hide-menu"></span>گزارش گیری از سیستم</a>
                         </li>
-
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -106,7 +106,7 @@
         <!-- ============================================================== -->
         <!-- Page wrapper  -->
         <!-- ============================================================== -->
-        <div class="page-wrapper">
+        <div class="page-wrapper" >
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
@@ -118,13 +118,16 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 align-self-center text-right">
-                        <h4 class="text-themecolor">داشبورد</h4>
+                        <h4 class="text-themecolor">پروفایل</h4>
                     </div>
                     <div class="col-md-7 align-self-center text-right">
                         <div class="d-flex justify-content-end align-items-center">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="javascript:void(0)">صفحه اصلی</a></li>
-                                <li class="breadcrumb-item active">داشبورد</li>
+                            <ol style="display:inline-block">
+
+
+                                <li style="display:inline-block"><a href="javascript:void(0)">پروفایل</a></li>
+                                <li style="display:inline-block"> <i class="fas fa-angle-right"></i> داشبورد </li>
+
                             </ol>
                         </div>
                     </div>
@@ -143,10 +146,9 @@
                             <div class="card-body">
                                 <center class="m-t-30"> <img src="Assets/images/profile.jpg" class="img-circle"
                                         width="150" />
-                                    <h4 class="card-title m-t-10 user_name">ds_sam_</h4>
-                                    <label class="fileContainer">عکس دیگری انتخاب کنید<input
-                                        type="file"></label>
-                        
+                                    <h4 class="card-title m-t-10 user_name">{{name}}</h4>
+                                    <label class="fileContainer">عکس دیگری انتخاب کنید<input type="file"></label>
+
                                     <div class="row text-center justify-content-md-center">
                                         <div class="col-4"><a href="javascript:void(0)" class="link"><i
                                                     class="icon-people"></i> </a></div>
@@ -168,44 +170,49 @@
                                 <div class="profile-section col-md-9">
                                     <div class="modify_box appear  row" style="width: 100%; height: 100%;">
                                         <div class="profile_modifications col-md-8 form-horizontal form-material">
-                                            
-                                            <input class="form-control form-control-line" type="text" style="margin-top: 20px;" placeholder="نام" value="درسا">
-                                            <input  class="form-control form-control-line" type="text" style="margin-top: 20px;" placeholder="نام خانوادگی"
-                                                value="سمیعی">
-                                            <input  class="form-control form-control-line" type="text" style="margin-top: 20px;direction: ltr"
-                                                placeholder="نام کاربری" value="ds_sam_">
-                                            <input  class="form-control form-control-line email" type="text" style="margin-top: 20px;"
-                                                placeholder="پست الکترونیکی" value="dorsasamiee75@gmail.com">
+
+                                            <input class="form-control form-control-line" type="text"
+                                                style="margin-top: 20px;" placeholder="نام" ng-model="name">
+                                            <input class="form-control form-control-line" type="text"
+                                                style="margin-top: 20px;" placeholder="نام خانوادگی" value="سمیعی"  ng-model="must add this to json">
+                                            <input class="form-control form-control-line" type="text"
+                                                style="margin-top: 20px;direction: ltr" placeholder="نقش" ng-model="role"
+                                             >
+                                            <input class="form-control form-control-line email" type="text" ng-model="email"
+                                                style="margin-top: 20px;" placeholder="پست الکترونیکی"
+                                            >
                                             <text class="warning">آدرس پست الکترونیکی معتبر نیست<i
                                                     class="fa fa-warning"></i></text>
 
 
                                         </div>
-                                     
+
                                         <div class="col-sm-12">
-                                        <button class="submit_button rounded" onclick="checkEnteries()">ثبت
-                                            تغییرات</button>
+                                            <button class="submit_button rounded" onclick="checkEnteries()">ثبت
+                                                تغییرات</button>
                                         </div>
                                     </div>
                                     <div class="change_box fade">
                                         <div class="profile_picture">
-                                         
+
                                         </div>
                                         <div class="profile_change form-horizontal form-material">
-                                            
-                                            <input type="text" style="margin-top: 20px;" class="previous form-control form-control-line"
+
+                                            <input type="text" style="margin-top: 20px;"
+                                                class="previous form-control form-control-line" ng-model = "password"
                                                 placeholder="رمز عبور قبلی">
                                             <text class="warning warning1 ">رمز عبور قبلی خود را وارد کنید<i
                                                     class="fa fa-warning"></i></text>
                                             <text class="warning warning2">رمز عبور قبلی نادرست است<i
                                                     class="fa fa-warning"></i></text>
-                                            <input type="text" style="margin-top: 20px;" class="new form-control form-control-line"
-                                                placeholder="رمز عبور جدید">
+                                            <input type="text" style="margin-top: 20px;"
+                                                class="new form-control form-control-line" placeholder="رمز عبور جدید">
                                             <text class="warning warning3">رمز عبور جدید معتبر وارد کنید<i
                                                     class="fa fa-warning"></i></text>
                                             <text class="warning warning4">رمز عبور جدید با رمز عبور قبلی یکسان است<i
                                                     class="fa fa-warning"></i></text>
-                                            <input type="text" style="margin-top: 20px;" class="repeat form-control form-control-line"
+                                            <input type="text" style="margin-top: 20px;"
+                                                class="repeat form-control form-control-line"
                                                 placeholder="تکرار رمز عبور جدید">
                                             <text class="warning warning5 ">تکرار رمز عبور نادرست است<i
                                                     class="fa fa-warning"></i></text>

@@ -10,12 +10,40 @@ thead tr td {
 
 /*status page*/
 
-.filters {
-    height: 80px;
-}
+.filters ,.report-filters{
+    height: auto;
+    margin-bottom: 20px;
+    padding: 20px 5px;
+   
+    color: white;
 
+}
+.nav-btns
+{
+    padding-left: 100px !important;
+}
+.report-filters
+{
+    background: linear-gradient(-45deg,#9069cf, #36bea6);
+}
+.report-filters .row
+{
+    margin-top: 15px;
+}
 footer {
     position: absolute;
     width: 100%;
     bottom: 0;
+}
+
+/*reporting*/
+.progress-section .progress{
+    margin-top:10px;
+}
+.statistic-section .card{
+    padding: 5px;
+}
+.hidden
+{
+    display: none;
 }
