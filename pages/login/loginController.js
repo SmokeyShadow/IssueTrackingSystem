@@ -1,71 +1,97 @@
 (function () {
     'use strict';
-    
-    angular
-        .module('app')
-        .controller('loginController', loginController);
-    
-        loginController.$inject = [ '$rootScope'];
-    function loginController($rootScope) {
-    
-        $rootScope.bodylayout ='main_page_que';
+    var data;
+    var app = angular.module('app');
+    app.run(function ($http) {
+        var url = "http://localhost:8080/IE-proj/Assets/Jsons/data.json";
+        $http.get(url).then(successCallback, errorCallback);
+
+        function successCallback(response) {
+            //success code
+            console.log("success" + response.data);
+            data = response.data;
+
+        }
+        function errorCallback(error) {
+            //error code
+            console.log("error" + response.error);
+        }
+
+    })
+
+
+    app.controller('loginController', loginController);
+
+    loginController.$inject = ['$rootScope'];
+
+    function loginController($rootScope, $http, $window) {
+
+        $rootScope.bodylayout = 'main_page_que';
+
     }
-    })();
+    app.controller('loginCtrl', function ($scope, $window) {
 
+        $scope.logIn = function () {
 
-// jquery part
-$(document).ready(function () {
-
-
-    // switch section
-
-    //switch to register
-    $("#switch-to-register").click(function () {
-        $("#login-content").animate(
-            {
-                opacity: '0',
-                top: '-100%',
+            for (var i in data) {
+                var username = data[i].name;
+                var pass = data[i].password;
+                var role = data[i].role;
+                var email = data[i].email;
+                if ($scope.email == email && $scope.password == pass) {
+                    $scope.loginMsg = "خوش آمدی " + username;
+                    $window.location.href = "/IE-proj//index.html#!" + "/dashboard";
+                    return;
+                }
+                else {
+                }
             }
-            , function () {
-                $("#login-content").css("visibility", "hidden");
-                $("#register-content").css("visibility", "visible");
-                $("#register-content").animate(
-                    {
-                        opacity: '1',
-                        top: '0%'
-                    }
-                );
-            }
-
-        );
+            $scope.loginMsg = "شما ثبت نام نکرده اید ";
+        }
 
     });
 
-    // switch to login
-    $("#switch-to-login").click(function () {
-        $("#register-content").animate(
-            {
-                opacity: '0',
-                top: '-100%',
+
+
+
+
+
+})();
+function switchBetweenElems(from, to) {
+    var fromElem = document.getElementById(from);
+    var toElem = document.getElementById(to);
+    var pos = 0;
+    var opacCounter = 1;
+    var opacity = 0;
+    var id = setInterval(frame, 2);
+    function frame() {
+        if (pos == -100 || opacCounter == 0) {
+            toElem.style.visibility = "hidden";
+        }
+        else {
+            if (pos == -120) {
+                fromElem.style.top = '0%';
+                fromElem.style.visibility = "visible";
             }
-            , function () {
-                $("#register-content").css("visibility", "hidden");
-                $("#login-content").css("visibility", "visible");
-                $("#login-content").animate(
-                    {
-                        opacity: '1',
-                        top: '0%',
-                    }
-                );
-            });
-    });
+            if (pos >= -100) {
+                toElem.style.top = pos + '%';
+                toElem.style.opacity = opacCounter;
+            }
+        }
 
-    // end switch section 
+        if (fromElem.style.opacity >= 1) {
+            clearInterval(id);
+        }
+        else if (pos < -120) {
+            fromElem.style.opacity = opacity;
+        }
+        pos--;
+        opacity += 0.005;
+        opacCounter = opacCounter - 0.01;
 
+    }
+}
 
-
-
-});
 //input validations
 function ValidateUser() {
 
@@ -96,15 +122,18 @@ function ValidateEmail(emailID, errordiv, errorcontent) {
         error.style.visibility = "visible";
         email.style.border = "2px solid #c23321";
         errormessage.innerHTML = "ایمیل نمی تواند خالی باشد";
+        return false;
     }
     else if (!pattern.test(emailVal)) {
         error.style.visibility = "visible";
         email.style.border = "2px solid #c23321";
         errormessage.innerHTML = "فرمت ایمیل صحیح نیست";
+        return false;
     }
     else {
         email.style.border = "2px solid rgb(66, 146, 74)";
         error.style.visibility = "hidden";
+        return true;
     }
 
 }
@@ -128,7 +157,9 @@ function ValidatePass(passID, passerrordiv, errorcontent) {
     else {
         pass.style.border = "2px solid rgb(66, 146, 74)";
         errordiv.style.visibility = "hidden";
+        return true;
     }
+    return false;
 
 }
 function ValidateRepass() {

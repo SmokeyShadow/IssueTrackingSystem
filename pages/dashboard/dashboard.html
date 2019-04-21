@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+    <title>داشبورد</title>
+
+    <!-- Custom CSS -->
+    <link href="css/global.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/dashboard.css" rel="stylesheet">
+    <!-- Dashboard 1 Page CSS -->
+    <link href="../css/backgroundStyle.css" rel="stylesheet">
+</head>
+
+
+<body dir="rtl">
+  
+
+    <!-- this div is common in all pages -->
+    <!-- green top fixed position header-->
+    <div class="green-nav">
+        <header>
+
+            <!-- green navbar shown at load -->
+            <div id="list-nav" class="row">
+
+
+                <!-- info section, image and title of page -->
+                <div class="info col-md-6">
+                    <span><i class="fas fa-graduation-cap"></i></span>
+                    <span>سامانه ثبت تیکت دانشکاه شهید بهشتی</span>
+                </div>
+
+
+
+                <!-- login & register button -->
+                <div class="nav-btns col-md-6">
+                    <button onclick="location.href =location.href+ 'login';" class="btn btn-primary"><i
+                            class="fas fa-sign-in-alt"></i></button>
+
+                </div>
+            </div>
+
+
+
+
+
+        </header>
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper" class="skin-default-dark fixed-layout">
+
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar">
+            <div class="d-flex no-block nav-text-box align-items-center">
+                <span><img src="Assets/images/shahid_beheshti_university.jpg    " alt="elegant admin template"></span>
+                <a class="waves-effect waves-dark ml-auto hidden-sm-down" href="javascript:void(0)"><i
+                        class="ti-menu"></i></a>
+                <a class="nav-toggler waves-effect waves-dark ml-auto hidden-sm-up" href="javascript:void(0)"><i
+                        class="ti-menu ti-close"></i></a>
+            </div>
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar text-right">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li> <a class="waves-effect waves-dark"
+                                href="http://localhost:8080/IE-proj//index.html#!/dashboard" aria-expanded="false"><i
+                                    class="fa fa-home"></i><span class="hide-menu">داشبورد</span></a></li>
+                        <li> <a class="waves-effect waves-dark"
+                                href="http://localhost:8080/IE-proj//index.html#!/profile" aria-expanded="false"><i
+                                    class="fa fa-user"></i><span class="hide-menu">پروفایل</span></a></li>
+                        <li> <a class="waves-effect waves-dark"
+                                href="http://localhost:8080/IE-proj//index.html#!/dashboard" aria-expanded="false"><i
+                                    class="fa fa-table"></i><span class="hide-menu"></span>ثبت مورد</a></li>
+                        <li> <a class="waves-effect waves-dark"
+                                href="http://localhost:8080/IE-proj//index.html#!/status" aria-expanded="false"><i
+                                    class="fas fa-star-half-alt"></i><span class="hide-menu"></span> وضعیت موارد ثبت
+                                شده</a></li>
+                        <li> <a class="waves-effect waves-dark"
+                                href="http://localhost:8080/IE-proj//index.html#!/dashboard" aria-expanded="false"><i
+                                    class="far fa-newspaper"></i><span class="hide-menu"></span>گزارش گیری از سیستم</a>
+                        </li>
+
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-5 align-self-center text-right">
+                        <h4 class="text-themecolor">مورد های ارجاعی اخیر</h4>
+                    </div>
+                    <div class="col-md-7 align-self-center text-right">
+                        <div class="d-flex justify-content-end align-items-center">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="javascript:void(0)">ارجاعات</a></li>
+                                <li class="breadcrumb-item active">داشبورد</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- column -->
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <div class="table-responsive">
+                                    <table class="table table-hover ">
+
+                                        <thead class="thead-light">
+
+                                            <tr>
+                                                <td>شماره</td>
+                                                <td>موضوع</td>
+                                                <td>ارجاع به</td>
+                                                <td>ارجاع دهنده</td>
+                                                <td>وضعیت</td>
+                                                <td>توضیح</td>
+                                                <td>درجه اهمیت</td>
+                                                <td>تاریخ</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>۱</td>
+                                                <td>سیستم سرمایش</td>
+                                                <td>عطیه نوروززاده</td>
+                                                <td>درسا سمیعی</td>
+                                                <td><span class="badge badge-pill badge-secondary">باز</span> </td>
+                                                <td>سیستم گرمایشی گرم نمی کند</td>
+                                                <td><span class="badge badge-pill badge-info">معمولی</span> </td>
+                                                <td> 1397/03/27 17:09 </td>
+                                            </tr>
+                                            <tr>
+                                                <td>۲</td>
+                                                <td>سیستم سرمایش</td>
+                                                <td>عطیه نوروززاده</td>
+                                                <td>درسا سمیعی</td>
+                                                <td><span class="badge badge-pill badge-success">بسته</span> </td>
+                                                <td>سیستم گرمایشی گرم نمی کند</td>
+                                                <td><span class="badge badge-pill badge-danger">اورژانسی</span> </td>
+                                                <td> 1397/03/27 17:09 </td>
+                                            </tr>
+                                            <tr>
+                                                <td>۳</td>
+                                                <td>سیستم سرمایش</td>
+                                                <td>عطیه نوروززاده</td>
+                                                <td>درسا سمیعی</td>
+                                                <td><span class="badge badge-pill badge-warning">در حال بررسی</span>
+                                                <td>سیستم گرمایشی گرم نمی کند</td>
+                                                <td><span class="badge badge-pill badge-danger">اورژانسی</span> </td>
+                                                </td>
+                                                <td> 1397/03/27 17:09 </td>
+                                            </tr>
+                                            <tr>
+                                                <td>۴</td>
+                                                <td>سیستم سرمایش</td>
+                                                <td>عطیه نوروززاده</td>
+                                                <td>درسا سمیعی</td>
+                                                <td><span class="badge badge-pill badge-info">تعویق</span> </td>
+                                                <td>سیستم گرمایشی گرم نمی کند</td>
+                                                <td><span class="badge badge-pill badge-warning">متوسط</span> </td>
+                                                <td> 1397/03/27 17:09 </td>
+                                            </tr>
+                                            <tr>
+                                                <td>۵</td>
+                                                <td>سیستم سرمایش</td>
+                                                <td>عطیه نوروززاده</td>
+                                                <td>درسا سمیعی</td>
+                                                <td><span class="badge badge-pill badge-success">بسته</span> </td>
+                                                <td>سیستم گرمایشی گرم نمی کند</td>
+                                                <td><span class="badge badge-pill badge-danger">اورژانسی</span> </td>
+                                                <td> 1397/03/27 17:09 </td>
+                                            </tr>
+                                            <tr>
+                                                <td>۶</td>
+                                                <td>سیستم سرمایش</td>
+                                                <td>عطیه نوروززاده</td>
+                                                <td>درسا سمیعی</td>
+                                                <td><span class="badge badge-pill badge-secondary">باز</span> </td>
+                                                <td>سیستم گرمایشی گرم نمی کند</td>
+                                                <td><span class="badge badge-pill badge-danger">اورژانسی</span> </td>
+                                                <td> 1397/03/27 17:09 </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+
+    </div>
+
+
+
+    <!-- this div is common in all pages -->
+    <!-- footer consists social links and copy right -->
+    <footer>
+        <div class="footer">
+            <div class="container row ">
+                <div class="social-links col-md-3 col-sm-6 col-8">
+                    <a href="/"><i class="fab fa-twitter"></i></a>
+                    <a href="/"><i class="fab fa-facebook"></i></a>
+                    <a href="/"><i class="fab fa-linkedin"></i></a>
+                    <a href="/"><i class="fab fa-instagram"></i></a>
+
+                </div>
+                <div id="privacy" class="col-md-6 col-sm-12">
+                    تمامی حقوق وبسایت نزد دانشگاه شهید بهشتی محفوظ است.
+                </div>
+                <div class="trust col-md-3 col-sm-6 col-4">
+                    <img src="Assets/images/logo.png" alt="etemad">
+                </div>
+            </div>
+        </div>
+
+
+    </footer>
+</body>
+
+</html>

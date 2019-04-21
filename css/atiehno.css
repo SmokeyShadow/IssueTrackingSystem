@@ -7,16 +7,12 @@
     left: 0;
     bottom: 0;
     margin: auto;
-    width: 800px;
-    height: 500px;
+    width: 850px;
+    height: 520px;
     box-shadow: 1px 1px 5px 3px #bbbbbbbd;
 }
 
-.form-section {
-    height: 500px;
-    position: relative;
-    margin-top:10%;
-}
+
 
 /* form leftside */
 
@@ -96,21 +92,6 @@ input:focus {
     display: inline-block;
 }
 
-.select-div * {
-    text-align: right !important;
-}
-
-.select-div .bootstrap-select.show-tick .dropdown-menu li a span.text {
-    margin-right: 0 !important;
-}
-
-.select-div .bootstrap-select.show-tick .dropdown-menu .selected span.check-mark {
-    position: absolute;
-    display: inline-block;
-    right: inherit !important;
-    left: 15px !important;
-    top: 5px;
-}
 
 .selectpicker {
     text-align: right !important;
@@ -141,7 +122,7 @@ input:focus {
 
 .login-button * {
     margin: auto;
-    margin-bottom: 5%;
+    margin-bottom: 3%;
 }
 
 .login-button button {
@@ -203,7 +184,10 @@ input:focus {
     padding-right: 10px;
     font-size: 14px;
 }
-
+.form-section
+{
+    height: 750px;
+}
   
 /* responsive part */
 
@@ -234,7 +218,9 @@ input:focus {
 }
 
 
-
+.bootstrap-select{
+    width: initial !important;
+}
 
 
 

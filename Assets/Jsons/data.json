@@ -1,27 +1,26 @@
-
- [
-        {
-            "name": "atieh",
-            "password": 123321,
-            "role": "admin",
-            "email": "atiehnorouzi22@gmail.com"
-        },
-        {
-            "name": "hanie",
-            "password": 123321,
-            "role": "student",
-            "email": "hanie@gmail.com"
-        },
-        {
-            "name": "dorsa",
-            "password": 123321,
-            "role": "officer",
-            "email": "dorsa@gmail.com"
-        },
-        {
-            "name": "admin",
-            "password": 123321,
-            "role": "professor",
-            "email": "admin@gmail.com"
-        }
-    ]
+[
+    {
+        "name": "atieh",
+        "password": "qq123321",
+        "role": "admin",
+        "email": "atiehnorouzi22@gmail.com"
+    },
+    {
+        "name": "hanie",
+        "password": "qq123321",
+        "role": "student",
+        "email": "hanie@gmail.com"
+    },
+    {
+        "name": "dorsa",
+        "password": "qq123321",
+        "role": "officer",
+        "email": "dorsa@gmail.com"
+    },
+    {
+        "name": "admin",
+        "password": "qq123321",
+        "role": "professor",
+        "email": "admin@gmail.com"
+    }
+]

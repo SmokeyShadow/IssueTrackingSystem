@@ -2,24 +2,53 @@
 var app = angular.module('app', [
     'ngRoute'
 ]);
-app.config(function($routeProvider) {
-	$routeProvider
-		.when('/', {
+app.config(function ($routeProvider) {
+    $routeProvider
+        .when('/', {
             controller: 'landingController',
             templateUrl: baseUrl + 'pages/landing/landing.html',
-        
-		})
-		.when('/login', {
-    
+
+        })
+        .when('/login', {
+
             controller: 'loginController',
             templateUrl: baseUrl + 'pages/login/login.html',
 
-		})
-		.otherwise({
-			redirectTo: '/'
-		});
+        })
+        .when('/dashboard',
+            {
+                controller: 'dashboardController',
+                templateUrl: baseUrl + 'pages/dashboard/dashboard.html'
+            })
+        .when('/profile',
+            {
+                controller: 'profileController',
+                templateUrl: baseUrl + 'pages/profile/profile.html'
+            })
+        .when('/case',
+            {
+                controller: 'caseController',
+                templateUrl: baseUrl + 'pages/CreateCase/case.html'
+            })
+        .when('/status',
+            {
+                controller: 'caseStatusController',
+                templateUrl: baseUrl + 'pages/casesStatus/caseStatus.html'
+            })
+        .when('/report',
+            {
+                controller: 'reportController',
+                templateUrl: baseUrl + 'pages/reporting/reporting.html'
+            })
+        .when('/docase',
+            {
+                controller: 'doCaseController',
+                templateUrl: baseUrl + 'pages/DoCase/doCase.html'
+            })
+        .otherwise({
+            redirectTo: '/'
+        });
 });
-   
 
 
 
@@ -52,39 +81,6 @@ function GetMoneyFormat(x) {
     return result;
 }
 
-
-
-//item gallery section
-function filterSelection(c) {
-    var x, i;
-    x = document.getElementsByClassName("item");
-    if (c == "all") c = "";
-    for (i = 0; i < x.length; i++) {
-        w3RemoveClass(x[i], "show");
-        if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
-    }
-}
-
-function w3AddClass(element, name) {
-    var i, arr1, arr2;
-    arr1 = element.className.split(" ");
-    arr2 = name.split(" ");
-    for (i = 0; i < arr2.length; i++) {
-        if (arr1.indexOf(arr2[i]) == -1) { element.className += " " + arr2[i]; }
-    }
-}
-
-function w3RemoveClass(element, name) {
-    var i, arr1, arr2;
-    arr1 = element.className.split(" ");
-    arr2 = name.split(" ");
-    for (i = 0; i < arr2.length; i++) {
-        while (arr1.indexOf(arr2[i]) > -1) {
-            arr1.splice(arr1.indexOf(arr2[i]), 1);
-        }
-    }
-    element.className = arr1.join(" ");
-}
 
 //show & hide element
 function ShowLabel(id) {
