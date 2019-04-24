@@ -40,7 +40,7 @@ footer {
 .progress-section .progress{
     margin-top:10px;
 }
-.statistic-section .card{
+.statistic-section .card , .time-section .card{
     padding: 5px;
 }
 .hidden
@@ -49,6 +49,24 @@ footer {
 }
 
 #chartdiv {
-  height: 600px;
+  height: 400px;
     margin: auto;
   }
+#clockdiv {
+
+max-height: 400px;
+height: 400px;
+width: 400px;
+margin: auto;
+}
+#userdiv{
+    height: 500px;
+    width: 100%;
+    margin: auto;
+}
+#piediv , #timechart , #worddiv
+{
+    height: 500px;
+    width: 100%;
+    margin: auto;
+}
