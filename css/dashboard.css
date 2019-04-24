@@ -47,3 +47,8 @@ footer {
 {
     display: none;
 }
+
+#chartdiv {
+  height: 600px;
+    margin: auto;
+  }
