@@ -19,7 +19,10 @@
 
 <body dir="rtl">
 
-
+    <script type="text/javascript">
+        $('.selectpicker').selectpicker({
+        });
+    </script>
     <!-- this div is common in all pages -->
     <!-- green top fixed position header-->
     <div class="green-nav" ng-controller="dashboardCtrl">
@@ -135,83 +138,85 @@
                 </div>
 
 
-
-
-                <!-- Start Page Content -->
-                <!-- ============================================================== -->
-                <!-- Row -->
                 <div class="row">
-                    <div class="col-lg-8 col-xlg-9 col-md-7">
-                        <div class="caseCard">
-                            <!-- Tab panes -->
-                            <div class="card-body row form-content">
-                                <div class="caseForm form-group">
-                                    <div class="items">
-                                        <label>ارجاع دهنده:&nbsp;</label>
-                                        <input type="text" class="form-control" value="{{name}}" style="width: 400px"
-                                            disabled>
-                                    </div>
-                                    <div class="items">
-                                        <label>زمان ارسال:&nbsp;</label>
-                                        <input type="text" class="form-control" value="روز / ماه / سال"
-                                            style="width: 300px" disabled>
-                                    </div>
-                                    <div class="items" id="list-one">
-                                        <div id="drop" class="dropdown">
-                                            <label>موضوع :&nbsp;</label>
-                                            <button class="btn btn-primary dropdown-toggle" type="button"
-                                                data-toggle="dropdown"
-                                                style="background-color: whitesmoke;color:black;border-color: whitesmoke;">شکایت
-                                                <span class="caret"></span></button>
-                                            <ul class="dropdown-menu" style="align-content: center">
-                                                <li id="complaint" style="text-align: center" onclick="chooseFunc(id)">
-                                                    <a>شکایت</a></li>
-                                                <li id="critic" style="text-align: center" onclick="chooseFunc(id)">
-                                                    <a>انتقاد</a></li>
-                                                <li id="suggestion" style="text-align: center" onclick="chooseFunc(id)">
-                                                    <a>پیشنهاد</a></li>
-                                                <li id="purpose" style="text-align: center" onclick="chooseFunc(id)">
-                                                    <a>درخواست</a></li>
-                                            </ul>
+                    <!-- column -->
+                    <div class="col-12">
+                        <div class="card" style="margin-bottom: 100px;">
+                            <div class="card-body">
+
+                                <div>
+                                    <!-- Tab panes -->
+                                    <div class="card-body row form-content">
+                                        <div class="caseForm form-group ">
+                                            <div class="items form-group form-material ">
+                                                <label>ارجاع دهنده:&nbsp;</label>
+                                                <input type="text" class="form-control" value="{{name}}"
+                                                    style="width: 400px" disabled>
+                                            </div>
+                                            <div class="items form-group form-material ">
+                                                <label>زمان ارسال:&nbsp;</label>
+                                                <input type="text" id="today" onload="getDate()" class="form-control"
+                                               style="width: 300px" disabled>
+                                            </div>
+                                            <div class="items" id="list-one">
+                                                <div id="drop" class="dropdown row col-sm-12">
+                                                    <label class="col-sm-2 text-right">موضوع :&nbsp;</label>
+                                                    <select title="موضوع را انتخاب کنید" name="role"
+                                                        class="text-right col-sm-3 selectpicker select-div"
+                                                        data-live-search="true">
+                                                        <option>شکایت</option>
+                                                        <option>انتقاد</option>
+                                                        <option>پیشنهاد</option>
+                                                        <option>درخواست</option>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                            <div class="items" id="list-two">
+                                                <div class="dropdown row col-sm-12">
+                                                    <label class="col-sm-2 text-right">درجه اهمیت:&nbsp;</label>
+                                                    <select title="درجه اهمیت را انتخاب کنید" name="role"
+                                                        class="text-right col-sm-3 selectpicker select-div"
+                                                        data-live-search="true">
+                                                        <option>معمولی</option>
+                                                        <option>متوسط</option>
+                                                        <option>پیشنهاد</option>
+                                                        <option>اورژانسی</option>
+                                                    </select>
+
+                                                </div>
+
+                                            </div>
+                                            <div class="items">
+                                                <label>متن توضیح :&nbsp;</label>
+
+                                            </div>
+                                            <div class="items col-sm-12 d-flex justify-content-center">
+                                                <textarea class="form-control" rows="10" id="comment"
+                                                    style="width: 720px;"></textarea>
+
+                                            </div>
+                                            <div class="items d-flex justify-content-center">
+
+                                                <label class="fileContainer">آپلود فایل<input type="file" /></label>
+                                            </div>
+                                            <div class="items form-material">
+                                                <label>ارجاع به :&nbsp;</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                            <div class="items d-flex justify-content-center">
+                                                <button class="btn rounded submit_button" style="margin-top : 10px; border-radius: 5%;">ثبت
+                                                    مورد</button>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="items" id="list-two">
-                                        <div class="dropdown">
-                                            <label>درجه اهمیت:&nbsp;</label>
-                                            <button class="btn btn-primary dropdown-toggle" type="button"
-                                                data-toggle="dropdown"
-                                                style="background-color: whitesmoke;color:black;border-color: whitesmoke;">معمولی
-                                                <span class="caret"></span></button>
-                                            <ul class="dropdown-menu">
-                                                <li id="common" style="text-align: center" onclick="chooseFunc2(id)">
-                                                    <a>معمولی</a></li>
-                                                <li id="normal" style="text-align: center" onclick="chooseFunc2(id)">
-                                                    <a>متوسط</a></li>
-                                                <li id="urgent" style="text-align: center" onclick="chooseFunc2(id)">
-                                                    <a>اورژانسی</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="items">
-                                        <label>متن توضیح :&nbsp;</label>
-                                        <textarea class="form-control" rows="10" id="comment"
-                                            style="width: 720px;"></textarea>
-                                    </div>
-                                    <div class="items" style="display: flex;justify-content: center">
-                                        <label class="fileContainer">آپلود فایل<input type="file" /></label>
-                                    </div>
-                                    <div class="items">
-                                        <label>ارجاع به :&nbsp;</label>
-                                        <input type="text">
-                                    </div>
-                                    <div class="items" style="display: flex;justify-content: center">
-                                        <button class="submit_button" style="border-radius: 5%;">ثبت مورد</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
                 <!-- Column -->
             </div>
         </div>

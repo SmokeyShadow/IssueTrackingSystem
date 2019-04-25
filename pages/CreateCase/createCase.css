@@ -8,10 +8,10 @@
 
 .caseForm {
     background-color: white;
-    box-shadow: 3px 3px 3px 3px lightgrey;
-    height: 700px;
+    box-shadow: 1px 2px 15px 1px lightgrey;
+    height: 800px;
     width: 1000px;
-    transform: translate(0%, 4%);
+
 }
 
 input[type="text"] {
@@ -50,4 +50,8 @@ select {
 
 option {
     text-align: left;   
+}
+.nav-btns
+{
+    padding-left: 100px !important;
 }
