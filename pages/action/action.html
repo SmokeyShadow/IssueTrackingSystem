@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>اقدام</title>
+
+    <link href="../../css/global.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+    <link href="../../css/dashboard.css" rel="stylesheet">
+    <link href="../../css/backgroundStyle.css" rel="stylesheet">
+    <link href="../../css/action.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="action.js"></script>
+
+</head>
+
+<body dir="rtl">
+    <div id="main-wrapper" class="skin-default-dark fixed-layout" ng-controller="dashboardCtrl">
+        <div class="page-wrapper">
+            <div class="container">
+                <div class="row page-titles">
+                    <div class="col-md-5 align-self-center text-right">
+                        <h4 class="text-themecolor">اقدامات لازم برای مورد جاری</h4>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 20px">
+                    <div class="col-sm-6">
+                        <select data-live-search="true" >
+                            <option value="" hidden>وضعیت مورد را انتخاب کنید</option>
+                            <option value="open">باز</option>
+                            <option value="closed">بسته</option>
+                            <option value="in queue"> بسته در حال بررسی</option>
+                            <option value="postponed">تعویق</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <select data-live-search="true">
+                            <option value="" hidden>کاربر مسئول را انتخاب کنید</option>
+                            <option value="">حانیه سادات ایزدپناه</option>
+                            <option value="">درسا سمیعی</option>
+                            <option value="">عطیه نوروززاده</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <textarea class="form-control"
+                                  rows="10"
+                                  placeholder="توضیحات"
+                                  onfocus="this.placeholder=''"
+                                  onblur="this.placeholder='توضیحات'"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button class="btn btn-success" type="submit" >ثبت</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button class="btn btn-info" type="submit" >انصراف</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
