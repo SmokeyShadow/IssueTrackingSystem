@@ -45,6 +45,11 @@ app.config(function ($routeProvider) {
                 controller: 'doCaseController',
                 templateUrl: baseUrl + 'pages/DoCase/doCase.html'
             })
+        .when('/authorize',
+            {
+                controller: 'authorizeController',
+                templateUrl: baseUrl + 'pages/userAuthorize/userAuthorize.html'
+            })
         .otherwise({
             redirectTo: '/'
         });
