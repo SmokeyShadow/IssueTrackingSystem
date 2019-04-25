@@ -1,0 +1,49 @@
+.caseCard {
+  position: relative;
+  background-color: white;
+  margin-right: 15%;
+  height: 800px;
+  width: 120%;
+}
+.caseForm{
+    background-color: white;
+    box-shadow: 3px 3px 3px 3px lightgrey;
+    height: 700px;
+    width: 1000px;
+    transform: translate(0%, 4%);
+}
+
+input[type = "text"]{
+  text-align: center;
+  background-color: whitesmoke;
+  border-width: 0px;
+  width: 300px;
+}
+.fileContainer{
+  margin-left: 10px;
+  color: rgb(80, 172, 89);
+}
+.fileContainer [type=file] {
+  display: block;
+  font-size: 0px;
+  filter: alpha(opacity=0);
+  min-height: 50%;
+  min-width: 50%;
+  opacity: 0;
+  text-align: right;
+}
+.items{
+  display: flex;
+  align-content: flex-end;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+select {
+  text-align: center;
+  text-align-last: center;
+  /* webkit*/
+}
+option {
+  text-align: left;
+  /* reset to left*/
+}
