@@ -34,7 +34,7 @@
     app.controller('dashboardCtrl', function ($scope, $window, myService) {
         var user = myService.get();
         $scope.name = user.user;
-        if (user.role.trim() != 'admin') {
+        if (user.role != 'admin') {
             $scope.adminAccess = 'hidden';
         }
 

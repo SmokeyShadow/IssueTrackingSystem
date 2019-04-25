@@ -37,12 +37,12 @@
                 </div>
 
 
-         <!-- login & register button -->
-         <div class="nav-btns col-md-6">
-                خوش آمدی {{name}}!
-                <button class="btn btn-primary"><i class="fas fa-user"></i></button>
+                <!-- login & register button -->
+                <div class="nav-btns col-md-6">
+                    خوش آمدی {{name}}!
+                    <button class="btn btn-primary"><i class="fas fa-user"></i></button>
+                </div>
             </div>
-        </div>
 
 
 
@@ -72,30 +72,30 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                            <li> <a class="waves-effect waves-dark"
+                        <li> <a class="waves-effect waves-dark"
                                 href="http://localhost:8080/IE-proj//index.html#!/dashboard" aria-expanded="false"><i
                                     class="fa fa-home"></i><span class="hide-menu">داشبورد</span></a></li>
                         <li> <a class="waves-effect waves-dark"
                                 href="http://localhost:8080/IE-proj//index.html#!/profile" aria-expanded="false"><i
                                     class="fa fa-user"></i><span class="hide-menu">پروفایل</span></a></li>
-                        <li> <a class="waves-effect waves-dark"
-                                href="http://localhost:8080/IE-proj//index.html#!/case" aria-expanded="false"><i
-                                    class="fa fa-table"></i><span class="hide-menu"></span>ثبت مورد</a></li>
+                        <li> <a class="waves-effect waves-dark" href="http://localhost:8080/IE-proj//index.html#!/case"
+                                aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu"></span>ثبت
+                                مورد</a></li>
                         <li> <a class="waves-effect waves-dark"
                                 href="http://localhost:8080/IE-proj//index.html#!/status" aria-expanded="false"><i
                                     class="fas fa-star-half-alt"></i><span class="hide-menu"></span> وضعیت موارد ثبت
                                 شده</a></li>
-                        <li ng-class="adminAccess"><a class="waves-effect waves-dark"
-                                 href="http://localhost:8080/IE-proj//index.html#!/authorize" aria-expanded="false"><i
-                                class="far fa-check-square"></i><span class="hide-menu"></span>تایید کاربران</a>
-                        </li>
-                        <li ng-class="adminAccess"><a class="waves-effect waves-dark"
+                        <li><a class="waves-effect waves-dark"
+                                href="http://localhost:8080/IE-proj//index.html#!/authorize" aria-expanded="false"><i
+                                    class="fas fa-check-square"></i><span class="hide-menu"></span> تایید کاربران
+                            </a></li>
+                        <li><a class="waves-effect waves-dark"
                                 href="http://localhost:8080/IE-proj//index.html#!/manageusers" aria-expanded="false"><i
                                     class="fas fa-tasks"></i><span class="hide-menu"></span> مدیریت کاربران
                             </a></li>
-                        <li ng-class="adminAccess"><a class="waves-effect waves-dark"
-                                href="http://localhost:8080/IE-proj//index.html#!/report" aria-expanded="false"><i
-                                    class="far fa-newspaper"></i><span class="hide-menu"></span>گزارش گیری از سیستم</a>
+                        <li><a class="waves-effect waves-dark" href="http://localhost:8080/IE-proj//index.html#!/report"
+                                aria-expanded="false"><i class="far fa-newspaper"></i><span
+                                    class="hide-menu"></span>گزارش گیری از سیستم</a>
                         </li>
                     </ul>
                 </nav>
@@ -142,7 +142,7 @@
 
                             <div class="card-body">
                                 <h4 class="card-title m-b-0">زمان بندی مورد ها</h4>
-                                <div id="chartdiv" ></div>
+                                <div id="chartdiv"></div>
                             </div>
                         </div>
                     </div>
@@ -150,20 +150,20 @@
                         <div class="card  date-section">
                             <div class="card-body">
                                 <div class="clock-content">
-              
-                                <div class="clock">
-                                    <div class="outer-clock-face">
-                                      <div class="marking marking-one"></div>
-                                      <div class="marking marking-two"></div>
-                                      <div class="marking marking-three"></div>
-                                      <div class="marking marking-four"></div>
-                                      <div class="inner-clock-face">
-                                        <div class="hand hour-hand"></div>
-                                        <div class="hand min-hand"></div>
-                                        <div class="hand second-hand"></div>
-                                      </div>
+
+                                    <div class="clock">
+                                        <div class="outer-clock-face">
+                                            <div class="marking marking-one"></div>
+                                            <div class="marking marking-two"></div>
+                                            <div class="marking marking-three"></div>
+                                            <div class="marking marking-four"></div>
+                                            <div class="inner-clock-face">
+                                                <div class="hand hour-hand"></div>
+                                                <div class="hand min-hand"></div>
+                                                <div class="hand second-hand"></div>
+                                            </div>
+                                        </div>
                                     </div>
-                                  </div>
                                 </div>
                             </div>
                         </div>
@@ -176,7 +176,7 @@
 
                             <div class="card-body">
                                 <h4 class="card-title m-b-0">برترین کاربران بر حسب تعداد مورد های انجام داده</h4>
-                                <div id="userdiv" ></div>
+                                <div id="userdiv"></div>
                             </div>
                         </div>
                     </div>
@@ -184,7 +184,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class=" text-right card-title m-b-0">وضعیت موارد ثبت شده </h4>
-                                <div id="piediv" ></div>
+                                <div id="piediv"></div>
 
                             </div>
                         </div>
@@ -197,7 +197,7 @@
 
                             <div class="card-body">
                                 <h4 class="card-title m-b-0">شروع و پایان مورد ها</h4>
-                                <div id="timechart" ></div>
+                                <div id="timechart"></div>
                             </div>
                         </div>
                     </div>
@@ -205,7 +205,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class=" text-right card-title m-b-0">کلمات پر تکرار در موارد</h4>
-                                <div id="worddiv" ></div>
+                                <div id="worddiv"></div>
 
                             </div>
                         </div>
