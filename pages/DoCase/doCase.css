@@ -1,0 +1,17 @@
+.caseStatusSelect, .assigneSelect {
+    width: 100%;
+}
+
+.attempedButtons .btn {
+    width: 100%;
+}
+
+.card-body .row {
+    margin-bottom: 20px;
+}
+
+footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}

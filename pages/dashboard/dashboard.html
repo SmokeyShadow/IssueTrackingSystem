@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
 
     <title>داشبورد</title>
 
-    <!-- Custom CSS -->
     <link href="css/global.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="../css/style.css" rel="stylesheet">
-    <link href="../css/dashboard.css" rel="stylesheet">
-    <!-- Dashboard 1 Page CSS -->
-    <link href="../css/backgroundStyle.css" rel="stylesheet">
-</head>
 
+    <link href="pages/dashboard/dashboard.css" rel="stylesheet">
+
+</head>
 
 <body dir="rtl">
 
@@ -22,46 +17,46 @@
     <!-- this div is common in all pages -->
     <!-- green top fixed position header-->
     <div class="green-nav" ng-controller="dashboardCtrl">
-        <header>
-
-            <!-- green navbar shown at load -->
-            <div id="list-nav" class="row">
-
-
-                <!-- info section, image and title of page -->
-                <div class="info col-md-6">
-                    <span><i class="fas fa-graduation-cap"></i></span>
-                    <span>سامانه ثبت تیکت دانشکاه شهید بهشتی</span>
+            <header>
+    
+                <!-- green navbar shown at load -->
+                <div id="list-nav" class="row">
+    
+    
+                    <!-- info section, image and title of page -->
+                    <div class="info col-md-6">
+                        <span><i class="fas fa-graduation-cap"></i></span>
+                        <span>سامانه ثبت تیکت دانشکاه شهید بهشتی</span>
+                    </div>
+    
+    
+    
+                    <!-- login & register button -->
+                    <div class="nav-btns col-md-6">
+                        خوش آمدی {{name}}!
+                        <button class="btn btn-primary"><i class="fas fa-user"></i></button>
+                    </div>
                 </div>
-
-
-
-                <!-- login & register button -->
-                <div class="nav-btns col-md-6">
-                    خوش آمدی {{name}}!
-                    <button class="btn btn-primary"><i class="fas fa-user"></i></button>
-                </div>
-            </div>
-
-
-
-
-
-        </header>
+    
+    
+    
+            </header>
     </div>
+    
 
     <!-- ============================================================== -->
-    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- Main wrapper -->
     <!-- ============================================================== -->
     <div id="main-wrapper" class="skin-default-dark fixed-layout" ng-controller="dashboardCtrl">
 
         <!-- ============================================================== -->
         <!-- ============================================================== -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- Left Sidebar -->
         <!-- ============================================================== -->
         <aside class="left-sidebar">
             <div class="d-flex no-block nav-text-box align-items-center">
-                <span><img src="Assets/images/shahid_beheshti_university.jpg    " alt="elegant admin template"></span>
+                <span><img src="Assets/images/shahid_beheshti_university.jpg    "
+                        alt="shahid_beheshti_university"></span>
                 <a class="waves-effect waves-dark ml-auto hidden-sm-down" href="javascript:void(0)"><i
                         class="ti-menu"></i></a>
                 <a class="nav-toggler waves-effect waves-dark ml-auto hidden-sm-up" href="javascript:void(0)"><i
@@ -78,15 +73,15 @@
                         <li> <a class="waves-effect waves-dark"
                                 href="http://localhost:8080/IE-proj//index.html#!/profile" aria-expanded="false"><i
                                     class="fa fa-user"></i><span class="hide-menu">پروفایل</span></a></li>
-						<li> <a class="waves-effect waves-dark"
-                                href="http://localhost:8080/IE-proj//index.html#!/case" aria-expanded="false"><i
-                                    class="fa fa-table"></i><span class="hide-menu"></span>ثبت مورد</a></li>
+                        <li> <a class="waves-effect waves-dark" href="http://localhost:8080/IE-proj//index.html#!/case"
+                                aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu"></span>ثبت
+                                مورد</a></li>
                         <li> <a class="waves-effect waves-dark"
                                 href="http://localhost:8080/IE-proj//index.html#!/status" aria-expanded="false"><i
                                     class="fas fa-star-half-alt"></i><span class="hide-menu"></span> وضعیت موارد ثبت
                                 شده</a></li>
                         <li ng-class="adminAccess"><a class="waves-effect waves-dark"
-                                href="http://localhost:8080/IE-proj//index.html#!/status" aria-expanded="false"><i
+                                href="http://localhost:8080/IE-proj//index.html#!/manageusers" aria-expanded="false"><i
                                     class="fas fa-tasks"></i><span class="hide-menu"></span> مدیریت کاربران
                             </a></li>
                         <li ng-class="adminAccess"><a class="waves-effect waves-dark"
@@ -101,7 +96,7 @@
             <!-- End Sidebar scroll-->
         </aside>
         <!-- ============================================================== -->
-        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- End Left Sidebar -->
         <!-- ============================================================== -->
         <!-- ============================================================== -->
         <!-- Page wrapper  -->
@@ -123,7 +118,7 @@
                             <ol style="display:inline-block">
 
 
-                                <li style="display:inline-block"><a href="javascript:void(0)">گزارش ها</a></li>
+                                <li style="display:inline-block"><a href="javascript:void(0)">ارجاع ها</a></li>
                                 <li style="display:inline-block"> <i class="fas fa-angle-right"></i> داشبورد </li>
 
                             </ol>

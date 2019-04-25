@@ -5,14 +5,8 @@
 <head>
 
     <title>داشبورد</title>
-
-    <!-- Custom CSS -->
     <link href="css/global.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="../css/style.css" rel="stylesheet">
-    <link href="../css/dashboard.css" rel="stylesheet">
-    <!-- Dashboard 1 Page CSS -->
-    <link href="../css/backgroundStyle.css" rel="stylesheet">
+    <link href="pages/casesStatus/caseStatus.css" rel="stylesheet">
 </head>
 
 
@@ -53,13 +47,13 @@
     </div>
 
     <!-- ============================================================== -->
-    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- Main wrapper  -->
     <!-- ============================================================== -->
     <div id="main-wrapper" class="skin-default-dark fixed-layout" ng-controller="dashboardCtrl">
 
         <!-- ============================================================== -->
         <!-- ============================================================== -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- Left Sidebar-->
         <!-- ============================================================== -->
         <aside class="left-sidebar">
             <div class="d-flex no-block nav-text-box align-items-center">
@@ -80,15 +74,15 @@
                         <li> <a class="waves-effect waves-dark"
                                 href="http://localhost:8080/IE-proj//index.html#!/profile" aria-expanded="false"><i
                                     class="fa fa-user"></i><span class="hide-menu">پروفایل</span></a></li>
-                        <li> <a class="waves-effect waves-dark"
-                                href="http://localhost:8080/IE-proj//index.html#!/case" aria-expanded="false"><i
-                                    class="fa fa-table"></i><span class="hide-menu"></span>ثبت مورد</a></li>
+                        <li> <a class="waves-effect waves-dark" href="http://localhost:8080/IE-proj//index.html#!/case"
+                                aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu"></span>ثبت
+                                مورد</a></li>
                         <li> <a class="waves-effect waves-dark"
                                 href="http://localhost:8080/IE-proj//index.html#!/status" aria-expanded="false"><i
                                     class="fas fa-star-half-alt"></i><span class="hide-menu"></span> وضعیت موارد ثبت
                                 شده</a></li>
                         <li ng-class="adminAccess"><a class="waves-effect waves-dark"
-                                href="http://localhost:8080/IE-proj//index.html#!/status" aria-expanded="false"><i
+                                href="http://localhost:8080/IE-proj//index.html#!/manageusers" aria-expanded="false"><i
                                     class="fas fa-tasks"></i><span class="hide-menu"></span> مدیریت کاربران
                             </a></li>
                         <li ng-class="adminAccess"><a class="waves-effect waves-dark"
@@ -103,7 +97,7 @@
             <!-- End Sidebar scroll-->
         </aside>
         <!-- ============================================================== -->
-        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- End Left Sidebar -->
         <!-- ============================================================== -->
         <!-- ============================================================== -->
         <!-- Page wrapper  -->
@@ -125,7 +119,7 @@
                             <ol style="display:inline-block">
 
 
-                                <li style="display:inline-block"><a href="javascript:void(0)">گزارش ها</a></li>
+                                <li style="display:inline-block"><a href="javascript:void(0)">وضعیت مورد ها</a></li>
                                 <li style="display:inline-block"> <i class="fas fa-angle-right"></i> داشبورد </li>
 
                             </ol>

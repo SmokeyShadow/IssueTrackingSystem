@@ -45,6 +45,11 @@ app.config(function ($routeProvider) {
                 controller: 'doCaseController',
                 templateUrl: baseUrl + 'pages/DoCase/doCase.html'
             })
+        .when('/manageusers',
+            {
+                controller: 'manageController',
+                templateUrl: baseUrl + 'pages/manage/manageUsers.html'
+            })
         .otherwise({
             redirectTo: '/'
         });
@@ -53,19 +58,19 @@ app.config(function ($routeProvider) {
 
 
 
-app.factory('myService', function() {
- var savedData = {}
- function set(data) {
-   savedData = data;
- }
- function get() {
-  return savedData;
- }
+app.factory('myService', function () {
+    var savedData = {}
+    function set(data) {
+        savedData = data;
+    }
+    function get() {
+        return savedData;
+    }
 
- return {
-  set: set,
-  get: get
- }
+    return {
+        set: set,
+        get: get
+    }
 
 });
 // js parts

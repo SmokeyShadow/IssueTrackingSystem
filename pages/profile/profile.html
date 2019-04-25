@@ -9,14 +9,8 @@
     <!-- Custom CSS -->
     <link href="css/global.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="../css/style.css" rel="stylesheet">
-    <!-- Custom CSS -->
     <link href="../css/dorsasam.css" rel="stylesheet">
-    <!-- Custom CSS -->
 
-    <link href="css/dashboard.css" rel="stylesheet">
-    <!-- Dashboard 1 Page CSS -->
-    <link href="../css/backgroundStyle.css" rel="stylesheet">
 </head>
 
 
@@ -40,29 +34,30 @@
 
 
 
-                     <!-- login & register button -->
-                     <div class="nav-btns col-md-6">
-                            خوش آمدی {{name}}!
-                            <button class="btn btn-primary"><i class="fas fa-user"></i></button>
-                        </div>
-                    </div>
+                <!-- login & register button -->
+                <div class="nav-btns col-md-6">
+                    خوش آمدی {{name}}!
+                    <button class="btn btn-primary"><i class="fas fa-user"></i></button>
+                </div>
+            </div>
 
 
         </header>
     </div>
 
     <!-- ============================================================== -->
-    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- Main wrapper  -->
     <!-- ============================================================== -->
     <div id="main-wrapper" class="skin-default-dark fixed-layout" ng-controller="dashboardCtrl">
 
         <!-- ============================================================== -->
         <!-- ============================================================== -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- Left Sidebar   -->
         <!-- ============================================================== -->
         <aside class="left-sidebar">
             <div class="d-flex no-block nav-text-box align-items-center">
-                <span><img src="Assets/images/shahid_beheshti_university.jpg    " alt="elegant admin template"></span>
+                <span><img src="Assets/images/shahid_beheshti_university.jpg    "
+                        alt="shahid_beheshti_university"></span>
                 <a class="waves-effect waves-dark ml-auto hidden-sm-down" href="javascript:void(0)"><i
                         class="ti-menu"></i></a>
                 <a class="nav-toggler waves-effect waves-dark ml-auto hidden-sm-up" href="javascript:void(0)"><i
@@ -73,21 +68,21 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                            <li> <a class="waves-effect waves-dark"
+                        <li> <a class="waves-effect waves-dark"
                                 href="http://localhost:8080/IE-proj//index.html#!/dashboard" aria-expanded="false"><i
                                     class="fa fa-home"></i><span class="hide-menu">داشبورد</span></a></li>
                         <li> <a class="waves-effect waves-dark"
                                 href="http://localhost:8080/IE-proj//index.html#!/profile" aria-expanded="false"><i
                                     class="fa fa-user"></i><span class="hide-menu">پروفایل</span></a></li>
-                        <li> <a class="waves-effect waves-dark"
-                                href="http://localhost:8080/IE-proj//index.html#!/case" aria-expanded="false"><i
-                                    class="fa fa-table"></i><span class="hide-menu"></span>ثبت مورد</a></li>
+                        <li> <a class="waves-effect waves-dark" href="http://localhost:8080/IE-proj//index.html#!/case"
+                                aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu"></span>ثبت
+                                مورد</a></li>
                         <li> <a class="waves-effect waves-dark"
                                 href="http://localhost:8080/IE-proj//index.html#!/status" aria-expanded="false"><i
                                     class="fas fa-star-half-alt"></i><span class="hide-menu"></span> وضعیت موارد ثبت
                                 شده</a></li>
                         <li ng-class="adminAccess"><a class="waves-effect waves-dark"
-                                href="http://localhost:8080/IE-proj//index.html#!/status" aria-expanded="false"><i
+                                href="http://localhost:8080/IE-proj//index.html#!/docase" aria-expanded="false"><i
                                     class="fas fa-tasks"></i><span class="hide-menu"></span> مدیریت کاربران
                             </a></li>
                         <li ng-class="adminAccess"><a class="waves-effect waves-dark"
@@ -101,12 +96,12 @@
             <!-- End Sidebar scroll-->
         </aside>
         <!-- ============================================================== -->
-        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- End Left Sidebar  -->
         <!-- ============================================================== -->
         <!-- ============================================================== -->
         <!-- Page wrapper  -->
         <!-- ============================================================== -->
-        <div class="page-wrapper" >
+        <div class="page-wrapper">
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
@@ -171,16 +166,16 @@
                                     <div class="modify_box appear  row" style="width: 100%; height: 100%;">
                                         <div class="profile_modifications col-md-8 form-horizontal form-material">
 
-                                            <input class="form-control form-control-line" type="text"
+                                            <input class="form-control form-control-line text-right" type="text"
                                                 style="margin-top: 20px;" placeholder="نام" ng-model="name">
-                                            <input class="form-control form-control-line" type="text"
-                                                style="margin-top: 20px;" placeholder="نام خانوادگی" value="سمیعی"  ng-model="must add this to json">
-                                            <input class="form-control form-control-line" type="text"
-                                                style="margin-top: 20px;direction: ltr" placeholder="نقش" ng-model="role"
-                                             >
-                                            <input class="form-control form-control-line email" type="text" ng-model="email"
-                                                style="margin-top: 20px;" placeholder="پست الکترونیکی"
-                                            >
+                                            <input class="form-control form-control-line text-right" type="text"
+                                                style="margin-top: 20px;" placeholder="نام خانوادگی" value="سمیعی"
+                                                ng-model="must add this to json">
+                                            <input class="form-control form-control-line text-right" type="text"
+                                                style="margin-top: 20px;direction: ltr" placeholder="نقش"
+                                                ng-model="role">
+                                            <input class="form-control form-control-line email text-right" type="text"
+                                                ng-model="email" style="margin-top: 20px;" placeholder="پست الکترونیکی">
                                             <text class="warning">آدرس پست الکترونیکی معتبر نیست<i
                                                     class="fa fa-warning"></i></text>
 
@@ -199,7 +194,7 @@
                                         <div class="profile_change form-horizontal form-material">
 
                                             <input type="text" style="margin-top: 20px;"
-                                                class="previous form-control form-control-line" ng-model = "password"
+                                                class="previous form-control form-control-line" ng-model="password"
                                                 placeholder="رمز عبور قبلی">
                                             <text class="warning warning1 ">رمز عبور قبلی خود را وارد کنید<i
                                                     class="fa fa-warning"></i></text>

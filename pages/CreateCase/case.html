@@ -9,16 +9,11 @@
     <!-- Custom CSS -->
     <link href="css/global.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="../css/style.css" rel="stylesheet">
-    <!-- Custom CSS -->
     <link href="../css/dorsasam.css" rel="stylesheet">
     <!-- Custom CSS -->
-	<link href="../css/createCase.css" rel="stylesheet">
-    <!-- Custom CSS -->
+    <link href="pages/CreateCase/createCase.css" rel="stylesheet">
 
-    <link href="css/dashboard.css" rel="stylesheet">
-    <!-- Dashboard 1 Page CSS -->
-    <link href="../css/backgroundStyle.css" rel="stylesheet">
+
 </head>
 
 
@@ -42,25 +37,25 @@
 
 
 
-                     <!-- login & register button -->
-                     <div class="nav-btns col-md-6">
-                            خوش آمدی {{name}}!
-                            <button class="btn btn-primary"><i class="fas fa-user"></i></button>
-                        </div>
-                    </div>
+                <!-- login & register button -->
+                <div class="nav-btns col-md-6">
+                    خوش آمدی {{name}}!
+                    <button class="btn btn-primary"><i class="fas fa-user"></i></button>
+                </div>
+            </div>
 
 
         </header>
     </div>
 
     <!-- ============================================================== -->
-    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- Main wrapper-->
     <!-- ============================================================== -->
     <div id="main-wrapper" class="skin-default-dark fixed-layout" ng-controller="dashboardCtrl">
 
         <!-- ============================================================== -->
         <!-- ============================================================== -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- Left Sidebar -->
         <!-- ============================================================== -->
         <aside class="left-sidebar">
             <div class="d-flex no-block nav-text-box align-items-center">
@@ -75,25 +70,26 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                            <li> <a class="waves-effect waves-dark"
+                        <li> <a class="waves-effect waves-dark"
                                 href="http://localhost:8080/IE-proj//index.html#!/dashboard" aria-expanded="false"><i
                                     class="fa fa-home"></i><span class="hide-menu">داشبورد</span></a></li>
                         <li> <a class="waves-effect waves-dark"
                                 href="http://localhost:8080/IE-proj//index.html#!/profile" aria-expanded="false"><i
                                     class="fa fa-user"></i><span class="hide-menu">پروفایل</span></a></li>
-                        <li> <a class="waves-effect waves-dark"
-                                href="http://localhost:8080/IE-proj//index.html#!/case" aria-expanded="false"><i
-                                    class="fa fa-table"></i><span class="hide-menu"></span>ثبت مورد</a></li>
+                        <li> <a class="waves-effect waves-dark" href="http://localhost:8080/IE-proj//index.html#!/case"
+                                aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu"></span>ثبت
+                                مورد</a></li>
                         <li> <a class="waves-effect waves-dark"
                                 href="http://localhost:8080/IE-proj//index.html#!/status" aria-expanded="false"><i
                                     class="fas fa-star-half-alt"></i><span class="hide-menu"></span> وضعیت موارد ثبت
                                 شده</a></li>
-						<li ng-class="adminAccess"><a class="waves-effect waves-dark"
-                                href="http://localhost:8080/IE-proj//index.html#!/authorizeUsers" aria-expanded="false"><i
-                                    class="fas fa-check-square"></i><span class="hide-menu"></span> تایید کاربران
+                        <li ng-class="adminAccess"><a class="waves-effect waves-dark"
+                                href="http://localhost:8080/IE-proj//index.html#!/authorizeUsers"
+                                aria-expanded="false"><i class="fas fa-check-square"></i><span class="hide-menu"></span>
+                                تایید کاربران
                             </a></li>
                         <li ng-class="adminAccess"><a class="waves-effect waves-dark"
-                                href="http://localhost:8080/IE-proj//index.html#!/status" aria-expanded="false"><i
+                                href="http://localhost:8080/IE-proj//index.html#!/manageusers" aria-expanded="false"><i
                                     class="fas fa-tasks"></i><span class="hide-menu"></span> مدیریت کاربران
                             </a></li>
                         <li ng-class="adminAccess"><a class="waves-effect waves-dark"
@@ -107,12 +103,12 @@
             <!-- End Sidebar scroll-->
         </aside>
         <!-- ============================================================== -->
-        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- End Left Sidebar  -->
         <!-- ============================================================== -->
         <!-- ============================================================== -->
         <!-- Page wrapper  -->
         <!-- ============================================================== -->
-        <div class="page-wrapper" >
+        <div class="page-wrapper">
             <!-- ============================================================== -->
             <!-- Container fluid  -->
             <!-- ============================================================== -->
@@ -150,71 +146,83 @@
                         <div class="caseCard">
                             <!-- Tab panes -->
                             <div class="card-body row form-content">
-                               <div class = "caseForm form-group">
-                                   <div class = "items">
-                                       <label>ارجاع دهنده:&nbsp;</label>
-                                       <input type="text" class="form-control" value={{name}} style = "width: 400px" disabled>
-                                   </div>
-                                   <div class = "items">
-                                       <label>زمان ارسال:&nbsp;</label>
-                                       <input type="text" class="form-control" value="روز / ماه / سال" style = "width: 300px" disabled>
-                                   </div>
-                                   <div class = "items" id = "list-one">
-                                       <div id = "drop" class="dropdown">
-                                           <label>موضوع :&nbsp;</label>
-                                           <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color: whitesmoke;color:black;border-color: whitesmoke;">شکایت
-                                               <span class="caret"></span></button>
-                                           <ul class="dropdown-menu" style="align-content: center">
-                                               <li id = "complaint" style="text-align: center" onclick="chooseFunc(id)"><a>شکایت</a></li>
-                                               <li id = "critic" style="text-align: center" onclick="chooseFunc(id)"><a>انتقاد</a></li>
-                                               <li id = "suggestion" style="text-align: center" onclick="chooseFunc(id)"><a>پیشنهاد</a></li>
-                                               <li id = "purpose" style="text-align: center" onclick="chooseFunc(id)"><a>درخواست</a></li>
-                                           </ul>
-                                       </div>
-                                   </div>
-                                   <div class = "items" id = "list-two">
-                                       <div class="dropdown">
-                                           <label>درجه اهمیت:&nbsp;</label>
-                                           <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color: whitesmoke;color:black;border-color: whitesmoke;">معمولی
-                                               <span class="caret"></span></button>
-                                           <ul class="dropdown-menu">
-                                               <li id = "common" style="text-align: center" onclick="chooseFunc2(id)"><a>معمولی</a></li>
-                                               <li id = "normal" style="text-align: center" onclick="chooseFunc2(id)"><a>متوسط</a></li>
-                                               <li id = "urgent" style="text-align: center" onclick="chooseFunc2(id)"><a>اورژانسی</a></li>
-                                           </ul>
-                                       </div>
-                                   </div>
-                                   <div class = "items">
-                                       <label>متن توضیح :&nbsp;</label>
-                                       <textarea class="form-control" rows="10" id="comment" style="width: 720px;"></textarea>
-                                   </div>
-                                   <div class = "items" style="display: flex;justify-content: center">
-                                       <label class="fileContainer">آپلود فایل<input type="file"/></label>
-                                   </div>
-                                   <div class = "items">
-                                       <label>ارجاع به :&nbsp;</label>
-                                       <input type="text">
-                                   </div>
-                                   <div class = "items" style="display: flex;justify-content: center">
-                                       <button class = "submit_button" style="border-radius: 5%;">ثبت مورد</button>
-                                   </div>
-                                   </div>
-                               </div>
+                                <div class="caseForm form-group">
+                                    <div class="items">
+                                        <label>ارجاع دهنده:&nbsp;</label>
+                                        <input type="text" class="form-control" value="{{name}}" style="width: 400px"
+                                            disabled>
+                                    </div>
+                                    <div class="items">
+                                        <label>زمان ارسال:&nbsp;</label>
+                                        <input type="text" class="form-control" value="روز / ماه / سال"
+                                            style="width: 300px" disabled>
+                                    </div>
+                                    <div class="items" id="list-one">
+                                        <div id="drop" class="dropdown">
+                                            <label>موضوع :&nbsp;</label>
+                                            <button class="btn btn-primary dropdown-toggle" type="button"
+                                                data-toggle="dropdown"
+                                                style="background-color: whitesmoke;color:black;border-color: whitesmoke;">شکایت
+                                                <span class="caret"></span></button>
+                                            <ul class="dropdown-menu" style="align-content: center">
+                                                <li id="complaint" style="text-align: center" onclick="chooseFunc(id)">
+                                                    <a>شکایت</a></li>
+                                                <li id="critic" style="text-align: center" onclick="chooseFunc(id)">
+                                                    <a>انتقاد</a></li>
+                                                <li id="suggestion" style="text-align: center" onclick="chooseFunc(id)">
+                                                    <a>پیشنهاد</a></li>
+                                                <li id="purpose" style="text-align: center" onclick="chooseFunc(id)">
+                                                    <a>درخواست</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="items" id="list-two">
+                                        <div class="dropdown">
+                                            <label>درجه اهمیت:&nbsp;</label>
+                                            <button class="btn btn-primary dropdown-toggle" type="button"
+                                                data-toggle="dropdown"
+                                                style="background-color: whitesmoke;color:black;border-color: whitesmoke;">معمولی
+                                                <span class="caret"></span></button>
+                                            <ul class="dropdown-menu">
+                                                <li id="common" style="text-align: center" onclick="chooseFunc2(id)">
+                                                    <a>معمولی</a></li>
+                                                <li id="normal" style="text-align: center" onclick="chooseFunc2(id)">
+                                                    <a>متوسط</a></li>
+                                                <li id="urgent" style="text-align: center" onclick="chooseFunc2(id)">
+                                                    <a>اورژانسی</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="items">
+                                        <label>متن توضیح :&nbsp;</label>
+                                        <textarea class="form-control" rows="10" id="comment"
+                                            style="width: 720px;"></textarea>
+                                    </div>
+                                    <div class="items" style="display: flex;justify-content: center">
+                                        <label class="fileContainer">آپلود فایل<input type="file" /></label>
+                                    </div>
+                                    <div class="items">
+                                        <label>ارجاع به :&nbsp;</label>
+                                        <input type="text">
+                                    </div>
+                                    <div class="items" style="display: flex;justify-content: center">
+                                        <button class="submit_button" style="border-radius: 5%;">ثبت مورد</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Column -->
                 </div>
+                <!-- Column -->
             </div>
-            <!-- ============================================================== -->
-            <!-- End Container fluid  -->
-            <!-- ============================================================== -->
         </div>
         <!-- ============================================================== -->
-        <!-- End Page wrapper  -->
+        <!-- End Container fluid  -->
         <!-- ============================================================== -->
-
     </div>
+    <!-- ============================================================== -->
+    <!-- End Page wrapper  -->
+    <!-- ============================================================== -->
 
 
 

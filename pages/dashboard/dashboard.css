@@ -1,0 +1,19 @@
+thead tr td {
+    color: #495057;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+
+.card .card-body .table-responsive .table-hover {
+    text-align: center;
+}
+/*common in all*/
+footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+.nav-btns
+{
+    padding-left: 100px !important;
+}

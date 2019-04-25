@@ -1,11 +1,11 @@
 (function () {
     'use strict';
     var app = angular.module('app');
-    app.controller('doCaseController', doCaseController);
+    app.controller('manageController', manageController);
 
-    doCaseController.$inject = ['$rootScope'];
+    manageController.$inject = ['$rootScope'];
 
-    function doCaseController($rootScope, $http) {
+    function manageController($rootScope, $http) {
 
         $rootScope.bodylayout = 'main_page_que';
 

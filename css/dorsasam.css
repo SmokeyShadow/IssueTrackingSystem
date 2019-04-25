@@ -28,13 +28,11 @@
 
 }
 .edit_buttons{
-    display: inline;
-    margin-top: 10px;
+    width: 100%;
+    display: inline-block;
     color : black;
     border-width: 0px;
     background-color: white;
-    width: 200px;
-    height: 50px;
     outline: none;
     align-content: center;
     text-align: center;
