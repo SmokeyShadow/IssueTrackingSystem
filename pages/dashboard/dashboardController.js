@@ -24,3 +24,7 @@
 
 })();
 
+function onTrClick()
+{
+    window.location = $(this).data("href");
+}
