@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>مدیریت کاربران</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="manageUsers.css">
+    <link rel="stylesheet" href="../../css/global.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="manageUsers.js"></script>
+</head>
+<body dir="rtl">
+<div class="page-wrapper">
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="show-entries" >
+                            <span>نشان دادن</span>
+                            <select>
+                                <option>۵</option>
+                                <option>۱۰</option>
+                                <option>۱۵</option>
+                                <option>۲۰</option>
+                            </select>
+                            <span>سطر جدول</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <h2 class="text-center">لیست کاربران</h2>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="search-box">
+                            <div class="input-group"dir="rtl">
+                                <input type="text" class="form-control" placeholder="جستجو&hellip;">
+                                <span class="input-group-addon"><i class="material-icons">&#xE8B6;</i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-light">
+                    <tr>
+                        <th>شماره</th>
+                        <th>عکس پروفایل</th>
+                        <th>نام کاربری</th>
+                        <th>نام و نام خانوادگی</th>
+                        <th>سمت</th>
+                        <th>وضعیت</th>
+                        <th>اقدام ها</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr id="111">
+                        <td>۱</td>
+                        <td><div><img src="../../Assets/images/users/3.jpg" class="mx-auto d-block img-circle user-pic" alt="profilePic" ></div></td>
+                        <td>alialavi</td>
+                        <td>علی علوی</td>
+                        <td>دانشجو</td>
+                        <td><span id="1" class="btn btn-primary status-btn" onclick="changeStatus(1)">تایید</span></td>
+                        <td>
+                            <a href="#" class="btn view" title="مشاهده پروفایل" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+                            <a id="11" href="#" class="btn delete" title="حذف" data-toggle="tooltip" onclick=deleteUser(11)><i class="material-icons">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                    <tr id="112">
+                        <td>۲</td>
+                        <td><div><img src="../../Assets/images/users/3.jpg" class="mx-auto d-block img-circle user-pic" alt="profilePic" ></div></td>
+                        <td>taghi tghavi</td>
+                        <td>تقی تقوی</td>
+                        <td>دانشجو</td>
+                        <td><span id="2" class="btn btn-success status-btn" onclick="changeStatus(2)">فعال</span></td>
+                        <td>
+                            <a href="#" class="btn view" title="مشاهده پروفایل" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+                            <a id="12" href="#" class="btn delete" title="حذف" data-toggle="tooltip" onclick=deleteUser(12)><i class="material-icons">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                    <tr id="113">
+                        <td>۳</td>
+                        <td><div><img src="../../Assets/images/users/3.jpg" class="mx-auto d-block img-circle user-pic" alt="profilePic" ></div></td>
+                        <td>mohsenMohseni</td>
+                        <td>محسن محسنی</td>
+                        <td>مدیر</td>
+                        <td><span id="3" class="btn btn-warning status-btn" onclick=changeStatus(3)>غیر فعال</span></td>
+                        <td>
+                            <a href="#" class="btn view" title="مشاهده پروفایل" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+                            <a id="13" href="#" class="btn delete" title="حذف" data-toggle="tooltip" onclick=deleteUser(13)><i class="material-icons">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                    <tr id="114">
+                        <td>۴</td>
+                        <td><div><img src="../../Assets/images/users/3.jpg" class="mx-auto d-block img-circle user-pic" alt="profilePic" ></div></td>
+                        <td>hasan hasani</td>
+                        <td>حسن حسنی</td>
+                        <td>دانشجو</td>
+                        <td><span id="4" class="btn btn-primary status-btn" onclick="changeStatus(4)">تایید</span></td>
+                        <td>
+                            <a href="#" class="btn view" title="مشاهده پروفایل" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+                            <a id="14" href="#" class="btn delete" title="حذف" data-toggle="tooltip" onclick=deleteUser(14)><i class="material-icons">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                    <tr id="115">
+                        <td>۵</td>
+                        <td><div><img src="../../Assets/images/users/3.jpg" class="mx-auto d-block img-circle user-pic" alt="profilePic" ></div></td>
+                        <td>naghiNaghavi</td>
+                        <td>نقی نقوی</td>
+                        <td>دانشجو</td>
+                        <td><span id="5" class="btn btn-success status-btn" onclick="changeStatus(5)">فعال</span></td>
+                        <td>
+                            <a href="#" class="btn view" title="مشاهده پروفایل" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+                            <a id="15" href="#" class="btn delete" title="حذف" data-toggle="tooltip" onclick=deleteUser(15)><i class="material-icons">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
