@@ -16,7 +16,7 @@
 
     <!-- this div is common in all pages -->
     <!-- green top fixed position header-->
-    <div class="green-nav" ng-controller="dashboardCtrl">
+    <div class="green-nav" ng-controller="dashCtrl">
         <header>
 
             <!-- green navbar shown at load -->
@@ -47,7 +47,7 @@
     <!-- ============================================================== -->
     <!-- Main wrapper -->
     <!-- ============================================================== -->
-    <div id="main-wrapper" class="skin-default-dark fixed-layout" ng-controller="dashboardCtrl">
+    <div id="main-wrapper" class="skin-default-dark fixed-layout" ng-controller="dashCtrl">
 
         <!-- ============================================================== -->
         <!-- ============================================================== -->
@@ -80,17 +80,17 @@
                                 href="http://localhost:8080/IE-proj//index.html#!/status" aria-expanded="false"><i
                                     class="fas fa-star-half-alt"></i><span class="hide-menu"></span> وضعیت موارد ثبت
                                 شده</a></li>
-                        <li><a class="waves-effect waves-dark"
+                        <li ng-class="adminAccess"><a class="waves-effect waves-dark"
                                 href="http://localhost:8080/IE-proj//index.html#!/authorize" aria-expanded="false"><i
                                     class="fas fa-check-square"></i><span class="hide-menu"></span> تایید کاربران
                             </a></li>
-                        <li><a class="waves-effect waves-dark"
+                        <li ng-class="adminAccess"><a class="waves-effect waves-dark"
                                 href="http://localhost:8080/IE-proj//index.html#!/manageusers" aria-expanded="false"><i
                                     class="fas fa-tasks"></i><span class="hide-menu"></span> مدیریت کاربران
                             </a></li>
-                        <li><a class="waves-effect waves-dark" href="http://localhost:8080/IE-proj//index.html#!/report"
-                                aria-expanded="false"><i class="far fa-newspaper"></i><span
-                                    class="hide-menu"></span>گزارش گیری از سیستم</a>
+                        <li ng-class="adminAccess"><a class="waves-effect waves-dark"
+                                href="http://localhost:8080/IE-proj//index.html#!/report" aria-expanded="false"><i
+                                    class="far fa-newspaper"></i><span class="hide-menu"></span>گزارش گیری از سیستم</a>
                         </li>
 
                     </ul>
@@ -141,7 +141,7 @@
 
                                         <thead class="thead-light">
 
-                                            <tr >
+                                            <tr>
                                                 <td>شماره</td>
                                                 <td>موضوع</td>
                                                 <td>ارجاع به</td>
@@ -153,67 +153,32 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr  onclick = "window.location = $(this).data('href');" data-href=  "index.html#!/docase">
-                                                <td>۱</td>
-                                                <td>سیستم سرمایش</td>
-                                                <td>عطیه نوروززاده</td>
-                                                <td>درسا سمیعی</td>
-                                                <td><span class="badge badge-pill badge-secondary">باز</span> </td>
-                                                <td>سیستم گرمایشی گرم نمی کند</td>
-                                                <td><span class="badge badge-pill badge-info">معمولی</span> </td>
-                                                <td> 1397/03/27 17:09 </td>
-                                            </tr>
-                                            <tr onclick = "window.location = $(this).data('href');" data-href=  "index.html#!/docase">
-                                                <td>۲</td>
-                                                <td>سیستم سرمایش</td>
-                                                <td>عطیه نوروززاده</td>
-                                                <td>درسا سمیعی</td>
-                                                <td><span class="badge badge-pill badge-success">بسته</span> </td>
-                                                <td>سیستم گرمایشی گرم نمی کند</td>
-                                                <td><span class="badge badge-pill badge-danger">اورژانسی</span> </td>
-                                                <td> 1397/03/27 17:09 </td>
-                                            </tr>
-                                            <tr onclick = "window.location = $(this).data('href');" data-href=  "index.html#!/docase">
-                                                <td>۳</td>
-                                                <td>سیستم سرمایش</td>
-                                                <td>عطیه نوروززاده</td>
-                                                <td>درسا سمیعی</td>
-                                                <td><span class="badge badge-pill badge-warning">در حال بررسی</span>
-                                                <td>سیستم گرمایشی گرم نمی کند</td>
-                                                <td><span class="badge badge-pill badge-danger">اورژانسی</span> </td>
+                                            <tr ng-repeat="x in assignee"
+                                                onclick="window.location = $(this).data('href');"
+                                                data-href="index.html#!/docase">
+                                                <td>{{x.number}}</td>
+                                                <td>{{x.title}}</td>
+                                                <td>{{x.assignee}}</td>
+                                                <td>{{x.assigner}}</td>
+                                    
+                                                <td ng-switch on="x.status" >
+                                                    <span ng-switch-when="باز" class="badge badge-pill badge-success">باز</span>
+                                                    <span ng-switch-when="بسته" class="badge badge-pill badge-danger">بسته</span>
+                                                    <span ng-switch-when="تعویق" class="badge badge-pill badge-info">تعویق</span>
+                                                    <span ng-switch-default class="badge badge-pill badge-warning">در حال بررسی</span>
+                                                
                                                 </td>
-                                                <td> 1397/03/27 17:09 </td>
+                                                <td>{{x.description}}</td>
+                                                
+                                                <td ng-switch on="x.urgent" >
+                                                        <span ng-switch-when="معمولی" class="badge badge-pill badge-info">معمولی</span>
+                                                        <span ng-switch-when="اورژانسی" class="badge badge-pill badge-danger">اورژانسی</span>
+                                                        <span ng-switch-default class="badge badge-pill badge-warning">متوسط</span>
+                                                </td>
+                                            
+                                                <td> {{x.date}} </td>
                                             </tr>
-                                            <tr onclick = "window.location = $(this).data('href');" data-href=  "index.html#!/docase">
-                                                <td>۴</td>
-                                                <td>سیستم سرمایش</td>
-                                                <td>عطیه نوروززاده</td>
-                                                <td>درسا سمیعی</td>
-                                                <td><span class="badge badge-pill badge-info">تعویق</span> </td>
-                                                <td>سیستم گرمایشی گرم نمی کند</td>
-                                                <td><span class="badge badge-pill badge-warning">متوسط</span> </td>
-                                                <td> 1397/03/27 17:09 </td>
-                                            </tr>
-                                            <tr onclick = "window.location = $(this).data('href');" data-href=  "index.html#!/docase">
-                                                <td>۵</td>
-                                                <td>سیستم سرمایش</td>
-                                                <td>عطیه نوروززاده</td>
-                                                <td>درسا سمیعی</td>
-                                                <td><span class="badge badge-pill badge-success">بسته</span> </td>
-                                                <td>سیستم گرمایشی گرم نمی کند</td>
-                                                <td><span class="badge badge-pill badge-danger">اورژانسی</span> </td>
-                                                <td> 1397/03/27 17:09 </td>
-                                            </tr>
-                                            <tr onclick = "window.location = $(this).data('href');" data-href=  "index.html#!/docase">
-                                                <td>۶</td>
-                                                <td>سیستم سرمایش</td>
-                                                <td>عطیه نوروززاده</td>
-                                                <td>درسا سمیعی</td>
-                                                <td><span class="badge badge-pill badge-secondary">باز</span> </td>
-                                                <td>سیستم گرمایشی گرم نمی کند</td>
-                                                <td><span class="badge badge-pill badge-danger">اورژانسی</span> </td>
-                                                <td> 1397/03/27 17:09 </td>
-                                            </tr>
+                                  
                                         </tbody>
                                     </table>
                                 </div>

@@ -19,7 +19,7 @@
 
     <!-- this div is common in all pages -->
     <!-- green top fixed position header-->
-    <div class="green-nav" ng-controller="dashboardCtrl">
+    <div class="green-nav" ng-controller="statusCtrl">
         <header>
 
             <!-- green navbar shown at load -->
@@ -49,7 +49,7 @@
     <!-- ============================================================== -->
     <!-- Main wrapper  -->
     <!-- ============================================================== -->
-    <div id="main-wrapper" class="skin-default-dark fixed-layout" ng-controller="dashboardCtrl">
+    <div id="main-wrapper" class="skin-default-dark fixed-layout" ng-controller="statusCtrl">
 
         <!-- ============================================================== -->
         <!-- ============================================================== -->
@@ -81,15 +81,15 @@
                                 href="http://localhost:8080/IE-proj//index.html#!/status" aria-expanded="false"><i
                                     class="fas fa-star-half-alt"></i><span class="hide-menu"></span> وضعیت موارد ثبت
                                 شده</a></li>
-                        <li><a class="waves-effect waves-dark"
+                        <li ng-class = "adminAccess"><a class="waves-effect waves-dark"
                                 href="http://localhost:8080/IE-proj//index.html#!/authorize" aria-expanded="false"><i
                                     class="fas fa-check-square"></i><span class="hide-menu"></span> تایید کاربران
                             </a></li>
-                        <li><a class="waves-effect waves-dark"
+                        <li ng-class = "adminAccess"><a class="waves-effect waves-dark"
                                 href="http://localhost:8080/IE-proj//index.html#!/manageusers" aria-expanded="false"><i
                                     class="fas fa-tasks"></i><span class="hide-menu"></span> مدیریت کاربران
                             </a></li>
-                        <li><a class="waves-effect waves-dark" href="http://localhost:8080/IE-proj//index.html#!/report"
+                        <li ng-class = "adminAccess"><a class="waves-effect waves-dark" href="http://localhost:8080/IE-proj//index.html#!/report"
                                 aria-expanded="false"><i class="far fa-newspaper"></i><span
                                     class="hide-menu"></span>گزارش گیری از سیستم</a>
                         </li>

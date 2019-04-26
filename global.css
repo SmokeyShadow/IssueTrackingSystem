@@ -131,9 +131,7 @@ p, h1, h2, h3, h4, h5, span, a, div, label, input, ::placeholder ,li ,tr , th , 
     padding: 0 !important;
     margin: 0 !important;
 }
-.scroll-sidebar .hidden{
-    display: none;
-}
+
 
 
 
@@ -239,7 +237,9 @@ p, h1, h2, h3, h4, h5, span, a, div, label, input, ::placeholder ,li ,tr , th , 
     #list-nav .hidden {
         display: block !important;
     }
-
+    .scroll-sidebar .hidden{
+        display: none;
+    }
     #list-nav nav, #list-nav .search-panel .user-btn {
         display: none !important;
     }
