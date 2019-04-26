@@ -49,12 +49,14 @@
         }
         else
             $scope.casestatus = data;
+      
 
     });
 
 })();
 
-function getOptions(sel) {
+function getOpts(sel) {
+  
     var opts = [], opt;
     for (var i = 0, len = sel.options.length; i < len; i++) {
         opt = sel.options[i];
@@ -64,7 +66,7 @@ function getOptions(sel) {
     }
     return opts;
 }
-function isFilteredCell(opts, filtercell, trs) {
+function IsFilteredCell(opts, filtercell, trs) {
     for (var j = 0; j < opts.length; j++) {
 
         var cellVal1 = trs.cells[filtercell];
@@ -78,10 +80,10 @@ function filterByAll(id1, id2, id3, filtercell1, filtercell2, filtercell3) {
     var sel1 = document.getElementById(id1);
     var sel2 = document.getElementById(id2);
     var sel3 = document.getElementById(id3);
-    var opts1 = getOptions(sel1);
-    var opts2 = getOptions(sel2);
-    var opts3 = getOptions(sel3);
-
+    var opts1 = getOpts(sel1);
+    var opts2 = getOpts(sel2);
+    var opts3 = getOpts(sel3);
+ 
     var table = document.getElementById('statusTable');
     var equal1 = equal2 = equal3 = false;
     if (opts1.length == 0 && opts2.length == 0 && opts3.length == 0) {
@@ -91,9 +93,10 @@ function filterByAll(id1, id2, id3, filtercell1, filtercell2, filtercell3) {
     }
     for (var i = 1; i < table.rows.length; i++) {
         var trs = table.getElementsByTagName("tr")[i];
-        equal1 = isFilteredCell(opts1, filtercell1, trs);
-        equal2 = isFilteredCell(opts2, filtercell2, trs);
-        equal3 = isFilteredCell(opts3, filtercell3, trs);
+        
+        equal1 = IsFilteredCell(opts1, filtercell1, trs);
+        equal2 = IsFilteredCell(opts2, filtercell2, trs);
+        equal3 = IsFilteredCell(opts3, filtercell3, trs);
 
         if (equal1 && equal2 && equal3) {
             trs.style.display = "table-row";
@@ -107,7 +110,7 @@ function filterByAll(id1, id2, id3, filtercell1, filtercell2, filtercell3) {
 //filter just by one 
 function filterByOne(id, filteredcell) {
     var sel = document.getElementById(id);
-    var opts = getOptions(sel);
+    var opts = getOpts(sel);
     var table = document.getElementById('statusTable');
     var equal = false;
     if (opts.length == 0) {
@@ -118,7 +121,7 @@ function filterByOne(id, filteredcell) {
     for (var i = 0; i < table.rows.length; i++) {
 
         var trs = table.getElementsByTagName("tr")[i];
-        equal = isFilteredCell(opts, filteredcell, trs);
+        equal = IsFilteredCell(opts, filteredcell, trs);
         if (!equal) {
             trs.style.display = "none";
         }
