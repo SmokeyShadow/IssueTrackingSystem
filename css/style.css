@@ -14452,14 +14452,7 @@ Mini sidebar
   }
 }
 
-@media (max-width: 768px) {
-  .show-sidebar .left-sidebar {
-    left: 0px;
-  }
-  .left-sidebar {
-    left: -260px;
-  }
-}
+
 
 
 .feeds {

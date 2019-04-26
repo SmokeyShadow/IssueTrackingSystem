@@ -107,7 +107,7 @@ p, h1, h2, h3, h4, h5, span, a, div, label, input, ::placeholder ,li ,tr , th , 
     height: 49px;
 }
 .info {
-    width: 20%;
+
     text-align: right;
     color: white;
 }
@@ -229,28 +229,6 @@ p, h1, h2, h3, h4, h5, span, a, div, label, input, ::placeholder ,li ,tr , th , 
         font-size: 14px;
     }
   
-    .info {
-        width: 70%;
-        text-align: center;
-    }
-    .navbar-left {
-        width: 15%;
-    }
-    #list-nav .hidden {
-        display: block !important;
-    }
-
-    #list-nav nav, #list-nav .search-panel .user-btn {
-        display: none !important;
-    }
-    #list-nav {
-        padding: 0 2%;
-        flex-wrap: nowrap !important;
-    }
-    #list-nav .info {
-        right: 15%;
-    }
-
 }
 
 @media only screen and (max-width:1450px) and ( min-width:1089px) {
@@ -258,20 +236,13 @@ p, h1, h2, h3, h4, h5, span, a, div, label, input, ::placeholder ,li ,tr , th , 
         width: 100% !important;
     }
    
-    nav {
-        width: 60% !important;
-    }
-    .info {
-        width: 25% !important;
-    }
+   
+
     .info>span {
         font-size: 14px;
         padding-right: none !important;
     }
-    .green-nav header nav ul li, .subnav-btn {
-        width: 90px;
-        font-size: 15px;
-    }
+
 
 }
 
@@ -295,16 +266,6 @@ p, h1, h2, h3, h4, h5, span, a, div, label, input, ::placeholder ,li ,tr , th , 
         font-size: 14px;
     }
    
-    .green-nav {
-        height: auto;
-    }
-    nav {
-        order: 3;
-        width: 100% !important;
-    }
-    .info {
-        order: 1;
-        width: 50% !important;
-    }
+
  
 }
