@@ -1,6 +1,25 @@
 (function () {
     'use strict';
     var app = angular.module('app');
+    var data;
+
+    app.run(function ($http) {
+        var url = "http://localhost:8080/IE-proj/Assets/Jsons/casesStatus.json";
+        $http.get(url).then(successCallback, errorCallback);
+
+        function successCallback(response) {
+            //success code
+            console.log("success" + response.data);
+            data = response.data;
+
+        }
+        function errorCallback(error) {
+            //error code
+            console.log("error" + response.error);
+        }
+
+    })
+
     app.controller('caseStatusController', caseController);
 
     caseController.$inject = ['$rootScope'];
@@ -16,7 +35,20 @@
         if (user.role != 'admin') {
             $scope.adminAccess = 'hidden';
         }
+        var filterdata = data;
+        var count = 0;
+        if (user.role != 'admin') {
 
+            for (var i in data) {
+                if (data[i].email == user.email) {
+                    filterdata[count++] = data[i];
+                }
+            }
+            filterdata.length = count;
+            $scope.casestatus = filterdata;
+        }
+        else
+            $scope.casestatus = data;
 
     });
 
@@ -43,7 +75,6 @@ function isFilteredCell(opts, filtercell, trs) {
 }
 //filter by all
 function filterByAll(id1, id2, id3, filtercell1, filtercell2, filtercell3) {
-console.log("HALL");
     var sel1 = document.getElementById(id1);
     var sel2 = document.getElementById(id2);
     var sel3 = document.getElementById(id3);

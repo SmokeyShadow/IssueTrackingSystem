@@ -1,3 +1,4 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 thead tr td {
     color: #495057;
     background-color: #e9ecef;
@@ -32,3 +33,36 @@ footer {
     width: 100%;
     bottom: 0;
 }
+
+
+.starrating>input {
+    display: none;
+}
+
+/* Remove radio buttons */
+
+.starrating>label:before {
+    content: "\f005";
+    /* Star */
+    font-size: 18px;
+    font-family: FontAwesome;
+    display: inline-block;
+}
+
+.starrating>label {
+    margin: 0 !important;
+    color: #222222;
+    /* Start color when not clicked */
+}
+
+.starrating>input:checked~label {
+    color: #ffca08;
+}
+
+/* Set yellow color when star checked */
+
+.starrating>input:hover~label {
+    color: #ffca08;
+}
+
+/* Set yellow color when star hover */
