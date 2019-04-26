@@ -6,17 +6,14 @@
     <title>داشبورد</title>
 
     <link href="css/global.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="pages/manage/manageUsers.css" rel="stylesheet">
-
+    <script src="pages/manage/manage.js" ></script>
 </head>
 
 <body dir="rtl">
 
-    <script type="text/javascript">
-        $('.selectpicker').selectpicker({
-        });
-    </script>
+
     <!-- this div is common in all pages -->
     <!-- green top fixed position header-->
     <div class="green-nav" ng-controller="dashboardCtrl">
@@ -113,14 +110,14 @@
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 align-self-center text-right">
-                        <h4 class="text-themecolor"> اقدام بر مورد </h4>
+                        <h4 class="text-themecolor"> مدیریت کاربران  </h4>
                     </div>
                     <div class="col-md-7 align-self-center text-right">
                         <div class="d-flex justify-content-end align-items-center">
                             <ol style="display:inline-block">
 
 
-                                <li style="display:inline-block"><a href="javascript:void(0)">اقدام </a></li>
+                                <li style="display:inline-block"><a href="javascript:void(0)">مدیریت </a></li>
                                 <li style="display:inline-block"> <i class="fas fa-angle-right"></i> داشبورد </li>
 
                             </ol>
@@ -131,47 +128,120 @@
                 <div class="row">
                     <!-- column -->
                     <div class="col-12">
-                        <div class="card">
+                        <div class="card"  style="margin-bottom : 100px">
                             <div class="card-body">
-                                <form>
-                                    <div class="row  d-flex justify-content-center" style="margin-bottom: 20px">
-                                        <div class="col-sm-2">
-                                            <select class="caseStatusSelect selectpicker select-div"
-                                                data-live-search="true">
-                                                <option value="" hidden>وضعیت مورد را انتخاب کنید</option>
-                                                <option value="open">باز</option>
-                                                <option value="closed">بسته</option>
-                                                <option value="in queue"> بسته در حال بررسی</option>
-                                                <option value="postponed">تعویق</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <select class="assigneSelect selectpicker select-div"
-                                                data-live-search="true">
-                                                <option value="" hidden>کاربر مسئول را انتخاب کنید</option>
-                                                <option value="">حانیه سادات ایزدپناه</option>
-                                                <option value="">درسا سمیعی</option>
-                                                <option value="">عطیه نوروززاده</option>
-                                            </select>
+                                <div class="">
+                                    <div class="container">
+                                        <div class="table-wrapper">
+                                            <div class="table-title">
+                                                <div class="row">
+                                                <div class="col-sm-4 col-12">
+                                                        <div class="search-box">
+                                                            <div class="input-group" dir="rtl" >
+                                                                <input type="text" class="form-control" placeholder="جستجو&hellip;">
+                                                                <span class="input-group-addon"><i class="material-icons">&#xE8B6;</i></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                
+                                                    <div class="col-sm-4 col-12">
+                                                        <h2 class="text-center">لیست کاربران</h2>
+                                                    </div>
+                                              
+                                                    <div class="col-sm-4 col-12">
+                                                            <div class="show-entries" >
+                                                                <span>نشان دادن</span>
+                                                                <select>
+                                                                    <option>۵</option>
+                                                                    <option>۱۰</option>
+                                                                    <option>۱۵</option>
+                                                                    <option>۲۰</option>
+                                                                </select>
+                                                                <span>سطر جدول</span>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered table-hover">
+                                                    <thead class="thead-light">
+                                                    <tr>
+                                                        <th>شماره</th>
+                                                        <th>عکس پروفایل</th>
+                                                        <th>نام کاربری</th>
+                                                        <th>نام و نام خانوادگی</th>
+                                                        <th>سمت</th>
+                                                        <th>وضعیت</th>
+                                                        <th>اقدام ها</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr id="111">
+                                                        <td>۱</td>
+                                                        <td><div><img src="../Assets/images/users/3.jpg" class="mx-auto d-block img-circle user-pic" alt="profilePic" ></div></td>
+                                                        <td>alialavi</td>
+                                                        <td>علی علوی</td>
+                                                        <td>دانشجو</td>
+                                                        <td><span id="1" class="btn btn-primary status-btn" onclick="changeStatus(1)">تایید</span></td>
+                                                        <td>
+                                                            <a href="" class="btn view" title="مشاهده پروفایل" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+                                                            <a id="11" href="" class="btn delete" title="حذف" data-toggle="tooltip" onclick="deleteUser(11)"><i class="material-icons">&#xE872;</i></a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="112">
+                                                        <td>۲</td>
+                                                        <td><div><img src="../Assets/images/users/3.jpg" class="mx-auto d-block img-circle user-pic" alt="profilePic" ></div></td>
+                                                        <td>taghi tghavi</td>
+                                                        <td>تقی تقوی</td>
+                                                        <td>دانشجو</td>
+                                                        <td><span id="2" class="btn btn-success status-btn" onclick="changeStatus(2)">فعال</span></td>
+                                                        <td>
+                                                            <a href="#" class="btn view" title="مشاهده پروفایل" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+                                                            <a id="12" href="" class="btn delete" title="حذف" data-toggle="tooltip" onclick="deleteUser(12)"><i class="material-icons">&#xE872;</i></a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="113">
+                                                        <td>۳</td>
+                                                        <td><div><img src="../Assets/images/users/3.jpg" class="mx-auto d-block img-circle user-pic" alt="profilePic" ></div></td>
+                                                        <td>mohsenMohseni</td>
+                                                        <td>محسن محسنی</td>
+                                                        <td>مدیر</td>
+                                                        <td><span id="3" class="btn btn-warning status-btn" onclick="changeStatus(3)">غیر فعال</span></td>
+                                                        <td>
+                                                            <a href="" class="btn view" title="مشاهده پروفایل" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+                                                            <a id="13" href="" class="btn delete" title="حذف" data-toggle="tooltip" onclick="deleteUser(13)"><i class="material-icons">&#xE872;</i></a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="114">
+                                                        <td>۴</td>
+                                                        <td><div><img src="../Assets/images/users/3.jpg" class="mx-auto d-block img-circle user-pic" alt="profilePic" ></div></td>
+                                                        <td>hasan hasani</td>
+                                                        <td>حسن حسنی</td>
+                                                        <td>دانشجو</td>
+                                                        <td><span id="4" class="btn btn-primary status-btn" onclick="changeStatus(4)">تایید</span></td>
+                                                        <td>
+                                                            <a href="" class="btn view" title="مشاهده پروفایل" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+                                                            <a id="14" href="" class="btn delete" title="حذف" data-toggle="tooltip" onclick="deleteUser(14)"><i class="material-icons">&#xE872;</i></a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="115">
+                                                        <td>۵</td>
+                                                        <td><div><img src="../Assets/images/users/3.jpg" class="mx-auto d-block img-circle user-pic" alt="profilePic" ></div></td>
+                                                        <td>naghiNaghavi</td>
+                                                        <td>نقی نقوی</td>
+                                                        <td>دانشجو</td>
+                                                        <td><span id="5" class="btn btn-success status-btn" onclick="changeStatus(5)">فعال</span></td>
+                                                        <td>
+                                                            <a href="" class="btn view" title="مشاهده پروفایل" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
+                                                            <a id="15" href="" class="btn delete" title="حذف" data-toggle="tooltip" onclick="deleteUser(15)"><i class="material-icons">&#xE872;</i></a>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
-
-                                    <div class="row d-flex justify-content-center">
-                                        <div class="col-sm-4  form-group">
-                                            <textarea class="form-control" rows="10" placeholder="توضیحات"
-                                                onfocus="this.placeholder=''"
-                                                onblur="this.placeholder='توضیحات'"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="row attempedButtons d-flex justify-content-center">
-                                        <div class="col-sm-2">
-                                            <button class="btn btn-success" type="submit">ثبت</button>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <button class="btn btn-info" type="submit">انصراف</button>
-                                        </div>
-                                    </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>
