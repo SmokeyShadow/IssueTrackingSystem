@@ -44,7 +44,7 @@
                     $scope.loginMsg = "خوش آمدی " + username;
                     var person = {user:username, password:pass, role:role, email:email};
                     myService.set(person);
-                    $window.location.href = "/IE-proj//index.html#!" + "/dashboard";
+                    $window.location.href = "/#!" + "/dashboard";
                     return;
                 }
                 else {

@@ -1,6 +1,6 @@
 [
     {
-        "name": "عطیه",
+        "name": "عطیه نوروززاده",
         "familyname" : "نوروززاده",
         "password": "qq123321",
         "role": "admin",
@@ -43,4 +43,6 @@
         "role": "professor",
         "email": "sima@gmail.com"
     }
+
+
 ]
