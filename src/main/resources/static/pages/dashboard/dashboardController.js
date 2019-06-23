@@ -1,24 +1,6 @@
 (function () {
     'use strict';
     var app = angular.module('app');
-    var data;
-
-    app.run(function ($http) {
-        var url = "http://localhost:8080/IE-proj/Assets/Jsons/assignees.json";
-        $http.get(url).then(successCallback, errorCallback);
-
-        function successCallback(response) {
-            //success code
-            console.log("success" + response.data);
-            data = response.data;
-
-        }
-        function errorCallback(error) {
-            //error code
-            console.log("error" + response.error);
-        }
-
-    })
 
 
     app.controller('dashboardController', dashboardController);
@@ -50,25 +32,39 @@
             $scope.adminAccess = 'hidden';
         }
     });
-    app.controller('assigneeCtrl', function ($scope ,myService) {
+    app.controller('assigneeCtrl', function ($scope ,$http , myService) {
 
-        var user = myService.get();
-        var filterdata = data;
-        var count =0;
-        if(user.role.trim()  != 'مدیر')
-        {
+            $scope.init = function () {
+                var user = myService.get();
+                var config = {
+                    headers : {
+                        'Content-Type': 'application/json'
+                    }
+                }
+                var jsondata = {
+                    "id" : user.id,
+                    "role" : user.role,
+                    "name" : user.user
+                };
+                var url = "rest/case/assignees";
+                $http.post(url , jsondata ,config ).then(successCallback, errorCallback);
 
-            for (var i in data) {
-                if(data[i].email == user.email)
-                {
-                    filterdata[count++] = data[i];
+                console.log(jsondata );
+                function successCallback(response) {
+                    if( response.status == 200 && response.data.success == true
+                    && response.data.data != null) {
+                        $scope.assignee = response.data.data;
+                        console.log("success ! contains data" );
+                    }
+                    else
+                        console.log("no records found" +response.message);
+
+                }
+                function errorCallback(error) {
+                    console.log("error" + response.message);
                 }
             }
-            filterdata.length = count;
-            $scope.assignee = filterdata;
-        }
-        else
-            $scope.assignee = data;
+
     });
 
 })();

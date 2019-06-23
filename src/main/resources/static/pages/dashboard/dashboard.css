@@ -17,3 +17,15 @@ footer {
 {
     padding-left: 100px !important;
 }
+
+
+.starrating>label {
+    margin: 0 !important;
+    color: #222222;
+    /* Start color when not clicked */
+}
+
+.starrating>.checked {
+    color: #ffca08;
+}
+

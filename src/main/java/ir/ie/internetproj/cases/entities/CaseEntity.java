@@ -1,4 +1,7 @@
 package ir.ie.internetproj.cases.entities;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.persistence.*;
 @Entity
 @Table(name = "usercase")
@@ -38,9 +41,37 @@ public class CaseEntity {
     @Column(name = "importance")
     private String importance;
 
+    @Transient
+    @JsonSerialize
+    @JsonDeserialize
+    private String assignerName;
+
+    @Transient
+    @JsonSerialize
+    @JsonDeserialize
+    private String assigneeName;
+
     public CaseEntity(){};
+
+    public String getAssignerName() {
+        return assignerName;
+    }
+
+    public void setAssignerName(String assignerName) {
+        this.assignerName = assignerName;
+    }
+
+    public String getAssigneeName() {
+        return assigneeName;
+    }
+
+    public void setAssigneeName(String assigneeName) {
+        this.assigneeName = assigneeName;
+    }
+
     public CaseEntity(String subject ,
                       int assignee ,
+
                       int assigner ,
                       String date ,
                       String description ,

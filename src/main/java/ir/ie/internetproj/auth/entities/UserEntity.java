@@ -10,6 +10,7 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private  int id;
 
+
     @Column(name = "verified")
     private int verified;
 

@@ -1,4 +1,5 @@
 package ir.ie.internetproj.cases.services;
+import ir.ie.internetproj.auth.entities.UserEntity;
 import ir.ie.internetproj.cases.entities.CaseEntity;
 
 import wise.core.datamanagement.ActionResult;
@@ -7,6 +8,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 @Path("case")
 public interface CaseService {
@@ -28,10 +30,14 @@ public interface CaseService {
                                         @FormParam("attachment")String attachment) throws IOException;
 
 
-    @Path("/s")
+    @Path("/assignees")
     @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @POST
-    public ActionResult<String> addtest(@FormParam("assigner") String assigner) throws IOException;
+    public ActionResult<List<CaseEntity>> getAssignees(UserEntity user
+           ) throws IOException;
+
+
 
 
 }

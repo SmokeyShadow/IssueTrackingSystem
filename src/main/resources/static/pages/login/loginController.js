@@ -37,7 +37,8 @@
                     var pass = data['pass'];
                     var role = data['role'];
                     var email = data['email'];
-                    var person = {user: username, password: pass, role: role, email: email};
+                    var id = data['id'];
+                    var person = {id: id ,user: username, password: pass, role: role, email: email};
                     myService.set(person);
                     $window.location.href = "/#!" + "/dashboard";
                     return;

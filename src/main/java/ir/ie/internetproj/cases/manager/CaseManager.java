@@ -54,19 +54,6 @@ public class CaseManager {
             UserEntity fromEntity = authDao.containsUserAndValid(assigner);
             if(fromEntity != null) {
                 if (toEntity != null) {
-                    Importance imp = null;
-                    switch (importance) {
-                        case "0":
-                            imp = Importance.LOW;
-                            break;
-                        case "1":
-                            imp = Importance.MEDIUM;
-                            break;
-                        case "2":
-                            imp = Importance.HIGH;
-                    }
-
-
                     String file = null;
                     if (attachment != null) {
                         String filename = attachment;
@@ -103,7 +90,24 @@ public class CaseManager {
         return result;
     }
 
+    public ActionResult<List<CaseEntity>> getAssignees(UserEntity user) {
 
+            ActionResult<List<CaseEntity>> result = new ActionResult<>();
+            List<CaseEntity> caseEntities = caseDao.getAssignees(user.getId() , user.getRole() , user.getName());
+
+            if(caseEntities != null && caseEntities.size() > 0) {
+
+                    result.setSuccess(true);
+                    result.setMessage("با موفقیت ارسال شد");
+                    result.setData(caseEntities);
+            }
+            else
+            {
+                result.setMessage("موردی وجود ندارد!");
+            }
+
+            return result;
+    }
 
     private String[] validateSetCase(String subject,
                                      String to,
@@ -128,4 +132,6 @@ public class CaseManager {
         }
         return ans;
     }
+
+
 }

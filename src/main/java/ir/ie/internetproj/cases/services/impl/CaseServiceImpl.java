@@ -1,4 +1,6 @@
 package ir.ie.internetproj.cases.services.impl;
+import ir.ie.internetproj.auth.entities.UserEntity;
+import ir.ie.internetproj.cases.entities.CaseEntity;
 import ir.ie.internetproj.cases.manager.CaseManager;
 import ir.ie.internetproj.cases.services.CaseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.io.*;
+import java.util.List;
 
 @Component("caseService")
 public class CaseServiceImpl implements CaseService {
@@ -23,13 +26,8 @@ public class CaseServiceImpl implements CaseService {
     }
 
     @Override
-    public ActionResult<String> addtest(String assigner) throws IOException {
-        ActionResult<String> result = new ActionResult<>();
-       result.setMessage("dsa" + assigner);
-       result.setSuccess(true);
-       result.setData("d");
-        System.out.println("ererresasdf");
-       return result;
+    public ActionResult<List<CaseEntity>> getAssignees(UserEntity user) throws IOException {
+        return caseManager.getAssignees(user);
     }
 
 

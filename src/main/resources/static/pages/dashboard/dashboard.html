@@ -130,7 +130,7 @@
                     </div>
                 </div>
 
-                <div class="row" ng-controller="assigneeCtrl">
+                <div class="row"  data-ng-controller="assigneeCtrl" data-ng-init="init()">
                     <!-- column -->
                     <div class="col-12">
                         <div class="card">
@@ -147,6 +147,7 @@
                                                 <td>ارجاع به</td>
                                                 <td>ارجاع دهنده</td>
                                                 <td>وضعیت</td>
+                                                <td>رضایت</td>
                                                 <td>توضیح</td>
                                                 <td>درجه اهمیت</td>
                                                 <td>تاریخ</td>
@@ -155,22 +156,80 @@
                                         <tbody>
                                             <tr ng-repeat="x in assignee"
                                                 onclick="window.location = $(this).data('href');"
-                                                data-href="index.html#!/docase">
-                                                <td>{{x.number}}</td>
-                                                <td>{{x.title}}</td>
-                                                <td>{{x.assignee}}</td>
-                                                <td>{{x.assigner}}</td>
+                                                data-href="#!/docase">
+                                                <td>{{$index + 1}}</td>
+                                                <td>{{x.subject}}</td>
+                                                <td>{{x.assigneeName}}</td>
+                                                <td>{{x.assignerName}}</td>
                                     
                                                 <td ng-switch on="x.status" >
-                                                    <span ng-switch-when="باز" class="badge badge-pill badge-success">باز</span>
-                                                    <span ng-switch-when="بسته" class="badge badge-pill badge-danger">بسته</span>
+                                                    <span ng-switch-when="باز" class="badge badge-pill badge-danger">باز</span>
+                                                    <span ng-switch-when="بسته" class="badge badge-pill badge-success">بسته</span>
                                                     <span ng-switch-when="تعویق" class="badge badge-pill badge-info">تعویق</span>
                                                     <span ng-switch-default class="badge badge-pill badge-warning">در حال بررسی</span>
                                                 
                                                 </td>
+                                                <td ng-switch on="x.rate">
+                                                    <span ng-switch-when="1">
+                                                              <div class="starrating risingstar d-flex justify-content-center flex-row-reverse">
+                                                               <label  class="fas fa-star" title="۵ ستاره"></label>
+                                                                  <label   class="fas fa-star" title="۴ ستاره"></label>
+                                                                <label  class="fas fa-star" title="۳ ستاره"></label>
+                                                               <label  class="fas fa-star" title="۲ ستاره"></label>
+                                                                <label class="checked fas fa-star" title="۱ ستاره" ></label>
+                                                            </div>
+
+                                                    </span>
+                                                    <span ng-switch-when="2">
+                                                               <div class="starrating risingstar d-flex justify-content-center flex-row-reverse">
+                                                               <label class="fas fa-star" title="۵ ستاره"></label>
+                                                                  <label class="fas fa-star" title="۴ ستاره"></label>
+                                                                <label class="fas fa-star" title="۳ ستاره"></label>
+                                                               <label class="checked fas fa-star" title="۲ ستاره"></label>
+                                                                <label class="checked fas fa-star" title="۱ ستاره" ></label>
+                                                            </div>
+                                                    </span>
+                                                    <span ng-switch-when="3">
+                                                               <div class="starrating risingstar d-flex justify-content-center flex-row-reverse">
+                                                               <label class="fas fa-star" title="۵ ستاره"></label>
+                                                                  <label  class="fas fa-star" title="۴ ستاره"></label>
+                                                                <label class="checked fas fa-star" title="۳ ستاره"></label>
+                                                               <label  class="checked fas fa-star" title="۲ ستاره"></label>
+                                                                <label class="checked fas fa-star" title="۱ ستاره" ></label>
+                                                            </div>
+                                                    </span>
+                                                    <span ng-switch-when="4">
+                                                               <div class="starrating risingstar d-flex justify-content-center flex-row-reverse">
+                                                               <label  class="fas fa-star" title="۵ ستاره"></label>
+                                                                  <label class="checked fas fa-star"  title="۴ ستاره"></label>
+                                                                <label  class="checked fas fa-star" title="۳ ستاره"></label>
+                                                               <label  class="checked fas fa-star" title="۲ ستاره"></label>
+                                                                <label class="checked fas fa-star" title="۱ ستاره" ></label>
+                                                            </div>
+                                                    </span>
+                                                    <span ng-switch-when="5">
+                                                               <div class="starrating risingstar d-flex justify-content-center flex-row-reverse">
+                                                               <label  class="checked fas fa-star" title="۵ ستاره"></label>
+                                                                  <label class="checked fas fa-star"  title="۴ ستاره"></label>
+                                                                <label  class="checked fas fa-star" title="۳ ستاره"></label>
+                                                               <label  class="checked fas fa-star" title="۲ ستاره"></label>
+                                                                <label class="checked fas fa-star" title="۱ ستاره" ></label>
+                                                            </div>
+                                                    </span>
+                                                    <span ng-switch-default >
+                                                               <div class="starrating risingstar d-flex justify-content-center flex-row-reverse">
+                                                               <label  class="fas fa-star" title="۵ ستاره"></label>
+                                                                  <label class="fas fa-star" title="۴ ستاره"></label>
+                                                                <label class="fas fa-star" title="۳ ستاره"></label>
+                                                               <label class="fas fa-star" title="۲ ستاره"></label>
+                                                                <label class="fas fa-star" title="۱ ستاره" ></label>
+                                                            </div>
+                                                    </span>
+
+                                                </td>
                                                 <td>{{x.description}}</td>
                                                 
-                                                <td ng-switch on="x.urgent" >
+                                                <td ng-switch on="x.importance" >
                                                         <span ng-switch-when="معمولی" class="badge badge-pill badge-info">معمولی</span>
                                                         <span ng-switch-when="اورژانسی" class="badge badge-pill badge-danger">اورژانسی</span>
                                                         <span ng-switch-default class="badge badge-pill badge-warning">متوسط</span>
