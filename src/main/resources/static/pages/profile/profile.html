@@ -48,7 +48,7 @@
     <!-- ============================================================== -->
     <!-- Main wrapper  -->
     <!-- ============================================================== -->
-    <div id="main-wrapper" class="skin-default-dark fixed-layout" ng-controller="dashboardCtrl">
+    <div id="main-wrapper" class="skin-default-dark fixed-layout" ng-controller="adminCtrl">
         <div id="profile-submit-modal" class="modal">
 
             <form class="modal-content animate" >
@@ -92,27 +92,27 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li> <a class="waves-effect waves-dark"
-                                href="http://localhost:8080/IE-proj//index.html#!/dashboard" aria-expanded="false"><i
+                                href="http://localhost:8080/#!/dashboard" aria-expanded="false"><i
                                     class="fa fa-home"></i><span class="hide-menu">داشبورد</span></a></li>
                         <li> <a class="waves-effect waves-dark"
-                                href="http://localhost:8080/IE-proj//index.html#!/profile" aria-expanded="false"><i
+                                href="http://localhost:8080/#!/profile" aria-expanded="false"><i
                                     class="fa fa-user"></i><span class="hide-menu">پروفایل</span></a></li>
                         <li> <a class="waves-effect waves-dark" href="http://localhost:8080/IE-proj//index.html#!/case"
                                 aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu"></span>ثبت
                                 مورد</a></li>
                         <li> <a class="waves-effect waves-dark"
-                                href="http://localhost:8080/IE-proj//index.html#!/status" aria-expanded="false"><i
+                                href="http://localhost:8080/#!/status" aria-expanded="false"><i
                                     class="fas fa-star-half-alt"></i><span class="hide-menu"></span> وضعیت موارد ثبت
                                 شده</a></li>
                         <li ng-class = "adminAccess"><a class="waves-effect waves-dark"
-                                href="http://localhost:8080/IE-proj//index.html#!/authorize" aria-expanded="false"><i
+                                href="http://localhost:8080/#!/authorize" aria-expanded="false"><i
                                     class="fas fa-check-square"></i><span class="hide-menu"></span> تایید کاربران
                             </a></li>
                         <li ng-class = "adminAccess"><a class="waves-effect waves-dark"
-                                href="http://localhost:8080/IE-proj//index.html#!/manageusers" aria-expanded="false"><i
+                                href="http://localhost:8080/#!/manageusers" aria-expanded="false"><i
                                     class="fas fa-tasks"></i><span class="hide-menu"></span> مدیریت کاربران
                             </a></li>
-                        <li ng-class = "adminAccess"><a class="waves-effect waves-dark" href="http://localhost:8080/IE-proj//index.html#!/report"
+                        <li ng-class = "adminAccess"><a class="waves-effect waves-dark" href="http://localhost:8080/#!/report"
                                 aria-expanded="false"><i class="far fa-newspaper"></i><span
                                     class="hide-menu"></span>گزارش گیری از سیستم</a>
                         </li>
@@ -195,12 +195,6 @@
 
                                             <input class="form-control form-control-line text-right" type="text" id = "profile-name"
                                                 style="margin-top: 20px;" placeholder="نام و نام خانوادگی" ng-model="name">
-                                            <input class="form-control form-control-line text-right" type="text"
-                                                style="margin-top: 20px;" placeholder="نام خانوادگی" value="سمیعی"
-                                                ng-model="must add this to json">
-                                            <input class="form-control form-control-line text-right" type="text" id = "profile-role"
-                                                style="margin-top: 20px;direction: ltr" placeholder="نقش"
-                                                ng-model="role">
                                             <input class="form-control form-control-line email text-right" type="text" id = "profile-email"
                                                 ng-model="email" style="margin-top: 20px;" placeholder="پست الکترونیکی">
                                             <text class="warning">آدرس پست الکترونیکی معتبر نیست<i

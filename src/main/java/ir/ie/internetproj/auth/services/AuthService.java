@@ -31,9 +31,13 @@ public interface AuthService {
             @FormParam("renewpass") String renewpass,
             @FormParam("username") String name);
 
-    @Path("/changeProfile")
+    @Path("/changeprofile")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @POST
-    public ActionResult<UserEntity> changeProfile(UserEntity user);
+    public ActionResult<String> changeProfile(
+            @FormParam("prevuser") String prevuser ,
+            @FormParam("newuser") String newuser ,
+            @FormParam("newemail") String newemail);
+
 }

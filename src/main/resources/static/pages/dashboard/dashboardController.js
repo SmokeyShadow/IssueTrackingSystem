@@ -43,15 +43,19 @@
 
     });
     app.controller('adminCtrl', function ($scope, $window ,myService) {
-        if(user.role != 'مدیر')
+        var user = myService.get();
+
+        if(user.role.trim() != 'مدیر')
         {
             $scope.adminAccess = 'hidden';
         }
     });
-    app.controller('assigneeCtrl', function ($scope, $window ,myService) {
+    app.controller('assigneeCtrl', function ($scope ,myService) {
+
+        var user = myService.get();
         var filterdata = data;
         var count =0;
-        if(user.role != 'مدیر')
+        if(user.role.trim()  != 'مدیر')
         {
 
             for (var i in data) {

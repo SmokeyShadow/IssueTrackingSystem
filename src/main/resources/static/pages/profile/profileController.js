@@ -10,19 +10,20 @@
         $rootScope.bodylayout = 'main_page_que';
 
     }
+    app.controller('adminCtrl', function ($scope, $window ,myService) {
+        if(user.role.trim() != 'مدیر')
+        {
+            $scope.adminAccess = 'hidden';
+        }
+    });
     app.controller('dashboardCtrl', function ($scope, $window ,myService) {
         var user = myService.get();
         $scope.name = user.user ;
         $scope.role = user.role;
         $scope.email = user.email;
         $scope.password = user.password;
-        if(user.role.trim() != 'admin')
-        {
-            $scope.adminAccess = 'hidden';
-        }
 
         $scope.changePassword() = function () {
-
             var config = {
                 headers : {
                     'Content-Type': 'application/json'

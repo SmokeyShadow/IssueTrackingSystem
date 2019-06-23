@@ -25,7 +25,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public ActionResult<UserEntity> changeProfile(UserEntity user) {
-        return null;
+    public ActionResult<String> changeProfile(String prevuser , String newuser, String newemail) {
+        return userManager.changeProfile(prevuser,newuser, newemail);
     }
 }

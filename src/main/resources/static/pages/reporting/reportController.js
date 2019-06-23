@@ -15,14 +15,13 @@
         createStartEndChart();
         mostRepeatedWords();
     }
-    app.controller('reportCtrl', function ($scope, $window, myService) {
+    app.controller('adminCtrl', function ($scope, $window ,myService) {
         var user = myService.get();
-        $scope.name = user.user;
-        if (user.role != 'admin') {
+
+        if(user.role.trim() != 'مدیر')
+        {
             $scope.adminAccess = 'hidden';
         }
-
-
     });
 })();
 function mostRepeatedWords() {

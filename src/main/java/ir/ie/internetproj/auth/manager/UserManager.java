@@ -56,6 +56,7 @@ public class UserManager {
         ActionResult<UserEntity> result = new ActionResult<>();
         String[] messages = validateUserLogin(user.getEmail(),
                 user.getPass());
+        System.out.println("verified" + user.getIsactive());
         if(messages.length <= 0){
 
             UserEntity loginedUser = authDao.containUser(user.getEmail() , user.getPass());
@@ -83,60 +84,7 @@ public class UserManager {
         return result;
     }
 
-    private String[] validateUserLogin(String email, String pass) {
-        List<String> messages = new ArrayList<>();
-
-        if(pass == null || pass.length() == 0 ){
-            messages.add("رمز عبور نمی تواند خالی باشد!");
-        }
-
-        if( pass.length() < 6)
-        {
-            messages.add("پسورد باید حداقل 6 رقم باشد");
-        }
-
-        if(email == null || email.length() == 0 ||  !email.matches("^[a-z]([a-z0-9]|_[a-z0-9]|.[a-z0-9])+@[a-z0-9_]+([.][a-z0-9]+)+$")){
-            messages.add("ایمیل خالی یا با فرمت نادرست می باشد!");
-        }
-        String[] ans = new String[messages.size()];
-        for (int i = 0; i <messages.size() ; i++) {
-            ans[i] = messages.get(i);
-        }
-        return ans;
-    }
-
-    private String[] validateUserRegisteration(String name,
-                                     String pass,
-                                     String repass,
-                                     String email){
-        List<String> messages = new ArrayList<>();
-        if(name == null || name.length() == 0){
-            messages.add("نام نمی تواند خالی باشد!");
-        }
-        if(pass == null || pass.length() == 0 ){
-            messages.add("رمز عبور نمی تواند خالی باشد!");
-        }
-        if(repass == null || repass.length() == 0){
-            messages.add("تکرار رمز عبور نمی تواند خالی باشد!");
-        }
-        if(repass.length() < 6 || pass.length() < 6)
-        {
-            messages.add("پسورد باید حداقل 6 رقم باشد");
-        }
-        if(!repass.equals(pass)){
-            messages.add("رمز عبور باید با تکرار آن یکی باشند!");
-        }
-        if(email == null || email.length() == 0 ||  !email.matches("^[a-z]([a-z0-9]|_[a-z0-9]|.[a-z0-9])+@[a-z0-9_]+([.][a-z0-9]+)+$")){
-            messages.add("ایمیل خالی یا با فرمت نادرست می باشد!");
-        }
-        String[] ans = new String[messages.size()];
-        for (int i = 0; i <messages.size() ; i++) {
-            ans[i] = messages.get(i);
-        }
-        return ans;
-    }
-
-
+    @Transactional
     public ActionResult<String> changePassword(String prevPass, String newpass, String renewpass , String  username) {
         ActionResult<String> result = new ActionResult<>();
         String[] messages = validateChangePassword(prevPass,
@@ -167,6 +115,114 @@ public class UserManager {
             result.setMessage(String.join("\n", messages));
         }
         return result;
+    }
+
+    @Transactional
+    public ActionResult<String> changeProfile(String prevuser, String newuser, String newemail) {
+        ActionResult<String> result = new ActionResult<>();
+        String[] messages = validateProfile(prevuser,
+                newuser,
+                newemail);
+        if(messages.length <= 0){
+
+            UserEntity containUser = authDao.containsUserAndValid(newuser,newemail);
+            UserEntity user = authDao.containsUserAndValid(prevuser);
+            if(containUser != null)
+            {
+                result.setMessage("فرد دیگری با این اطلاعات ثبت نام کرده!");
+            }
+            else{
+
+                UserEntity insertedUser = authDao.updateProfile(newuser, newemail,user);
+                if(insertedUser != null) {
+                    result.setSuccess(true);
+                    result.setMessage("اطلاعات کاربر با موفقیت ویرایش شد");
+                    result.setData(null);
+                }
+                else
+                {
+                    result.setMessage("مشکلی در ثبت در پایگاه داده پیش آمده");
+                }
+
+            }
+
+        }else {
+            result.setMessage(String.join("\n", messages));
+        }
+        return result;
+    }
+
+    private String[] validateProfile(String prevuser, String newuser, String newemail) {
+        List<String> messages = new ArrayList<>();
+
+        if(prevuser == null || prevuser.length() == 0 ){
+            messages.add("کاربر قبلی نمی تواند خالی باشد!");
+        }
+        if(newuser == null || newuser.length() == 0 ){
+            messages.add("کاربر جدید نمی تواند خالی باشد!");
+        }
+
+        if(newemail == null || newemail.length() == 0 ||  !newemail.matches("^[a-z]([a-z0-9]|_[a-z0-9]|.[a-z0-9])+@[a-z0-9_]+([.][a-z0-9]+)+$")){
+            messages.add("ایمیل جدید خالی یا با فرمت نادرست می باشد!");
+        }
+        String[] ans = new String[messages.size()];
+        for (int i = 0; i <messages.size() ; i++) {
+            ans[i] = messages.get(i);
+        }
+        return ans;
+    }
+
+    private String[] validateUserLogin(String email, String pass) {
+        List<String> messages = new ArrayList<>();
+
+        if(pass == null || pass.length() == 0 ){
+            messages.add("رمز عبور نمی تواند خالی باشد!");
+        }
+
+        if( pass.length() < 6)
+        {
+            messages.add("پسورد باید حداقل 6 رقم باشد");
+        }
+
+        if(email == null || email.length() == 0 ||  !email.matches("^[a-z]([a-z0-9]|_[a-z0-9]|.[a-z0-9])+@[a-z0-9_]+([.][a-z0-9]+)+$")){
+            messages.add("ایمیل خالی یا با فرمت نادرست می باشد!");
+        }
+        String[] ans = new String[messages.size()];
+        for (int i = 0; i <messages.size() ; i++) {
+            ans[i] = messages.get(i);
+        }
+        return ans;
+    }
+
+    private String[] validateUserRegisteration(String name,
+                                               String pass,
+                                               String repass,
+                                               String email){
+        List<String> messages = new ArrayList<>();
+        if(name == null || name.length() == 0){
+            messages.add("نام نمی تواند خالی باشد!");
+        }
+        if(pass == null || pass.length() == 0 ){
+            messages.add("رمز عبور نمی تواند خالی باشد!");
+        }
+        if(repass == null || repass.length() == 0){
+            messages.add("تکرار رمز عبور نمی تواند خالی باشد!");
+        }
+        if(repass.length() < 6 || pass.length() < 6)
+        {
+            messages.add("پسورد باید حداقل 6 رقم باشد");
+        }
+        if(!repass.equals(pass)){
+            messages.add("رمز عبور باید با تکرار آن یکی باشند!");
+        }
+        if(email == null || email.length() == 0 ||  !email.matches("^[a-z]([a-z0-9]|_[a-z0-9]|.[a-z0-9])+@[a-z0-9_]+([.][a-z0-9]+)+$")){
+            messages.add("ایمیل خالی یا با فرمت نادرست می باشد!");
+        }
+        String[] ans = new String[messages.size()];
+        for (int i = 0; i <messages.size() ; i++) {
+            ans[i] = messages.get(i);
+        }
+        return ans;
     }
 
     private String[] validateChangePassword(String prevPass, String newpass, String renewpass) {

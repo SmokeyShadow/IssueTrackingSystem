@@ -11,18 +11,17 @@
         getDate();
     }
 
-    app.controller('dashboardCtrl', function ($scope, $window, myService) {
-        var user = myService.get();
-        $scope.name = user.user;
-        if (user.role.trim() != 'admin') {
-            $scope.adminAccess = 'hidden';
-        }
 
-
-    });
 
 })();
+app.controller('adminCtrl', function ($scope, $window ,myService) {
+    var user = myService.get();
 
+    if(user.role.trim() != 'مدیر')
+    {
+        $scope.adminAccess = 'hidden';
+    }
+});
 function getDate() {
     var today = new Date();
     document.getElementById("casedate").value = today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear();

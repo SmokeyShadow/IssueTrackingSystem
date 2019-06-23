@@ -29,15 +29,20 @@
         $rootScope.bodylayout = 'main_page_que';
 
     }
-    app.controller('statusCtrl', function ($scope, $window, myService) {
+    app.controller('adminCtrl', function ($scope, $window ,myService) {
         var user = myService.get();
-        $scope.name = user.user;
-        if (user.role != 'admin') {
+
+        if(user.role.trim() != 'مدیر')
+        {
             $scope.adminAccess = 'hidden';
         }
+    });
+    app.controller('statusCtrl', function ($scope, $window, myService) {
+        var user = myService.get();
+
         var filterdata = data;
         var count = 0;
-        if (user.role != 'admin') {
+        if (user.role.trim() != 'مدیر') {
 
             for (var i in data) {
                 if (data[i].email == user.email) {

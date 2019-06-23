@@ -23,7 +23,16 @@ public class AuthDao {
         }
         return null;
     }
+    public UserEntity containsUserAndValid(String newuser, String newemail) {
+        Query query = manager.createQuery("select e from UserEntity e where e.name=:name or e.email=:email");
+        List<UserEntity> list = query.setParameter("name", newuser).setParameter("email" , newemail).getResultList();
+        if (list.size() > 0){
+            UserEntity entity = list.get(0);
+            return entity;
 
+        }
+        return null;
+    }
     public UserEntity getByToken(String token){
         Query query = manager.createQuery("select e from UserEntity e where e.mongoId=:token")
                 .setParameter("token", token);
@@ -62,7 +71,7 @@ public class AuthDao {
     }
 
     public UserEntity validatePrevPass(String prevPass , String username) {
-        Query query = manager.createQuery("select e from UserEntity e where  e.name =: name and e.pass=:password");
+        Query query = manager.createQuery("select e from UserEntity e where  e.name =:name and e.pass=:password");
         List<UserEntity> list = query.setParameter("name", username).setParameter("password" , prevPass).getResultList();
         if (list.size() > 0){
             UserEntity entity = list.get(0);
@@ -80,5 +89,13 @@ public class AuthDao {
 
         return false;
 
+    }
+
+
+    public UserEntity updateProfile(String newuser, String newemail, UserEntity containUser) {
+        containUser.setEmail(newemail);
+        containUser.setName(newuser);
+        UserEntity en = manager.merge(containUser);
+        return  en;
     }
 }
