@@ -23,6 +23,7 @@
         $scope.email = user.email;
         $scope.password = user.password;
 
+        // noinspection JSAnnotator
         $scope.changePassword() = function () {
             var config = {
                 headers : {
@@ -54,6 +55,10 @@
                 $scope.usermodal = "true";
             }
 
+
+        }
+        // noinspection JSAnnotator
+        $scope.updateProfile() = function () {
 
         }
 
