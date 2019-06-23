@@ -31,7 +31,7 @@
 
     }
     
-    app.controller('dashCtrl', function ($scope, $window ,myService) {
+    app.controller('welcomeCtrl', function ($scope, $window ,myService) {
         //get user info from login
 
         var user = myService.get();

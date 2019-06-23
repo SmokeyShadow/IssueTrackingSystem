@@ -19,7 +19,7 @@
 
     <!-- this div is common in all pages -->
     <!-- green top fixed position header-->
-    <div class="green-nav" ng-controller="dashboardCtrl">
+    <div class="green-nav" ng-controller="welcomeCtrl">
         <header>
 
             <!-- green navbar shown at load -->
@@ -49,29 +49,6 @@
     <!-- Main wrapper  -->
     <!-- ============================================================== -->
     <div id="main-wrapper" class="skin-default-dark fixed-layout" ng-controller="adminCtrl">
-        <div id="profile-submit-modal" class="modal">
-
-            <form class="modal-content animate" >
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">پیام</h5>
-                    <button type="button" onclick="document.getElementById('profile-submit-modal').style.display='none'" class="close"
-                            aria-label="Close" style="position: absolute; left: 0px">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-
-                <div class=" form-group container">
-                    <div id="profile-submit-msg" class="modal-body text-center">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" onclick="document.getElementById('profile-submit-modal').style.display = 'none'"
-                                class="btn btn-info"  style="margin: auto">بستن</button>
-                    </div>
-                </div>
-
-            </form>
-        </div>
 
         <!-- ============================================================== -->
         <!-- ============================================================== -->
@@ -161,7 +138,31 @@
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <!-- Row -->
-                <div class="row">
+                <div class="row" ng-controller="submitCtrl">
+                    <div id="profile-submit-modal"  class="modal" >
+
+                        <form class="modal-content animate" >
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">پیام</h5>
+                                <button type="button" onclick="document.getElementById('profile-submit-modal').style.display='none'" class="close"
+                                        aria-label="Close" style="position: absolute; left: 0px">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+
+                            <div class=" form-group container">
+                                <div id="profile-submit-msg" class="modal-body text-center">
+                                    {{profileModalMsg}}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" onclick="document.getElementById('profile-submit-modal').style.display = 'none'"
+                                            class="btn btn-info"  style="margin: auto">بستن</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
                     <!-- Column -->
                     <div class="col-lg-4 col-xlg-3 col-md-5">
                         <div class="card">
@@ -204,7 +205,7 @@
                                         </div>
 
                                         <div class="col-sm-12">
-                                            <button class="submit_button rounded" ng-click="updateProfile()">ثبت
+                                            <button class="btn btn-info submit_button rounded" ng-click="updateProfile()">ثبت
                                                 تغییرات</button>
                                         </div>
                                     </div>
@@ -214,26 +215,26 @@
                                         </div>
                                         <div class="profile_change form-horizontal form-material">
 
-                                            <input type="text" style="margin-top: 20px;"
+                                            <input type="password" style="margin-top: 20px;"
                                                 class="previous form-control form-control-line" ng-model="password"
                                                 placeholder="رمز عبور قبلی">
                                             <text class="warning warning1 ">رمز عبور قبلی خود را وارد کنید<i
                                                     class="fa fa-warning"></i></text>
                                             <text class="warning warning2">رمز عبور قبلی نادرست است<i
                                                     class="fa fa-warning"></i></text>
-                                            <input type="text" style="margin-top: 20px;"
+                                            <input type="password" style="margin-top: 20px;" ng-model="newpass"
                                                 class="new form-control form-control-line" placeholder="رمز عبور جدید">
                                             <text class="warning warning3">رمز عبور جدید معتبر وارد کنید<i
                                                     class="fa fa-warning"></i></text>
                                             <text class="warning warning4">رمز عبور جدید با رمز عبور قبلی یکسان است<i
                                                     class="fa fa-warning"></i></text>
-                                            <input type="text" style="margin-top: 20px;"
+                                            <input type="password" style="margin-top: 20px;" ng-model="renewpass"
                                                 class="repeat form-control form-control-line"
                                                 placeholder="تکرار رمز عبور جدید">
                                             <text class="warning warning5 ">تکرار رمز عبور نادرست است<i
                                                     class="fa fa-warning"></i></text>
                                         </div>
-                                        <button class="change_button rounded" ng-click="changePassword()">تغییر رمز
+                                        <button class="btn btn-info change_button rounded" ng-click="changePassword()">تغییر رمز
                                             عبور</button>
                                     </div>
                                 </div>

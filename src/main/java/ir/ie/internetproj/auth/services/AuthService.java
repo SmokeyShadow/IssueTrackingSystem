@@ -29,7 +29,7 @@ public interface AuthService {
             @FormParam("prevpass") String prevPass ,
             @FormParam("newpass") String newpass ,
             @FormParam("renewpass") String renewpass,
-            @FormParam("username") String name);
+            @FormParam("name") String name);
 
     @Path("/changeprofile")
     @Produces(MediaType.APPLICATION_JSON)

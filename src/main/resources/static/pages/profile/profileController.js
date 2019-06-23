@@ -16,50 +16,63 @@
             $scope.adminAccess = 'hidden';
         }
     });
-    app.controller('dashboardCtrl', function ($scope, $window ,myService) {
+
+    app.controller('welcomeCtrl', function ($scope, $window ,myService) {
+        //get user info from login
+
         var user = myService.get();
+        console.log("service user" + user.user);
         $scope.name = user.user ;
+
+
+
+
+    });
+    app.controller('submitCtrl', function ($scope, $http ,$window ,myService) {
+        var user = myService.get();
+
+        $scope.name = user.user;
         $scope.role = user.role;
         $scope.email = user.email;
-        $scope.password = user.password;
 
-        // noinspection JSAnnotator
-        $scope.changePassword() = function () {
+        $scope.changePassword = function () {
             var config = {
                 headers : {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
                 }
             }
-            var jsondata = {
-                "prevpass" : $scope.prevpass,
-                "newpass" : $scope.newpass,
-                "renewpass" : $scope.renewpass,
-                "name" : user.user
-            };
+            var params = "prevpass=" + $scope.password+
+                "&newpass=" + $scope.newpass+
+                "&renewpass=" + $scope.renewpass+
+                "&name=" + user.user
+            ;
+
             var url = "rest/auth/changepass";
-            $http.post(url , jsondata ,config ).then(successCallback, errorCallback);
+            $http.post(url , params ,config ).then(successCallback, errorCallback);
 
 
             function successCallback(response) {
+                console.log("response" + response.status)
                 if( response.status == 200 ) {
                     //success code
-                    $scope.rgmsg = response.data.message;
-                    $scope.usermodal = "true";
+                    $scope.profileModalMsg = response.data.message;
+                    var modal = angular.element(document.getElementById('profile-submit-modal'));
+                    modal.css('display', 'block');
+
                     return;
                 }
 
             }
             function errorCallback(error) {
                 //error coder
-                $scope.rgmsg = error.data.message + "خطا!";
-                $scope.usermodal = "true";
+                $scope.profileModalMsg = error.data.message + "خطا!";
+                var modal = angular.element(document.getElementById('profile-submit-modal'));
+                modal.css('display', 'block');
             }
 
 
         }
-        // noinspection JSAnnotator
-        $scope.updateProfile() = function () {
-
+        $scope.updateProfile = function () {
         }
 
     });
@@ -108,58 +121,33 @@ function checkEnteries() {
         }
     }
 }
-function updateProfile() {
-    var obj = {
-        name:document.getElementById('profile-name').value,
-        email:document.getElementById('profile-email').value,
-        role:document.getElementById('profile-role').value
+// function updateProfile() {
+//     var obj = {
+//         name:document.getElementById('profile-name').value,
+//         email:document.getElementById('profile-email').value,
+//         role:document.getElementById('profile-role').value
+//
+//     };
+//     var sentJSON = JSON.stringify(obj);
+//     const Http = new XMLHttpRequest();
+//     const url='rest/auth/changeprofile';
+//     Http.open("POST", url, true);
+//
+//     Http.setRequestHeader("Content-type", "application/json");
+//     Http.send(sentJSON)
+//     Http.onreadystatechange = function ()  {
+//         if(this.readyState == 4 && this.status == 200)
+//         {
+//             var json = JSON.parse(this.responseText);
+//             document.getElementById('profile-submit-msg').innerHTML = json.message;
+//             document.getElementById('profile-submit-modal').style.display = "block";
+//
+//         }
+//
+//     }
+//
+// }
 
-    };
-    var sentJSON = JSON.stringify(obj);
-    const Http = new XMLHttpRequest();
-    const url='rest/auth/changeprofile';
-    Http.open("POST", url, true);
-
-    Http.setRequestHeader("Content-type", "application/json");
-    Http.send(sentJSON)
-    Http.onreadystatechange = function ()  {
-        if(this.readyState == 4 && this.status == 200)
-        {
-            var json = JSON.parse(this.responseText);
-            document.getElementById('profile-submit-msg').innerHTML = json.message;
-            document.getElementById('profile-submit-modal').style.display = "block";
-
-        }
-
-    }
-    
-}
-function changePassword()
-{
-    var obj = {
-        prevpass:document.getElementById('profile-name').value,
-        newpass:document.getElementById('profile-email').value,
-        renewpass:document.getElementById('profile-role').value
-
-    };
-    var sentJSON = JSON.stringify(obj);
-    const Http = new XMLHttpRequest();
-    const url='rest/auth/changeprofile';
-    Http.open("POST", url, true);
-
-    Http.setRequestHeader("Content-type", "application/json");
-    Http.send(sentJSON)
-    Http.onreadystatechange = function ()  {
-        if(this.readyState == 4 && this.status == 200)
-        {
-            var json = JSON.parse(this.responseText);
-            document.getElementById('profile-submit-msg').innerHTML = json.message;
-            document.getElementById('profile-submit-modal').style.display = "block";
-
-        }
-
-    }
-}
 
 function checkPassword(){
     var box = document.getElementsByClassName("change_box");
