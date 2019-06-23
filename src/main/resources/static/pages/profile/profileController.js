@@ -32,7 +32,6 @@
         var user = myService.get();
 
         $scope.name = user.user;
-        $scope.role = user.role;
         $scope.email = user.email;
 
         $scope.changePassword = function () {
@@ -52,7 +51,6 @@
 
 
             function successCallback(response) {
-                console.log("response" + response.status)
                 if( response.status == 200 ) {
                     //success code
                     $scope.profileModalMsg = response.data.message;
@@ -73,6 +71,38 @@
 
         }
         $scope.updateProfile = function () {
+            var config = {
+                headers : {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                }
+            }
+            var params = "prevuser=" + user.user+
+                "&newuser=" + $scope.name+
+                "&newemail=" + $scope.email
+            ;
+
+            var url = "rest/auth/changeprofile";
+            $http.post(url , params ,config ).then(successCallback, errorCallback);
+
+
+            function successCallback(response) {
+                if( response.status == 200 ) {
+                    //success code
+                    $scope.profileModalMsg = response.data.message;
+                    var modal = angular.element(document.getElementById('profile-submit-modal'));
+                    modal.css('display', 'block');
+
+                    return;
+                }
+
+            }
+            function errorCallback(error) {
+                //error coder
+                $scope.profileModalMsg = error.data.message + "خطا!";
+                var modal = angular.element(document.getElementById('profile-submit-modal'));
+                modal.css('display', 'block');
+            }
+
         }
 
     });
@@ -121,33 +151,6 @@ function checkEnteries() {
         }
     }
 }
-// function updateProfile() {
-//     var obj = {
-//         name:document.getElementById('profile-name').value,
-//         email:document.getElementById('profile-email').value,
-//         role:document.getElementById('profile-role').value
-//
-//     };
-//     var sentJSON = JSON.stringify(obj);
-//     const Http = new XMLHttpRequest();
-//     const url='rest/auth/changeprofile';
-//     Http.open("POST", url, true);
-//
-//     Http.setRequestHeader("Content-type", "application/json");
-//     Http.send(sentJSON)
-//     Http.onreadystatechange = function ()  {
-//         if(this.readyState == 4 && this.status == 200)
-//         {
-//             var json = JSON.parse(this.responseText);
-//             document.getElementById('profile-submit-msg').innerHTML = json.message;
-//             document.getElementById('profile-submit-modal').style.display = "block";
-//
-//         }
-//
-//     }
-//
-// }
-
 
 function checkPassword(){
     var box = document.getElementsByClassName("change_box");

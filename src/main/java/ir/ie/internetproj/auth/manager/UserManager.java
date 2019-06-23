@@ -120,14 +120,14 @@ public class UserManager {
     @Transactional
     public ActionResult<String> changeProfile(String prevuser, String newuser, String newemail) {
         ActionResult<String> result = new ActionResult<>();
-        String[] messages = validateProfile(prevuser,
+        String[] messages = validateProfile(
                 newuser,
                 newemail);
         if(messages.length <= 0){
 
             UserEntity containUser = authDao.containsUserAndValid(newuser,newemail);
             UserEntity user = authDao.containsUserAndValid(prevuser);
-            if(containUser != null)
+            if(containUser != null && !prevuser.equals(newuser))
             {
                 result.setMessage("فرد دیگری با این اطلاعات ثبت نام کرده!");
             }
@@ -152,12 +152,9 @@ public class UserManager {
         return result;
     }
 
-    private String[] validateProfile(String prevuser, String newuser, String newemail) {
+    private String[] validateProfile( String newuser, String newemail) {
         List<String> messages = new ArrayList<>();
 
-        if(prevuser == null || prevuser.length() == 0 ){
-            messages.add("کاربر قبلی نمی تواند خالی باشد!");
-        }
         if(newuser == null || newuser.length() == 0 ){
             messages.add("کاربر جدید نمی تواند خالی باشد!");
         }
