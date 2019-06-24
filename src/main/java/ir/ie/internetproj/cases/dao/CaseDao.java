@@ -31,9 +31,14 @@ public class CaseDao {
             list = query.getResultList();
         }
         for (CaseEntity en:list){
-            en.setAssigneeName(name);
             query = manager.createQuery("select e from UserEntity e where  e.id =:id ");
             List<UserEntity> users = query.setParameter("id", en.getAssigner()).getResultList();
+            if(!role.trim().equals("مدیر"))
+                en.setAssigneeName(name);
+            else {
+                List<UserEntity> assigneeUsers = query.setParameter("id", en.getAssignee()).getResultList();
+                en.setAssigneeName(assigneeUsers.get(0).getName());
+            }
             en.setAssignerName(users.get(0).getName());
         }
         return list;

@@ -13,16 +13,22 @@
 
     }
 
+    app.controller('welcomeCtrl', function ($scope, $window ,myService) {
+        //get user info from login
 
-
-    app.controller('dashboardCtrl', function ($scope, $window, myService) {
         var user = myService.get();
-        $scope.name = user.user;
-        if (user.role.trim() != 'admin') {
-            $scope.adminAccess = 'hidden';
-        }
+        $scope.name = user.user ;
 
     });
+    app.controller('adminCtrl', function ($scope, $window ,myService) {
+        var user = myService.get();
+
+        if(user.role.trim() != 'مدیر')
+        {
+            $scope.adminAccess = 'hidden';
+        }
+    });
+
 })();
 
 

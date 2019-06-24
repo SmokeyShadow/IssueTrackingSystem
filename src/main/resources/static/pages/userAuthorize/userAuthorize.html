@@ -43,7 +43,7 @@
                     for(var i = 0;i<array.length;i++) {
                         ident = array[i].ID;
                         buttonNum = i;
-                        var tblRow = "<tr>" + "<td>" + (i + 1) + "</td>" + "<td>" + array[i].Name + "</td>" + "<td>" + array[i].Role + "</td>" + "<td>" + array[i].Email + "</td>" + "<td>" + "<button class='change_button' onclick=authorizeUser("+ident+","+buttonNum+") >" + array[i].state + "</button>" + "</td>" + "</tr>";
+                        var tblRow = "<tr>" + "<td>" + (i + 1) + "</td>" + "<td>" + array[i].Name + "</td>" + "<td>" + array[i].Role + "</td>" + "<td>" + array[i].Email + "</td>" + "<td>" + "<button class='btn change_button' onclick=authorizeUser("+ident+","+buttonNum+") >" + array[i].state + "</button>" + "</td>" + "</tr>";
                         $(tblRow).appendTo("#table tbody");
                     }
 
@@ -86,7 +86,7 @@
 
 
             <!-- login & register button -->
-            <div class="nav-btns col-md-6">
+            <div class="nav-btns col-md-6" ng-controller="welcomeCtrl">
                 خوش آمدی {{name}}!
                 <button class="btn btn-primary"><i class="fas fa-user"></i></button>
             </div>
@@ -99,7 +99,7 @@
 <!-- ============================================================== -->
 <!-- Main wrapper - style you can find in pages.scss -->
 <!-- ============================================================== -->
-<div id="main-wrapper" class="skin-default-dark fixed-layout" ng-controller="dashboardCtrl">
+<div id="main-wrapper" class="skin-default-dark fixed-layout" ng-controller="adminCtrl">
 
     <!-- ============================================================== -->
     <!-- ============================================================== -->
