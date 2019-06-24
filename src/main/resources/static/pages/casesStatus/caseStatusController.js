@@ -39,6 +39,7 @@
                 "name" : user.user
             };
             var url = "rest/case/casestatus";
+
             $http.post(url , jsondata ,config ).then(successCallback, errorCallback);
 
             console.log(jsondata );
@@ -92,6 +93,40 @@
         }
 
     });
+    app.controller('filterCtrl', function ($scope, $http, myService) {
+        $scope.filterinit = function () {
+            var user = myService.get();
+            $scope.assignerName = user.user;
+            var config = {
+                headers : {
+                    'Content-Type': 'application/json'
+                }
+            }
+            var jsondata = {
+                "id" : user.id
+            };
+            var url = "rest/case/assigneelist";
+
+            $http.post(url , jsondata ,config ).then(successCallback, errorCallback);
+
+            console.log(jsondata );
+            function successCallback(response) {
+                if( response.status == 200 && response.data.success == true
+                    && response.data.data != null) {
+                    console.log("data" + response.data.data);
+                    $scope.assigneeList = response.data.data;
+                    console.log("success ! contains data" );
+                }
+                else
+                    console.log("no records found" +response.message);
+
+            }
+            function errorCallback(error) {
+                console.log("error" + response.message);
+            }
+        }
+
+    });
 
 })();
 
@@ -108,8 +143,8 @@ function getOpts(sel) {
 }
 function IsFilteredCell(opts, filtercell, trs) {
     for (var j = 0; j < opts.length; j++) {
-
         var cellVal1 = trs.cells[filtercell];
+        console.log("compare   " + cellVal1.innerText.trim() + "  sec  " + opts[j].trim());
         if (cellVal1.innerText.trim() == opts[j].trim())
             return true;
     }
@@ -123,21 +158,22 @@ function filterByAll(id1, id2, id3, filtercell1, filtercell2, filtercell3) {
     var opts1 = getOpts(sel1);
     var opts2 = getOpts(sel2);
     var opts3 = getOpts(sel3);
- 
     var table = document.getElementById('statusTable');
-    var equal1 = equal2 = equal3 = false;
+    var equal1 = false;
+    var equal2 = false;
+    var equal3 = false;
     if (opts1.length == 0 && opts2.length == 0 && opts3.length == 0) {
         for (var i = 1; i < table.rows.length; i++) {
             var trs = table.getElementsByTagName("tr")[i].style.display = "none";
         }
     }
+    //iterate on records
     for (var i = 1; i < table.rows.length; i++) {
         var trs = table.getElementsByTagName("tr")[i];
         
         equal1 = IsFilteredCell(opts1, filtercell1, trs);
         equal2 = IsFilteredCell(opts2, filtercell2, trs);
         equal3 = IsFilteredCell(opts3, filtercell3, trs);
-
         if (equal1 && equal2 && equal3) {
             trs.style.display = "table-row";
         }

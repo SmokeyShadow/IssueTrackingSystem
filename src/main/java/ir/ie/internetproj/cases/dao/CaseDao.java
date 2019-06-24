@@ -45,10 +45,10 @@ public class CaseDao {
         query = manager.createQuery("select e from CaseEntity e where  e.assigner =:id ");
         list = query.setParameter("id", id).getResultList();
         for (CaseEntity en:list){
-            en.setAssigneeName(name);
+            en.setAssignerName(name);
             query = manager.createQuery("select e from UserEntity e where  e.id =:id ");
             List<UserEntity> users = query.setParameter("id", en.getAssignee()).getResultList();
-            en.setAssignerName(users.get(0).getName());
+            en.setAssigneeName(users.get(0).getName());
         }
         return list;
     }
@@ -61,5 +61,11 @@ public class CaseDao {
         if(en != null)
             return true;
         return false;
+    }
+
+    public List<UserEntity> getAssigneeList(int id) {
+        Query query = manager.createQuery("select distinct e  from UserEntity  e where e.id in (select distinct  e.assignee from CaseEntity e where  e.assigner =:id) ");
+        List<UserEntity> list = query.setParameter("id", id).getResultList();
+        return list;
     }
 }

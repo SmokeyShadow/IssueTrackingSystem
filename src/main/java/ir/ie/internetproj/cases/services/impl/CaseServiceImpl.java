@@ -40,5 +40,10 @@ public class CaseServiceImpl implements CaseService {
         return caseManager.rateCase(entity);
     }
 
+    @Override
+    public ActionResult<List<UserEntity>> getAssigneeList(UserEntity entity) throws IOException {
+        return caseManager.getAssigneeList(entity);
+    }
+
 
 }

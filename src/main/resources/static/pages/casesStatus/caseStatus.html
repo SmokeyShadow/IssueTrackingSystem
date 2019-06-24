@@ -13,8 +13,7 @@
 <body dir="rtl">
 
     <script type="text/javascript">
-        $('.selectpicker').selectpicker({
-        });
+        $('.selectpicker').selectpicker();
     </script>
 
     <!-- this div is common in all pages -->
@@ -130,7 +129,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row filters" >
+                <div class="row filters" data-ng-controller="filterCtrl" data-ng-init="filterinit()">
                     <div class="select-div col-sm-4">
                         <select id="statusSelect"
                             onchange="filterByAll('statusSelect' , 'assigneSelect' , 'assignerSelect' , 4, 2, 3)"
@@ -143,27 +142,22 @@
                         </select>
                     </div>
                     <div class="select-div col-sm-4">
-                        <select id="assigneSelect"
-                            onchange="filterByAll('statusSelect' , 'assigneSelect' , 'assignerSelect' , 4, 2, 3)"
-                            title="کاربر مسوول را انتخاب کنید" name="role" multiple class="selectpicker"
-                            data-live-search="true">
-                            <option selected>عطیه نوروززاده</option>
-                            <option selected>درسا سمیعی</option>
-                            <option selected>علی علوی</option>
-                            <option selected>علی محبوی</option>
-                            <option selected>سیما حمیدی</option>
-                        </select>
+                        <div class="form-group"
+                             onchange="filterByAll('statusSelect' , 'assigneSelect' , 'assignerSelect' , 4, 2, 3)"
+                              >
+                            <select id="assigneSelect"  multiple="true" style="height: 30px; background-color: #F8F9FA;"
+                                    title="کاربر مسوول را انتخاب کنید" name="role"  class="form-control"
+                                        ng-model="placement.selected"
+                                    ng-init="placement.selected = options[0]" ng-options="o as o.name for o in assigneeList track by o.name"></select>
+                        </div>
+
                     </div>
                     <div class="select-div col-sm-4">
-                        <select id="assignerSelect"
+                        <select  id="assignerSelect"
                             onchange="filterByAll('statusSelect' , 'assigneSelect' , 'assignerSelect' , 4, 2, 3)"
                             title="کاربر ارسال کننده را انتخاب کنید" name="role" multiple class="selectpicker"
                             data-live-search="true">
-                            <option selected>درسا سمیعی</option>
-                            <option selected>نقی نادری</option>
-                            <option selected>عطیه ناظری</option>
-                            <option selected>علی علوی</option>
-                            <option selected>استاد و مدیر</option>
+                            <option selected>{{assignerName}}</option>
                         </select>
                     </div>
                 </div>

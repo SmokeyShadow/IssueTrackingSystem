@@ -51,5 +51,12 @@ public interface CaseService {
     public ActionResult<String> rateCase(CaseEntity entity
     ) throws IOException;
 
+    @Path("/assigneelist")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @POST
+    public ActionResult<List<UserEntity>> getAssigneeList(UserEntity entity
+    ) throws IOException;
+
 
 }

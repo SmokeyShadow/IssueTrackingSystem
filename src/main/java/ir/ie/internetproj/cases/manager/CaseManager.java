@@ -29,7 +29,20 @@ public class CaseManager {
     @Autowired
     private CaseDao caseDao;
 
+    public ActionResult<List<UserEntity>> getAssigneeList(UserEntity entity) {
+        ActionResult<List<UserEntity>> result = new ActionResult<>();
+        List<UserEntity> entities = caseDao.getAssigneeList(entity.getId());
 
+        if(entities != null && entities.size() > 0) {
+
+            result.setSuccess(true);
+            result.setMessage("اطلاعات از پایگاه داده دریافت شد.");
+            result.setData(entities);
+        }
+        else
+            result.setMessage("موردی توسط کاربر ثبت نشده است!");
+        return result;
+    }
     @Transactional
     public ActionResult<String> setCase(
             String assigner,
@@ -100,7 +113,7 @@ public class CaseManager {
             result.setData(caseEntities);
         }
         else
-            result.setMessage("موردی توسط کاربر ثبت نشده است!");
+            result.setMessage("موردی به کاربر ارجاع نشده است!");
 
         return result;
     }
