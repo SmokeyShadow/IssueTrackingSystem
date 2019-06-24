@@ -1,24 +1,6 @@
 (function () {
     'use strict';
     var app = angular.module('app');
-    var data;
-
-    app.run(function ($http) {
-        var url = "http://localhost:8080/IE-proj/Assets/Jsons/casesStatus.json";
-        $http.get(url).then(successCallback, errorCallback);
-
-        function successCallback(response) {
-            //success code
-            console.log("success" + response.data);
-            data = response.data;
-
-        }
-        function errorCallback(error) {
-            //error code
-            console.log("error" + response.error);
-        }
-
-    })
 
     app.controller('caseStatusController', caseController);
 
@@ -29,6 +11,13 @@
         $rootScope.bodylayout = 'main_page_que';
 
     }
+    app.controller('welcomeCtrl', function ($scope, $window ,myService) {
+        //get user info from login
+
+        var user = myService.get();
+        $scope.name = user.user ;
+
+    });
     app.controller('adminCtrl', function ($scope, $window ,myService) {
         var user = myService.get();
 
@@ -37,24 +26,105 @@
             $scope.adminAccess = 'hidden';
         }
     });
-    app.controller('statusCtrl', function ($scope, $window, myService) {
-        var user = myService.get();
-
-        var filterdata = data;
-        var count = 0;
-        if (user.role.trim() != 'مدیر') {
-
-            for (var i in data) {
-                if (data[i].email == user.email) {
-                    filterdata[count++] = data[i];
+    app.controller('statusCtrl', function ($scope, $http, myService) {
+        $scope.init = function () {
+            var user = myService.get();
+            var config = {
+                headers : {
+                    'Content-Type': 'application/json'
                 }
             }
-            filterdata.length = count;
-            $scope.casestatus = filterdata;
+            var jsondata = {
+                "id" : user.id,
+                "name" : user.user
+            };
+            var url = "rest/case/casestatus";
+
+            $http.post(url , jsondata ,config ).then(successCallback, errorCallback);
+
+            console.log(jsondata );
+            function successCallback(response) {
+                if( response.status == 200 && response.data.success == true
+                    && response.data.data != null) {
+                    console.log("data" + response.data.data);
+                    $scope.casestatus = response.data.data;
+                    console.log("success ! contains data" );
+                }
+                else
+                    console.log("no records found" +response.message);
+
+            }
+            function errorCallback(error) {
+                console.log("error" + response.message);
+            }
         }
-        else
-            $scope.casestatus = data;
-      
+        $scope.rateCase = function (number , caseid , ratedivid) {
+            var user = myService.get();
+            console.log("caseid : " + caseid + "rate id" + ratedivid);
+            var config = {
+                headers : {
+                    'Content-Type': 'application/json'
+                }
+            }
+            var jsondata = {
+                "id" : caseid,
+                "rate" : number
+            };
+            var url = "rest/case/rate";
+            $http.post(url , jsondata ,config ).then(successCallback, errorCallback);
+
+            console.log(jsondata );
+            function successCallback(response) {
+                if( response.status == 200 && response.data.success == true) {
+                    $scope.ratemsg = response.data.message;
+                    var modal = angular.element(document.getElementById('rate-modal'));
+                    modal.css('display', 'block');
+                    var modal = angular.element(document.getElementById(ratedivid));
+                    modal.text( " امتیاز دادید" + number);
+                    return;
+                }
+
+            }
+            function errorCallback(error) {
+                $scope.ratemsg = error.data.message;
+                var modal = angular.element(document.getElementById('rate-modal'));
+                modal.css('display', 'block');
+            }
+        }
+
+    });
+    app.controller('filterCtrl', function ($scope, $http, myService) {
+        $scope.filterinit = function () {
+            var user = myService.get();
+            $scope.assignerName = user.user;
+            var config = {
+                headers : {
+                    'Content-Type': 'application/json'
+                }
+            }
+            var jsondata = {
+                "id" : user.id
+            };
+            var url = "rest/case/assigneelist";
+
+            $http.post(url , jsondata ,config ).then(successCallback, errorCallback);
+
+            console.log(jsondata );
+            function successCallback(response) {
+                if( response.status == 200 && response.data.success == true
+                    && response.data.data != null) {
+                    console.log("data" + response.data.data);
+                    $scope.assigneeList = response.data.data;
+                    console.log("success ! contains data" );
+                }
+                else
+                    console.log("no records found" +response.message);
+
+            }
+            function errorCallback(error) {
+                console.log("error" + response.message);
+            }
+        }
 
     });
 
@@ -73,8 +143,8 @@ function getOpts(sel) {
 }
 function IsFilteredCell(opts, filtercell, trs) {
     for (var j = 0; j < opts.length; j++) {
-
         var cellVal1 = trs.cells[filtercell];
+        console.log("compare   " + cellVal1.innerText.trim() + "  sec  " + opts[j].trim());
         if (cellVal1.innerText.trim() == opts[j].trim())
             return true;
     }
@@ -88,21 +158,22 @@ function filterByAll(id1, id2, id3, filtercell1, filtercell2, filtercell3) {
     var opts1 = getOpts(sel1);
     var opts2 = getOpts(sel2);
     var opts3 = getOpts(sel3);
- 
     var table = document.getElementById('statusTable');
-    var equal1 = equal2 = equal3 = false;
+    var equal1 = false;
+    var equal2 = false;
+    var equal3 = false;
     if (opts1.length == 0 && opts2.length == 0 && opts3.length == 0) {
         for (var i = 1; i < table.rows.length; i++) {
             var trs = table.getElementsByTagName("tr")[i].style.display = "none";
         }
     }
+    //iterate on records
     for (var i = 1; i < table.rows.length; i++) {
         var trs = table.getElementsByTagName("tr")[i];
         
         equal1 = IsFilteredCell(opts1, filtercell1, trs);
         equal2 = IsFilteredCell(opts2, filtercell2, trs);
         equal3 = IsFilteredCell(opts3, filtercell3, trs);
-
         if (equal1 && equal2 && equal3) {
             trs.style.display = "table-row";
         }
