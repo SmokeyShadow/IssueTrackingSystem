@@ -15,7 +15,55 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="manageUsers.js"></script>
 </head>
-<body dir="rtl">
+<script>
+    $.getJSON('../Assets/Jsons/users.json', function (json) {
+        const Http = new XMLHttpRequest();
+        const url='rest/manage/submit';
+        Http.open("GET", url , false);
+        Http.send();
+        var json2;
+        var ident;
+        var buttonNum;
+        if(Http.readyState == 4 && Http.status == 200)
+        {
+            json2 = JSON.parse(Http.responseText);
+            var array = [];
+            for (var key in json2) {
+                if (json2.hasOwnProperty(key)) {
+                    var item = json2[key];
+                    array.push({
+                        ID : item.id,
+                        Email: item.email,
+                        Name : item.name,
+                        Role: item.role,
+                        Verified: item.verified,
+                        Active: item.active
+                    });
+                }
+            }
+            for(var i = 0;i<array.length;i++) {
+                ident = array[i].ID;
+                buttonNum = i;
+                var tblRow = "<tr>" + "<td>" + (i + 1) + "</td>" + "<td>" + "<div>"+"<img src=\"../../Assets/images/users/3.jpg\" class=\"mx-auto d-block img-circle user-pic\" alt=\"profilePic\" >"+"</div>" + "</td>" + "<td>" + array[i].Email + "</td>" + "<td>" + array[i].Name + "</td>" + "<td>"+ array[i].Role + "</td>";
+                if(array[i].Verified == -1 ){
+                    tblRow = tblRow + "<td>"+"<span id="+"'"+buttonNum+"'"+" class='btn btn-primary status-btn' onclick='changeStatus("+buttonNum+")'>"+"تایید"+"</span>"+"</td>";
+                }
+                if(array[i].Active == -1){
+                    tblRow = tblRow + "<td>"+"<span id="+"'"+buttonNum+"'"+" class='btn btn-primary status-btn' onclick='changeStatus("+buttonNum+")'>"+"غیرفعال"+"</span>"+"</td>";
+                }
+                else if(array[i].Active == 1){
+                    tblRow = tblRow + "<td>"+"<span id="+"'"+buttonNum+"'"+" class='btn btn-primary status-btn' onclick='changeStatus("+buttonNum+")'>"+"فعال"+"</span>"+"</td>";
+                }
+                tblRow = tblRow + "<td>" + "<a href='#' class='btn view' title='مشاهده پروفایل' data-toggle='tooltip'>"+"<i class='material-icons'>"+"&#xE417;"+"</i>"+"</a>"+ "<a id='12' href='#' class='btn delete' title='حذف' data-toggle='tooltip' onclick=deleteUser(12)>"+"<i class='material-icons'>"+"&#xE872;"+"</i>"+"</a>" +"</td>";
+                tblRow = tblRow + "</tr>";
+                $(tblRow).appendTo("#studentTable tbody");
+            }
+
+        }
+    });
+
+</script>
+<body dir="rtl" onload = "getJSON()">
 <div class="page-wrapper">
     <div class="container">
         <div class="table-wrapper">
@@ -48,7 +96,7 @@
                 </div>
             </div>
             <div class="table-responsive">
-                <table class="table table-bordered table-hover">
+                <table id="studentTable" class="table table-bordered table-hover">
                     <thead class="thead-light">
                     <tr>
                         <th>شماره</th>
@@ -61,66 +109,6 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr id="111">
-                        <td>۱</td>
-                        <td><div><img src="../../Assets/images/users/3.jpg" class="mx-auto d-block img-circle user-pic" alt="profilePic" ></div></td>
-                        <td>alialavi</td>
-                        <td>علی علوی</td>
-                        <td>دانشجو</td>
-                        <td><span id="1" class="btn btn-primary status-btn" onclick="changeStatus(1)">تایید</span></td>
-                        <td>
-                            <a href="#" class="btn view" title="مشاهده پروفایل" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                            <a id="11" href="#" class="btn delete" title="حذف" data-toggle="tooltip" onclick=deleteUser(11)><i class="material-icons">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                    <tr id="112">
-                        <td>۲</td>
-                        <td><div><img src="../../Assets/images/users/3.jpg" class="mx-auto d-block img-circle user-pic" alt="profilePic" ></div></td>
-                        <td>taghi tghavi</td>
-                        <td>تقی تقوی</td>
-                        <td>دانشجو</td>
-                        <td><span id="2" class="btn btn-success status-btn" onclick="changeStatus(2)">فعال</span></td>
-                        <td>
-                            <a href="#" class="btn view" title="مشاهده پروفایل" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                            <a id="12" href="#" class="btn delete" title="حذف" data-toggle="tooltip" onclick=deleteUser(12)><i class="material-icons">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                    <tr id="113">
-                        <td>۳</td>
-                        <td><div><img src="../../Assets/images/users/3.jpg" class="mx-auto d-block img-circle user-pic" alt="profilePic" ></div></td>
-                        <td>mohsenMohseni</td>
-                        <td>محسن محسنی</td>
-                        <td>مدیر</td>
-                        <td><span id="3" class="btn btn-warning status-btn" onclick=changeStatus(3)>غیر فعال</span></td>
-                        <td>
-                            <a href="#" class="btn view" title="مشاهده پروفایل" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                            <a id="13" href="#" class="btn delete" title="حذف" data-toggle="tooltip" onclick=deleteUser(13)><i class="material-icons">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                    <tr id="114">
-                        <td>۴</td>
-                        <td><div><img src="../../Assets/images/users/3.jpg" class="mx-auto d-block img-circle user-pic" alt="profilePic" ></div></td>
-                        <td>hasan hasani</td>
-                        <td>حسن حسنی</td>
-                        <td>دانشجو</td>
-                        <td><span id="4" class="btn btn-primary status-btn" onclick="changeStatus(4)">تایید</span></td>
-                        <td>
-                            <a href="#" class="btn view" title="مشاهده پروفایل" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                            <a id="14" href="#" class="btn delete" title="حذف" data-toggle="tooltip" onclick=deleteUser(14)><i class="material-icons">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                    <tr id="115">
-                        <td>۵</td>
-                        <td><div><img src="../../Assets/images/users/3.jpg" class="mx-auto d-block img-circle user-pic" alt="profilePic" ></div></td>
-                        <td>naghiNaghavi</td>
-                        <td>نقی نقوی</td>
-                        <td>دانشجو</td>
-                        <td><span id="5" class="btn btn-success status-btn" onclick="changeStatus(5)">فعال</span></td>
-                        <td>
-                            <a href="#" class="btn view" title="مشاهده پروفایل" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                            <a id="15" href="#" class="btn delete" title="حذف" data-toggle="tooltip" onclick=deleteUser(15)><i class="material-icons">&#xE872;</i></a>
-                        </td>
-                    </tr>
                     </tbody>
                 </table>
             </div>
