@@ -89,7 +89,21 @@ public class CaseManager {
         }
         return result;
     }
+    public ActionResult<List<CaseEntity>> getCasesStatus(UserEntity user) {
+        ActionResult<List<CaseEntity>> result = new ActionResult<>();
+        List<CaseEntity> caseEntities = caseDao.getCasesStatus(user.getId() , user.getName());
 
+        if(caseEntities != null && caseEntities.size() > 0) {
+
+            result.setSuccess(true);
+            result.setMessage("اطلاعات گرفته شد");
+            result.setData(caseEntities);
+        }
+        else
+            result.setMessage("موردی توسط کاربر ثبت نشده است!");
+
+        return result;
+    }
     public ActionResult<List<CaseEntity>> getAssignees(UserEntity user) {
 
             ActionResult<List<CaseEntity>> result = new ActionResult<>();
@@ -108,7 +122,19 @@ public class CaseManager {
 
             return result;
     }
-
+    @Transactional
+    public ActionResult<String> rateCase(CaseEntity entity) {
+        ActionResult<String> result = new ActionResult<>();
+        boolean successRate = caseDao.setRate(entity.getId() , entity.getRate());
+        if(successRate) {
+            result.setSuccess(true);
+            result.setMessage( "شما به این  مورد امتیاز " + entity.getRate() + " را دادید.");
+            result.setData(null);
+        }
+        else
+            result.setMessage("خطا در ثبت امتیاز!");
+        return result;
+    }
     private String[] validateSetCase(String subject,
                                      String to,
                                      String importance,
@@ -132,6 +158,7 @@ public class CaseManager {
         }
         return ans;
     }
+
 
 
 }

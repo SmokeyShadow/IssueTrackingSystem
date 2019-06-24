@@ -20,9 +20,6 @@
         console.log("service user" + user.user);
         $scope.name = user.user ;
 
-
-
-
     });
     app.controller('adminCtrl', function ($scope, $window ,myService) {
         var user = myService.get();

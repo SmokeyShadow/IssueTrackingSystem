@@ -1,24 +1,6 @@
 (function () {
     'use strict';
     var app = angular.module('app');
-    var data;
-
-    app.run(function ($http) {
-        var url = "http://localhost:8080/IE-proj/Assets/Jsons/casesStatus.json";
-        $http.get(url).then(successCallback, errorCallback);
-
-        function successCallback(response) {
-            //success code
-            console.log("success" + response.data);
-            data = response.data;
-
-        }
-        function errorCallback(error) {
-            //error code
-            console.log("error" + response.error);
-        }
-
-    })
 
     app.controller('caseStatusController', caseController);
 
@@ -29,6 +11,13 @@
         $rootScope.bodylayout = 'main_page_que';
 
     }
+    app.controller('welcomeCtrl', function ($scope, $window ,myService) {
+        //get user info from login
+
+        var user = myService.get();
+        $scope.name = user.user ;
+
+    });
     app.controller('adminCtrl', function ($scope, $window ,myService) {
         var user = myService.get();
 
@@ -37,24 +26,70 @@
             $scope.adminAccess = 'hidden';
         }
     });
-    app.controller('statusCtrl', function ($scope, $window, myService) {
-        var user = myService.get();
-
-        var filterdata = data;
-        var count = 0;
-        if (user.role.trim() != 'مدیر') {
-
-            for (var i in data) {
-                if (data[i].email == user.email) {
-                    filterdata[count++] = data[i];
+    app.controller('statusCtrl', function ($scope, $http, myService) {
+        $scope.init = function () {
+            var user = myService.get();
+            var config = {
+                headers : {
+                    'Content-Type': 'application/json'
                 }
             }
-            filterdata.length = count;
-            $scope.casestatus = filterdata;
+            var jsondata = {
+                "id" : user.id,
+                "name" : user.user
+            };
+            var url = "rest/case/casestatus";
+            $http.post(url , jsondata ,config ).then(successCallback, errorCallback);
+
+            console.log(jsondata );
+            function successCallback(response) {
+                if( response.status == 200 && response.data.success == true
+                    && response.data.data != null) {
+                    console.log("data" + response.data.data);
+                    $scope.casestatus = response.data.data;
+                    console.log("success ! contains data" );
+                }
+                else
+                    console.log("no records found" +response.message);
+
+            }
+            function errorCallback(error) {
+                console.log("error" + response.message);
+            }
         }
-        else
-            $scope.casestatus = data;
-      
+        $scope.rateCase = function (number , caseid , ratedivid) {
+            var user = myService.get();
+            console.log("caseid : " + caseid + "rate id" + ratedivid);
+            var config = {
+                headers : {
+                    'Content-Type': 'application/json'
+                }
+            }
+            var jsondata = {
+                "id" : caseid,
+                "rate" : number
+            };
+            var url = "rest/case/rate";
+            $http.post(url , jsondata ,config ).then(successCallback, errorCallback);
+
+            console.log(jsondata );
+            function successCallback(response) {
+                if( response.status == 200 && response.data.success == true) {
+                    $scope.ratemsg = response.data.message;
+                    var modal = angular.element(document.getElementById('rate-modal'));
+                    modal.css('display', 'block');
+                    var modal = angular.element(document.getElementById(ratedivid));
+                    modal.text( " امتیاز دادید" + number);
+                    return;
+                }
+
+            }
+            function errorCallback(error) {
+                $scope.ratemsg = error.data.message;
+                var modal = angular.element(document.getElementById('rate-modal'));
+                modal.css('display', 'block');
+            }
+        }
 
     });
 

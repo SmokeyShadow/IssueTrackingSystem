@@ -30,5 +30,15 @@ public class CaseServiceImpl implements CaseService {
         return caseManager.getAssignees(user);
     }
 
+    @Override
+    public ActionResult<List<CaseEntity>> getCasesStatus(UserEntity user) throws IOException {
+        return caseManager.getCasesStatus(user);
+    }
+
+    @Override
+    public ActionResult<String> rateCase(CaseEntity entity) throws IOException {
+        return caseManager.rateCase(entity);
+    }
+
 
 }
