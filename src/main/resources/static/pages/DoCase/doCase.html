@@ -71,7 +71,7 @@
                         <li> <a class="waves-effect waves-dark"
                                 href="http://localhost:8080/#!/profile" aria-expanded="false"><i
                                     class="fa fa-user"></i><span class="hide-menu">پروفایل</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="http://localhost:8080/IE-proj//index.html#!/case"
+                        <li> <a class="waves-effect waves-dark" href="http://localhost:8080/#!/case"
                                 aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu"></span>ثبت
                                 مورد</a></li>
                         <li> <a class="waves-effect waves-dark"
@@ -128,7 +128,7 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row" data-ng-controller="docaseCtrl" data-ng-init="init()">
                     <!-- column -->
                     <div class="col-12">
                         <div class="card">
@@ -136,7 +136,7 @@
                                 <form>
                                     <div class="row  d-flex justify-content-center" style="margin-bottom: 20px">
                                         <div class="col-sm-2">
-                                            <select class="caseStatusSelect selectpicker select-div"
+                                            <select id="casestatus" class="caseStatusSelect selectpicker select-div"
                                                 data-live-search="true">
                                                 <option value="" hidden>وضعیت مورد را انتخاب کنید</option>
                                                 <option value="open">باز</option>
@@ -146,29 +146,28 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-2">
-                                            <select class="assigneSelect selectpicker select-div"
-                                                data-live-search="true">
-                                                <option value="" hidden>کاربر مسئول را انتخاب کنید</option>
-                                                <option value="">حانیه سادات ایزدپناه</option>
-                                                <option value="">درسا سمیعی</option>
-                                                <option value="">عطیه نوروززاده</option>
-                                            </select>
+                                            <select id="assignerSelect" class="assigneSelect" multiple="true" style="height: 30px; background-color: #F8F9FA;"
+                                                    title="کاربر مسوول را انتخاب کنید" name="role"  class="form-control"
+                                                    ng-model="placement.selected"
+                                                    ng-init="placement.selected = options[0]" ng-options="o.name as o.name for o in users track by o.name"></select>
+
                                         </div>
                                     </div>
 
                                     <div class="row d-flex justify-content-center">
                                         <div class="col-sm-4  form-group">
-                                            <textarea class="form-control" rows="10" placeholder="توضیحات"
+                                            <textarea id="casebody" class="form-control" rows="10" placeholder="توضیحات"
                                                 onfocus="this.placeholder=''"
                                                 onblur="this.placeholder='توضیحات'"></textarea>
                                         </div>
                                     </div>
                                     <div class="row attempedButtons d-flex justify-content-center">
                                         <div class="col-sm-2">
-                                            <button class="btn btn-success" type="submit">ثبت</button>
+                                            <button class="btn btn-success" ng-click = "updateCase()" type="submit">ثبت</button>
                                         </div>
                                         <div class="col-sm-2">
-                                            <button class="btn btn-info" type="submit">انصراف</button>
+                                            <button class="btn btn-info"  onclick="window.location = $(this).data('href');"
+                                                    data-href="#!/dashboard" type="submit">انصراف</button>
                                         </div>
                                     </div>
                                 </form>

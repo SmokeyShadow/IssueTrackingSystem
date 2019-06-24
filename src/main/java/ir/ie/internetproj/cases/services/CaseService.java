@@ -2,6 +2,7 @@ package ir.ie.internetproj.cases.services;
 import ir.ie.internetproj.auth.entities.UserEntity;
 import ir.ie.internetproj.cases.entities.CaseEntity;
 
+import org.thymeleaf.expression.Arrays;
 import wise.core.datamanagement.ActionResult;
 
 import javax.ws.rs.*;
@@ -29,6 +30,12 @@ public interface CaseService {
                                         @FormParam("rate") String rate ,
                                         @FormParam("attachment")String attachment) throws IOException;
 
+    @Path("/insertedCaseReport")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @POST
+    public ActionResult<List<CaseEntity>> getCasesCountBySubjects(@FormParam("subject") String subject
+    ) throws IOException;
 
     @Path("/assignees")
     @Produces(MediaType.APPLICATION_JSON)
@@ -44,6 +51,12 @@ public interface CaseService {
     public ActionResult<List<CaseEntity>> getCasesStatus(UserEntity user
     ) throws IOException;
 
+    @Path("/allcases")
+    @Produces(MediaType.APPLICATION_JSON)
+    @GET
+    public ActionResult<List<CaseEntity>> getAllCases(
+    ) throws IOException;
+
     @Path("/rate")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -56,6 +69,13 @@ public interface CaseService {
     @Consumes(MediaType.APPLICATION_JSON)
     @POST
     public ActionResult<List<UserEntity>> getAssigneeList(UserEntity entity
+    ) throws IOException;
+
+    @Path("/docase")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @POST
+    public ActionResult<String> updateCase(CaseEntity entity
     ) throws IOException;
 
 

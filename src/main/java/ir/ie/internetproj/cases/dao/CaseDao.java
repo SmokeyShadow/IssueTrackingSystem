@@ -36,6 +36,7 @@ public class CaseDao {
             if(!role.trim().equals("مدیر"))
                 en.setAssigneeName(name);
             else {
+                query = manager.createQuery("select e from UserEntity e where  e.id =:id ");
                 List<UserEntity> assigneeUsers = query.setParameter("id", en.getAssignee()).getResultList();
                 en.setAssigneeName(assigneeUsers.get(0).getName());
             }
@@ -72,5 +73,45 @@ public class CaseDao {
         Query query = manager.createQuery("select distinct e  from UserEntity  e where e.id in (select distinct  e.assignee from CaseEntity e where  e.assigner =:id) ");
         List<UserEntity> list = query.setParameter("id", id).getResultList();
         return list;
+    }
+
+    public List<CaseEntity> getCasesCountBySubjects(String subject) {
+        Query query;
+        query = manager.createQuery("select e from CaseEntity  e where e.subject=:subject");
+        return query.setParameter("subject" , subject.trim()).getResultList();
+    }
+
+    public List<CaseEntity> getAllCases() {
+        Query query;
+        List<CaseEntity> list;
+        query = manager.createQuery("select e from CaseEntity e");
+        list = query.getResultList();
+        for (CaseEntity en:list){
+
+            query = manager.createQuery("select e from UserEntity e where  e.id =:id ");
+            List<UserEntity> users = query.setParameter("id", en.getAssignee()).getResultList();
+            en.setAssigneeName(users.get(0).getName());
+            query = manager.createQuery("select e from UserEntity e where  e.id =:id ");
+            users = query.setParameter("id", en.getAssigner()).getResultList();
+            en.setAssignerName(users.get(0).getName());
+
+        }
+        return list;
+    }
+
+    public boolean updateCase(CaseEntity entity) {
+        Query query = manager.createQuery("select e from CaseEntity e where  e.id =:id ");
+        List<CaseEntity> cases = query.setParameter("id" , entity.getId()).getResultList();
+        CaseEntity selectedCase = cases.get(0);
+        selectedCase.setStatus(entity.getStatus());
+         query = manager.createQuery("select e from UserEntity e where  e.name =:name ");
+        List<UserEntity> users = query.setParameter("name" , entity.getAssigneeName()).getResultList();
+        selectedCase.setAssignee(users.get(0).getId());
+        selectedCase.setDescription(entity.getDescription());
+        CaseEntity en = manager.merge(selectedCase);
+        if(en != null)
+            return true;
+        return false;
+
     }
 }

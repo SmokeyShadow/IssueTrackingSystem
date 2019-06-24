@@ -14,7 +14,7 @@
 </head>
 
 
-<body dir="rtl">
+<body dir="rtl" ng-app = "app">
 
     <script type="text/javascript">
         $('.selectpicker').selectpicker({
@@ -23,7 +23,7 @@
 
     <!-- this div is common in all pages -->
     <!-- green top fixed position header-->
-    <div class="green-nav" ng-controller="reportCtrl">
+    <div class="green-nav" >
         <header>
 
             <!-- green navbar shown at load -->
@@ -78,7 +78,7 @@
                         <li> <a class="waves-effect waves-dark"
                                 href="http://localhost:8080/#!/profile" aria-expanded="false"><i
                                     class="fa fa-user"></i><span class="hide-menu">پروفایل</span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="http://localhost:8080/IE-proj//index.html#!/case"
+                        <li> <a class="waves-effect waves-dark" href="http://localhost:8080/#!/case"
                                 aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu"></span>ثبت
                                 مورد</a></li>
                         <li> <a class="waves-effect waves-dark"
@@ -216,53 +216,52 @@
                     <div class="col-sm-6">
                         <div class="card">
 
-                            <div class="card-body">
+                            <div class="card-body" >
                                 <h4 class="card-title m-b-0">مورد های ثبت شده</h4>
-                                <h2 class="font-light">۳۵۵۰۰ <span class="font-16 text-success font-medium">+۲۳%</span>
+                                    <h2 class="font-light text-success" id="casecount">
                                 </h2>
                                 <div class="select-div col-sm-10">
-                                    <select id="statusSelect"
-                                        onchange="reportfilterByAll('statusSelect' , 'assigneSelect' , 'assignerSelect' , 4, 2, 3)"
-                                        title="وضعیت را انتخاب کنید" name="role" multiple class="selectpicker"
+                                    <select id="subjectSelect"
+                                        title="موضوع را انتخاب کنید" name="role" onchange="OnSubjectChange('subjectSelect')"  class="selectpicker"
                                         data-live-search="true">
-                                        <option selected>شکایت</option>
-                                        <option selected>پیشنهاد</option>
-                                        <option selected>انتقاد</option>
-                                        <option selected>درخواست</option>
+                                        <option >شکایت</option>
+                                        <option >پیشنهاد</option>
+                                        <option >انتقاد</option>
+                                        <option >درخواست</option>
                                     </select>
                                 </div>
                                 <div class="m-t-30">
                                     <div class="row text-center progress-section">
                                         <span class="col-sm-12 text-right">بسته</span>
                                         <div class="progress col-sm-10">
-                                            <div class="progress-bar progress-bar-striped active bg-info"
+                                            <div class="progress-bar progress-bar-striped active bg-info" id="close"
                                                 role="progressbar" aria-valuenow="56" aria-valuemin="0"
-                                                aria-valuemax="100" style="width:56%">
-                                                ۵۶%
+                                                aria-valuemax="100" >
+                                                0%
                                             </div>
                                         </div>
                                         <span class="col-sm-12 text-right">باز</span>
                                         <div class="progress col-sm-10">
-                                            <div class="progress-bar progress-bar-striped active bg-info"
+                                            <div class="progress-bar progress-bar-striped active bg-info" id="open"
                                                 role="progressbar" aria-valuenow="21" aria-valuemin="0"
-                                                aria-valuemax="100" style="width:21%">
-                                                ۲۱%
+                                                aria-valuemax="100" >
+                                                0%
                                             </div>
                                         </div>
                                         <span class="col-sm-12 text-right">در حال بررسی</span>
                                         <div class="progress col-sm-10">
-                                            <div class="progress-bar progress-bar-striped active bg-info"
+                                            <div class="progress-bar progress-bar-striped active bg-info" id="checking"
                                                 role="progressbar" aria-valuenow="10" aria-valuemin="0"
-                                                aria-valuemax="100" style="width:10%">
-                                                ۱۰%
+                                                aria-valuemax="100">
+                                                0%
                                             </div>
                                         </div>
                                         <span class="col-sm-12 text-right">تعویق</span>
                                         <div class="progress col-sm-10">
-                                            <div class="progress-bar progress-bar-striped active bg-info"
+                                            <div class="progress-bar progress-bar-striped active bg-info" id="postpone"
                                                 role="progressbar" aria-valuenow="13" aria-valuemin="0"
-                                                aria-valuemax="100" style="width:13%">
-                                                ۱۳%
+                                                aria-valuemax="100" >
+                                                0%
                                             </div>
                                         </div>
 
@@ -271,18 +270,18 @@
                                     </div>
                                 </div>
                                 <div class="m-t-30">
-                                    <div class="col-12 card-title m-b-0 text-right">مورد های بسته شده براساس اهمیت</div>
+                                    <div class="col-12 card-title m-b-0 text-right">مورد ها براساس اهمیت</div>
                                     <div class="row text-center" style="margin-top:5px">
                                         <div class="col-4">
-                                            <h4 class="m-b-0">۵۶%</h4>
+                                            <h4 class="m-b-0" id="urgent">0%</h4>
                                             <span class="badge badge-pill badge-success">اورژانسی</span>
                                         </div>
                                         <div class="col-4 border-right">
-                                            <h4 class="m-b-0">۲۱%</h4>
+                                            <h4 class="m-b-0" id="normal">0%</h4>
                                             <span class="badge badge-pill badge-secondary">متوسط</span>
                                         </div>
                                         <div class="col-4 border-right">
-                                            <h4 class="m-b-0">۱۰%</h4>
+                                            <h4 class="m-b-0" id="low">0%</h4>
                                             <span class="badge badge-pill badge-warning">معمولی</span>
                                         </div>
 
@@ -525,12 +524,12 @@
                         </div>
                     </div>
                 </div>
-
+                <div data-ng-controller="reportCtrl" data-ng-init="init()">
                 <div class="col-sm-12 card  report-filters">
                     <div class="row">
                         <div class="select-div col-sm-4">
-                            <select id="statSelect"
-                                onchange="filterByAll('statSelect' , 'assigneSelect' , 'assignerSelect' , 4, 2, 3)"
+                            <select id="statusSelect"
+                                onchange="filterByAll('statusSelect' , 'assigneSelect' , 'assignerSelect', 'importanceSelect' , 'subjectsSelect' , 4, 2, 3 , 6 ,1)"
                                 title="وضعیت را انتخاب کنید" name="role" multiple class="selectpicker"
                                 data-live-search="true">
                                 <option selected>باز</option>
@@ -539,28 +538,27 @@
                                 <option selected>تعویق</option>
                             </select>
                         </div>
+
                         <div class="select-div col-sm-4">
-                            <select id="assigneSelect"
-                                onchange="filterByAll('statusSelect' , 'assigneSelect' , 'assignerSelect' , 4, 2, 3)"
-                                title="کاربر مسوول را انتخاب کنید" name="role" multiple class="selectpicker"
-                                data-live-search="true">
-                                <option selected>عطیه نوروززاده</option>
-                                <option selected>حانیه</option>
-                                <option selected>کارمند</option>
-                                <option selected>استاد و مدیر</option>
-                            </select>
+                            <div class="form-group"
+                                 onchange="filterByAll('statusSelect' , 'assigneSelect' , 'assignerSelect', 'importanceSelect' , 'subjectsSelect' , 4, 2, 3 , 6 ,1)"
+                            >
+                                <select id="assignerSelect"  multiple="true" style="height: 30px; background-color: #F8F9FA;"
+                                        title="کاربر ارسال کننده را انتخاب کنید" name="role"  class="form-control"
+                                        ng-model="placement.selected"
+                                        ng-init="placement.selected = options[0]" ng-options="o.assignerName as o.assignerName for o in cases | unique : 'assignerName'"></select>
+                            </div>
                         </div>
                         <div class="select-div col-sm-4">
-                            <select id="assignerSelect"
-                                onchange="filterByAll('statusSelect' , 'assigneSelect' , 'assignerSelect' , 4, 2, 3)"
-                                title="کاربر ارسال کننده را انتخاب کنید" name="role" multiple class="selectpicker"
-                                data-live-search="true">
-                                <option selected>درسا سمیعی</option>
-                                <option selected>استاد</option>
-                                <option selected>مدیر</option>
-                                <option selected>کارمند</option>
-                                <option selected>استاد و مدیر</option>
-                            </select>
+                            <div class="form-group"
+                                 onchange="filterByAll('statusSelect' , 'assigneSelect' , 'assignerSelect', 'importanceSelect' , 'subjectsSelect' , 4, 2, 3 , 6 ,1)"
+                            >
+                                <select id="assigneSelect"  multiple="true" style="height: 30px; background-color: #F8F9FA;"
+                                        title="کاربر مسوول را انتخاب کنید" name="role"  class="form-control"
+                                        ng-model="placement.selected" ng-options="o.assigneeName as o.assigneeName for o in cases | unique : 'assigneeName'"></select>
+
+                            </div>
+
                         </div>
                     </div>
 
@@ -568,7 +566,7 @@
                     <div class="row">
                         <div class="select-div col-sm-4">
                             <select id="importanceSelect"
-                                onchange="filterByAll('statusSelect' , 'assigneSelect' , 'assignerSelect' , 4, 2, 3)"
+                                onchange="filterByAll('statusSelect' , 'assigneSelect' , 'assignerSelect', 'importanceSelect' , 'subjectsSelect' , 4, 2, 3 , 6 ,1)"
                                 title="درجه اهمیت را انتخاب کنید" name="role" multiple class="selectpicker"
                                 data-live-search="true">
                                 <option selected>اورژانسی</option>
@@ -578,16 +576,14 @@
                         </div>
 
                         <div class="select-div col-sm-4">
-                            <select id="starSelect"
-                                onchange="filterByAll('statusSelect' , 'assigneSelect' , 'assignerSelect' , 4, 2, 3)"
-                                title="رضایت را انتخاب کنید" name="role" multiple class="selectpicker"
+                            <select id="subjectsSelect"
+                                onchange="filterByAll('statusSelect' , 'assigneSelect' , 'assignerSelect', 'importanceSelect' , 'subjectsSelect' , 4, 2, 3 , 6 ,1)"
+                                title="موضوع را انتخاب کنید" name="role" multiple class="selectpicker"
                                 data-live-search="true">
-                                <option selected>ثبت نشده</option>
-                                <option selected>۱ ستاره</option>
-                                <option selected>۲ ستاره</option>
-                                <option selected>۳ ستاره</option>
-                                <option selected>۴ ستاره</option>
-                                <option selected>۵ ستاره</option>
+                                <option selected>شکایت</option>
+                                <option selected>درخواست</option>
+                                <option selected>پیشنهاد</option>
+                                <option selected>انتقاد</option>
                             </select>
                         </div>
                     </div>
@@ -604,102 +600,80 @@
                 </div>
                 <div class="row">
                     <!-- column -->
-                    <div class="col-12">
+                    <div class="col-12" >
                         <div class="card">
                             <div class="card-body">
 
                                 <div class="table-responsive">
-                                    <table id="statusTable" class="table table-hover   ">
+                                    <table id="casesTable" class="table table-hover   ">
 
                                         <thead class="thead-light">
 
-                                            <tr>
-                                                <td>شماره</td>
-                                                <td>موضوع</td>
-                                                <td>ارجاع به</td>
-                                                <td>ارجاع دهنده</td>
-                                                <td>وضعیت</td>
-                                                <td>رضایت</td>
-                                                <td>درجه اهمیت</td>
-                                                <td>تاریخ</td>
-                                            </tr>
+                                        <tr>
+                                            <td>شماره</td>
+                                            <td>موضوع</td>
+                                            <td>ارجاع به</td>
+                                            <td>ارجاع دهنده</td>
+                                            <td>وضعیت</td>
+                                            <td>رضایت</td>
+                                            <td>درجه اهمیت</td>
+                                            <td>تاریخ</td>
+                                        </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>۱</td>
-                                                <td>سیستم سرمایش</td>
-                                                <td>عطیه نوروززاده</td>
-                                                <td>درسا سمیعی</td>
-                                                <td><span class="badge badge-pill badge-secondary">باز</span> </td>
-                                                <td></td>
-                                                <td><span class="badge badge-pill badge-info">معمولی</span> </td>
-                                                <td> 1397/03/27 17:09 </td>
-                                            </tr>
-                                            <tr>
-                                                <td>۲</td>
-                                                <td>سیستم سرمایش</td>
-                                                <td>حانیه</td>
-                                                <td>درسا سمیعی</td>
-                                                <td><span class="badge badge-pill badge-success">بسته</span></td>
-                                                <td> <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                    <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                    <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                    <a href="#!"><i class="fa fa-star f-12 text-default"></i></a>
-                                                    <a href="#!"><i class="fa fa-star f-12 text-default"></i></a></td>
-                                                <td><span class="badge badge-pill badge-danger">اورژانسی</span></td>
-                                                <td> 1397/03/27 17:09 </td>
-                                            </tr>
-                                            <tr>
-                                                <td>۳</td>
-                                                <td>سیستم سرمایش</td>
-                                                <td>عطیه نوروززاده</td>
-                                                <td>درسا سمیعی</td>
-                                                <td><span class="badge badge-pill badge-warning">در حال بررسی</span>
-                                                <td></td>
-                                                <td><span class="badge badge-pill badge-danger">اورژانسی</span> </td>
-                                                </td>
-                                                <td> 1397/03/27 17:09 </td>
-                                            </tr>
-                                            <tr>
-                                                <td>۴</td>
-                                                <td>سیستم سرمایش</td>
-                                                <td>عطیه نوروززاده</td>
-                                                <td>استاد</td>
-                                                <td><span class="badge badge-pill badge-info">تعویق</span> </td>
-                                                <td></td>
-                                                <td><span class="badge badge-pill badge-warning">متوسط</span> </td>
-                                                <td> 1397/03/27 17:09 </td>
-                                            </tr>
-                                            <tr>
-                                                <td>۵</td>
-                                                <td>سیستم سرمایش</td>
-                                                <td>حانیه</td>
-                                                <td>درسا سمیعی</td>
-                                                <td><span class="badge badge-pill badge-success">بسته</span> </td>
-                                                <td> <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                    <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                    <a href="#!"><i class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                    <a href="#!"><i class="fa fa-star f-12 text-default"></i></a>
-                                                    <a href="#!"><i class="fa fa-star f-12 text-default"></i></a></td>
-                                                <td><span class="badge badge-pill badge-danger">اورژانسی</span> </td>
-                                                <td> 1397/03/27 17:09 </td>
-                                            </tr>
-                                            <tr>
-                                                <td>۶</td>
-                                                <td>سیستم سرمایش</td>
-                                                <td>عطیه نوروززاده</td>
-                                                <td>استاد</td>
-                                                <td><span class="badge badge-pill badge-secondary">باز</span> </td>
-                                                <td></td>
-                                                <td><span class="badge badge-pill badge-danger">اورژانسی</span> </td>
-                                                <td> 1397/03/27 17:09 </td>
-                                            </tr>
+                                        <tr ng-repeat="x in cases">
+                                            <td>{{$index + 1}}</td>
+                                            <td>{{x.subject}}</td>
+                                            <td>{{x.assigneeName}}</td>
+                                            <td>{{x.assignerName}}</td>
+
+                                            <td ng-switch on="x.status">
+                                                    <span ng-switch-when="باز"
+                                                          class="badge badge-pill badge-danger">باز</span>
+                                                <span ng-switch-when="بسته"
+                                                      class="badge badge-pill badge-success">بسته</span>
+                                                <span ng-switch-when="تعویق"
+                                                      class="badge badge-pill badge-info">تعویق</span>
+                                                <span ng-switch-default class="badge badge-pill badge-warning">در حال بررسی</span>
+
+                                            </td>
+                                            <td ng-switch on="x.status">
+
+                                                    <span ng-switch-when="بسته">
+                                                        <div ng-switch on="x.rate">
+
+                                                            <div ng-switch-when="-1">
+                                                                                 امتیازی ثبت نشده
+                                                            </div>
+                                                            <div ng-switch-default> {{x.rate}} امتیاز داده شده
+                                                            </div>
+                                                        </div>
+                                                    </span>
+                                                <span  ng-switch-default>
+
+                                                    </span>
+
+                                            </td>
+
+                                            <td ng-switch on="x.importance">
+                                                    <span ng-switch-when="معمولی"
+                                                          class="badge badge-pill badge-info">معمولی</span>
+                                                <span ng-switch-when="اورژانسی"
+                                                      class="badge badge-pill badge-danger">اورژانسی</span>
+                                                <span ng-switch-default
+                                                      class="badge badge-pill badge-warning">متوسط</span>
+                                            </td>
+
+                                            <td> {{x.date}} </td>
+                                        </tr>
+
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
                 <div class="col-sm-12" aria-label="Page navigation example" style="margin-bottom: 50px !important; ">
                     <ul class="pagination justify-content-center">

@@ -26,6 +26,11 @@ public class CaseServiceImpl implements CaseService {
     }
 
     @Override
+    public ActionResult<List<CaseEntity>> getCasesCountBySubjects(String subject) throws IOException {
+        return  caseManager.getCasesCountBySubjects(subject);
+    }
+
+    @Override
     public ActionResult<List<CaseEntity>> getAssignees(UserEntity user) throws IOException {
         return caseManager.getAssignees(user);
     }
@@ -36,6 +41,11 @@ public class CaseServiceImpl implements CaseService {
     }
 
     @Override
+    public ActionResult<List<CaseEntity>> getAllCases() throws IOException {
+        return caseManager.getAllCases();
+    }
+
+    @Override
     public ActionResult<String> rateCase(CaseEntity entity) throws IOException {
         return caseManager.rateCase(entity);
     }
@@ -43,6 +53,11 @@ public class CaseServiceImpl implements CaseService {
     @Override
     public ActionResult<List<UserEntity>> getAssigneeList(UserEntity entity) throws IOException {
         return caseManager.getAssigneeList(entity);
+    }
+
+    @Override
+    public ActionResult<String> updateCase(CaseEntity entity) throws IOException {
+        return caseManager.updateCase(entity);
     }
 
 

@@ -31,7 +31,229 @@
             $scope.adminAccess = 'hidden';
         }
     });
+
+    app.controller('reportCtrl', function ($scope, $http, myService) {
+        $scope.init = function () {
+
+            var url = "rest/case/allcases";
+
+            $http.get(url ,true).then(successCallback, errorCallback);
+
+            function successCallback(response) {
+                if( response.status == 200 && response.data.success == true
+                    && response.data.data != null) {
+                    $scope.cases = response.data.data;
+
+                    console.log("success ! contains data" );
+                }
+                else
+                    console.log("no records found" +response.message);
+
+            }
+            function errorCallback(error) {
+                console.log("error" + error.message);
+            }
+        }
+    });
+    app.filter("unique", function() {
+        // we will return a function which will take in a collection
+        // and a keyname
+        return function(collection, keyname) {
+            // we define our output and keys array;
+            var output = [],
+                keys = [];
+
+            // we utilize angular's foreach function
+            // this takes in our original collection and an iterator function
+            angular.forEach(collection, function(item) {
+                // we check to see whether our object exists
+                var key = item[keyname];
+                // if it's not already part of our keys array
+                if (keys.indexOf(key) === -1) {
+                    // add it to our keys array
+                    keys.push(key);
+                    // push this item to our final output array
+                    output.push(item);
+                }
+            });
+            // return our array which should be devoid of
+            // any duplicates
+            return output;
+        };
+    });
+
 })();
+
+function getOpts(sel) {
+
+    var opts = [], opt;
+    for (var i = 0, len = sel.options.length; i < len; i++) {
+        opt = sel.options[i];
+        if (opt.selected) {
+            if(opt.value.includes(","))
+            {
+                var str = opt.value.substring(opt.value.indexOf(',') + 1 , opt.value.length);
+                opts.push(str);
+            }
+            else
+                opts.push(opt.value);
+        }
+    }
+    return opts;
+}
+function IsFilteredCell(opts, filtercell, trs) {
+    for (var j = 0; j < opts.length; j++) {
+        var cellVal1 = trs.cells[filtercell];
+        console.log("compare   " + cellVal1.innerText.trim() + "  sec  " + opts[j].trim());
+        if (cellVal1.innerText.trim() == opts[j].trim())
+            return true;
+    }
+    return false;
+}
+//filter by all
+function filterByAll(id1, id2, id3,id4,id5, filtercell1, filtercell2, filtercell3 , filtercell4 , filtercell5) {
+    var sel1 = document.getElementById(id1);
+    var sel2 = document.getElementById(id2);
+    var sel3 = document.getElementById(id3);
+    var sel4 = document.getElementById(id4);
+    var sel5 = document.getElementById(id5);
+    var opts1 = getOpts(sel1);
+    var opts2 = getOpts(sel2);
+    var opts3 = getOpts(sel3);
+    var opts4 = getOpts(sel4);
+    var opts5 = getOpts(sel5);
+    var table = document.getElementById('casesTable');
+    var equal1 = false;
+    var equal2 = false;
+    var equal3 = false;
+    var equal4 = false;
+    var equal5 = false;
+    if (opts1.length == 0 && opts2.length == 0 && opts3.length == 0 && opts4.length == 0 &&  opts5.length ==0) {
+        for (var i = 1; i < table.rows.length; i++) {
+            var trs = table.getElementsByTagName("tr")[i].style.display = "none";
+        }
+    }
+    //iterate on records
+    for (var i = 1; i < table.rows.length; i++) {
+        var trs = table.getElementsByTagName("tr")[i];
+
+        equal1 = IsFilteredCell(opts1, filtercell1, trs);
+        equal2 = IsFilteredCell(opts2, filtercell2, trs);
+        equal3 = IsFilteredCell(opts3, filtercell3, trs);
+        equal4 = IsFilteredCell(opts4, filtercell4, trs);
+        equal5 = IsFilteredCell(opts5, filtercell5, trs);
+        if (equal1 && equal2 && equal3 && equal4 && equal5) {
+            trs.style.display = "table-row";
+        }
+        else {
+            trs.style.display = "none";
+        }
+    }
+}
+function OnSubjectChange(subject)
+{
+
+    const Http = new XMLHttpRequest();
+    var casecount = document.getElementById('casecount');
+    var postpone = document.getElementById('postpone');
+    var open = document.getElementById('open');
+    var checking = document.getElementById('checking');
+    var close = document.getElementById('close');
+    var low = document.getElementById('low');
+    var normal = document.getElementById('normal');
+    var urgent = document.getElementById('urgent');
+
+    subject = document.getElementById(subject);
+
+    var params = "subject=" + subject.value;
+    const url='rest/case/insertedCaseReport';
+    Http.open("POST", url , true);
+    Http.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8");
+    Http.send(params);
+    var postponeCount =0;
+    var openCount =0;
+    var checkingCount =0;
+    var closeCount =0;
+    var urgentCount =0;
+    var lowCount =0;
+    var normalCount =0;
+    Http.onreadystatechange = function () {
+
+        if ( this.readyState == 4 && this.status == 200) {
+            var json = JSON.parse(this.responseText);
+            if(json.data != null)
+            {
+                for (var i = 0; i < json.data.length; i++) {
+                    var obj = json.data[i];
+                    for (var key in obj) {
+                        var attrName = key;
+                        var attrValue = obj[key];
+                        if (attrName.trim() == "status") {
+                            if (attrValue.trim() == "باز")
+                                openCount += 1;
+                            else if (attrValue.trim() == "بسته")
+                                closeCount += 1;
+                            else if (attrValue.trim() == "تعویق")
+                                postponeCount += 1;
+                            else if (attrValue.trim() == "در حال بررسی")
+                                checkingCount += 1;
+                        }
+                        if (attrName.trim() == "importance") {
+                            if (attrValue.trim() == "اورژانسی")
+                                urgentCount += 1;
+                            else if (attrValue.trim() == "متوسط")
+                                normalCount += 1;
+                            else if (attrValue.trim() == "معمولی")
+                                lowCount += 1;
+                        }
+
+                    }
+                }
+                var total = json.data.length;
+                casecount.innerHTML =total ;
+
+                postpone.innerHTML = ((postponeCount * 100) / total).toPrecision(3).toString()  + "%";
+                postpone.setAttribute('aria-valuenow' , ((postponeCount * 100) / total).toPrecision(3).toString());
+                postpone.style.width =  Math.ceil((postponeCount * 100) / total).toString() + "%";
+
+                open.innerHTML = ((openCount * 100) /total).toPrecision(3).toString() + "%";
+                open.setAttribute('aria-valuenow' , ((openCount * 100) /total).toPrecision(3).toString());
+                open.style.width =  Math.ceil((openCount * 100) / total).toString() + "%";
+
+
+                checking.innerHTML = ((checkingCount * 100) /total).toPrecision(3).toString()  + "%";
+                checking.setAttribute('aria-valuenow' , ((checkingCount * 100) /total).toPrecision(3).toString());
+                checking.style.width =  Math.ceil((checkingCount * 100) / total).toString() + "%";
+
+                close.innerHTML = ((closeCount * 100) / total).toPrecision(3).toString()  + "%";
+                close.setAttribute('aria-valuenow' , ((closeCount * 100) / total).toPrecision(3).toString());
+                close.style.width = Math.ceil((closeCount * 100) / total).toString() + "%";
+
+                low.innerHTML = ((lowCount * 100) / total).toPrecision(3).toString()  + "%";
+
+
+                normal.innerHTML = ((normalCount * 100) /total).toPrecision(3).toString()  + "%";
+
+
+                urgent.innerHTML = ((urgentCount * 100) /total).toPrecision(3).toString()  + "%";
+
+
+            }
+            else
+            {
+                casecount.innerHTML = "0";
+                postpone.innerHTML =  "0%";
+                open.innerHTML =  "0%";
+                checking.innerHTML =  "0%";
+                close.innerHTML = "0%";
+                low.innerHTML =  "0%";
+                normal.innerHTML = "0%";
+                urgent.innerHTML = "0%";
+            }
+
+        }
+    }
+}
 function mostRepeatedWords() {
 
     am4core.useTheme(am4themes_frozen);

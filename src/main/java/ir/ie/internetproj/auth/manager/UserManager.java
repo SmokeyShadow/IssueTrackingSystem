@@ -152,6 +152,18 @@ public class UserManager {
         return result;
     }
 
+    public ActionResult<List<UserEntity>> getAllUser() {
+        ActionResult<List<UserEntity>> result = new ActionResult<>();
+        List<UserEntity> entities = authDao.getAllUsers();
+        if(entities != null && entities.size() > 0) {
+            result.setSuccess(true);
+            result.setMessage("اطلاعات از پایگاه داده دریافت شد.");
+            result.setData(entities);
+        }
+        else
+            result.setMessage("موردی یافت نشد!");
+        return result;
+    }
     private String[] validateProfile( String newuser, String newemail) {
         List<String> messages = new ArrayList<>();
 
@@ -246,4 +258,5 @@ public class UserManager {
         }
         return ans;
     }
+
 }

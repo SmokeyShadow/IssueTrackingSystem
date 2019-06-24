@@ -155,8 +155,8 @@
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="x in assignee"
-                                                onclick="window.location = $(this).data('href');"
-                                                data-href="#!/docase">
+                                                ng-click="updateCase(x.id)"
+                                               >
                                                 <td>{{$index + 1}}</td>
                                                 <td>{{x.subject}}</td>
                                                 <td>{{x.assigneeName}}</td>

@@ -58,8 +58,14 @@
 
                 }
                 function errorCallback(error) {
-                    console.log("error" + response.message);
+                    console.log("error" + error.message);
                 }
+            }
+            $scope.updateCase = function (id) {
+                var user = myService.get();
+                user.caseid = id;
+                myService.set(user);
+                window.location = $(this).data('#!/docase');
             }
 
     });

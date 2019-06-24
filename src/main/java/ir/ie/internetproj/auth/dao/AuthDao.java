@@ -98,4 +98,13 @@ public class AuthDao {
         UserEntity en = manager.merge(containUser);
         return  en;
     }
+
+
+    public List<UserEntity> getAllUsers() {
+        Query query;
+        List<UserEntity> list;
+        query = manager.createQuery("select e from UserEntity e");
+        list = query.getResultList();
+        return list;
+    }
 }

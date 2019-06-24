@@ -5,6 +5,10 @@ import ir.ie.internetproj.auth.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import wise.core.datamanagement.ActionResult;
+
+import java.io.IOException;
+import java.util.List;
+
 @Component("userService")
 public class AuthServiceImpl implements AuthService {
     @Autowired
@@ -27,5 +31,10 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public ActionResult<String> changeProfile(String prevuser , String newuser, String newemail) {
         return userManager.changeProfile(prevuser,newuser, newemail);
+    }
+
+    @Override
+    public ActionResult<List<UserEntity>> getAllUsers() throws IOException {
+        return userManager.getAllUser();
     }
 }

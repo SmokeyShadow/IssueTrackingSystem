@@ -32,6 +32,18 @@ public class CaseManager {
     public ActionResult<List<UserEntity>> getAssigneeList(UserEntity entity) {
         ActionResult<List<UserEntity>> result = new ActionResult<>();
         List<UserEntity> entities = caseDao.getAssigneeList(entity.getId());
+        if(entities != null && entities.size() > 0) {
+            result.setSuccess(true);
+            result.setMessage("اطلاعات از پایگاه داده دریافت شد.");
+            result.setData(entities);
+        }
+        else
+            result.setMessage("موردی توسط کاربر ثبت نشده است!");
+        return result;
+    }
+    public ActionResult<List<CaseEntity>> getCasesCountBySubjects(String subject) {
+        ActionResult<List<CaseEntity>> result = new ActionResult<>();
+        List<CaseEntity> entities = caseDao.getCasesCountBySubjects(subject);
 
         if(entities != null && entities.size() > 0) {
 
@@ -40,7 +52,33 @@ public class CaseManager {
             result.setData(entities);
         }
         else
-            result.setMessage("موردی توسط کاربر ثبت نشده است!");
+            result.setMessage("موردی با این موضوع  ثبت نشده است!");
+        return result;
+    }
+
+    public ActionResult<List<CaseEntity>> getAllCases() {
+        ActionResult<List<CaseEntity>> result = new ActionResult<>();
+        List<CaseEntity> entities = caseDao.getAllCases();
+        if(entities != null && entities.size() > 0) {
+            result.setSuccess(true);
+            result.setMessage("اطلاعات از پایگاه داده دریافت شد.");
+            result.setData(entities);
+        }
+        else
+            result.setMessage("موردی یافت نشد!");
+        return result;
+    }
+    @Transactional
+    public ActionResult<String> updateCase(CaseEntity entity) {
+        ActionResult<String> result = new ActionResult<>();
+        boolean success = caseDao.updateCase(entity);
+        if(success) {
+            result.setSuccess(true);
+            result.setMessage( "مورد با موفقیت ویرایش شد ");
+            result.setData(null);
+        }
+        else
+            result.setMessage("خطا در ویرایش مورد!");
         return result;
     }
     @Transactional

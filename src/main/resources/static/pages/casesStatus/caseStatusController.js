@@ -55,7 +55,7 @@
 
             }
             function errorCallback(error) {
-                console.log("error" + response.message);
+                console.log("error" + error.message);
             }
         }
         $scope.rateCase = function (number , caseid , ratedivid) {
