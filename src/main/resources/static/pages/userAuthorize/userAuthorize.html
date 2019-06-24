@@ -17,26 +17,52 @@
 
 <script>
     $.getJSON('../Assets/Jsons/users.json', function (json) {
-        var array = [];
-        for (var key in json) {
-            if (json.hasOwnProperty(key)) {
-                var item = json[key];
-                array.push({
-                    picture: item.picture,
-                    userName: item.userName,
-                    name: item.name,
-                    position: item.position,
-                    date: item.date,
-                    state: item.state
-                });
-            }
-        }
-        for(var i = 0;i<array.length;i++){
-            var tblRow = "<tr>" + "<td>" + (i + 1) + "</td>" + "<td>" + "<img style = 'width: 30px;height: 30px;'src = '" + array[i].picture + "'>" + "</td>" + "<td>" + array[i].userName + "</td>" + "<td>" + array[i].name + "</td>" + "<td>" + array[i].position + "</td>" + "<td>" + array[i].date + "</td>" + "<td>" + "<button class='change_button'>" + array[i].state + "</button>" + "</td>" + "</tr>";
-            $(tblRow).appendTo("#table tbody");
-        }
+            const Http = new XMLHttpRequest();
+            const url='rest/authorize/submit';
+            Http.open("GET", url , false);
+            Http.send();
+            var json;
+            var ident;
+            var buttonNum;
+                if(Http.readyState == 4 && Http.status == 200)
+                {
+                    json = JSON.parse(Http.responseText);
+                    var array = [];
+                    for (var key in json) {
+                        if (json.hasOwnProperty(key)) {
+                            var item = json[key];
+                            array.push({
+                                ID : item.id,
+                                Name : item.name,
+                                Role: item.role,
+                                Email: item.email,
+                                state: "not authorized"
+                            });
+                        }
+                    }
+                    for(var i = 0;i<array.length;i++) {
+                        ident = array[i].ID;
+                        buttonNum = i;
+                        var tblRow = "<tr>" + "<td>" + (i + 1) + "</td>" + "<td>" + array[i].Name + "</td>" + "<td>" + array[i].Role + "</td>" + "<td>" + array[i].Email + "</td>" + "<td>" + "<button class='change_button' onclick=authorizeUser("+ident+","+buttonNum+") >" + array[i].state + "</button>" + "</td>" + "</tr>";
+                        $(tblRow).appendTo("#table tbody");
+                    }
 
+                    }
     });
+
+    function authorizeUser(id,buttonNum) {
+        const Http = new XMLHttpRequest();
+        const url='rest/authorize/s/'+id;
+        Http.open("POST", url , false);
+        Http.setRequestHeader("Content-type", "application/json");
+        Http.send();
+        if(Http.status == 200 && Http.readyState == 4){
+            var button = document.getElementsByClassName('change_button');
+            button[buttonNum].textContent = "authorized";
+            button[buttonNum].style.backgroundColor = "green";
+
+        }
+    }
 </script>
 </head>
 
@@ -173,11 +199,9 @@
                                     <thead class="thead-light">
                                     <tr>
                                         <td>شماره</td>
-                                        <td>عکس پروفایل</td>
-                                        <td>نام کاربری</td>
                                         <td>نام و نام خانوادگی کاربر</td>
                                         <td>سمت</td>
-                                        <td>تاریخ ثبت نام</td>
+                                        <td>پست الکترونیکی</td>
                                         <td>تایید</td>
                                     </tr>
                                     </thead>
